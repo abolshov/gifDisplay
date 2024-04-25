@@ -123,6 +123,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 //#include "Gif.h"
 #include "gifDisplay/GifDisplay/interface/display.h"
@@ -201,9 +202,10 @@ std::string eventlistFile;
 //std::string chamberType;
 
 int doDebug;
-bool addEmulation ;
+bool addEmulation;
 bool addSimHits;
 bool doGEMDisplay;
+bool doGEMCSC;
 };
 
 //
@@ -249,20 +251,19 @@ fout->cd();
   corrlctDigiTagSrc_emul = consumes<CSCCorrelatedLCTDigiCollection>(iConfig.getUntrackedParameter<edm::InputTag>("corrlctDigiTagSrc_Emul"));
 
 
-
   eventDisplayDir = iConfig.getUntrackedParameter<std::string>("eventDisplayDir","/home/mhl/public_html/2017/20171025_cscSeg/eventdisplay/");
   eventlistFile = iConfig.getUntrackedParameter<std::string>("eventList","eventList.txt");
-  std::cout <<"Eventlist file "<< eventlistFile <<" outfolder "<< eventDisplayDir << (addEmulation ? " addEmulation":" NOEmulation")<< std::endl;
+  std::cout <<"Eventlist file "<< eventlistFile <<" outfolder "<< eventDisplayDir << (addEmulation ? " addEmulation":" NOEmulation") << std::endl;
  //eventlistFile = "eventList.txt";
   //chamberType = iConfig.getUntrackedParameter<std::string>("chamberType", "11");
   doDebug = iConfig.getUntrackedParameter<int>("debug", 0);
   addEmulation = iConfig.getUntrackedParameter<bool>("addEmulation", false);
   addSimHits = iConfig.getUntrackedParameter<bool>("addSimHits", false);
   doGEMDisplay = iConfig.getUntrackedParameter<bool>("doGEMDisplay", false);
+  doGEMCSC = iConfig.getUntrackedParameter<bool>("doGEMCSC", false);  
 
   cscToken_ = consumesCollector().esConsumes<CSCGeometry, MuonGeometryRecord>();
   gemToken_ = consumesCollector().esConsumes<GEMGeometry, MuonGeometryRecord>();
-
 
   //vector<CSCDetID> chamberList;
   //chamberList.clear();
@@ -303,8 +304,6 @@ fout->cd();
             cout <<"Eventlist: run "<< run <<" event "<< event <<" endcap "<< endcap <<" station "<< station << " ring "<< ring <<" chamber "<< chamber << endl;
 
    }
-
-
 }
 
 
@@ -358,8 +357,6 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    vector<CSCIDLCTs> clct_emul_container;
    vector<CSCIDLCTs> lct_container;
    vector<CSCIDLCTs> lct_emul_container;
-
-
 
    if (doDebug > 0) 
       cout <<"this run "<< Run <<" this Event "<< Event << endl;
@@ -738,6 +735,7 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
       tmpId.Station =  stationL;
       tmpId.Ring = ringL;
       tmpId.Chamber = chamberL;
+
       if (doDebug > 0) 
          cout <<"Start to display event "<< eventL <<" "<< tmpId <<endl;
 
@@ -752,7 +750,7 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
         gemId.Chamber = chamberL;
         gemId.Layer = 0; //for superchamber
         gemId.Roll = -1; //for superchamber
-        GEMPadDisplay(eventDisplayDir, gemId, gemsimhit_container, gempad_container, gemcluster_container, usedGEMChamber, Run, Event, doDebug);
+        GEMPadDisplay(eventDisplayDir, gemId, tmpId, gemsimhit_container, gempad_container, gemcluster_container, usedGEMChamber, lct_container, lct_emul_container, Run, Event, addEmulation, doGEMCSC, doDebug);
       }
    }
       
@@ -886,6 +884,9 @@ void GifDisplay::fillCorrLCT(edm::Handle<CSCCorrelatedLCTDigiCollection> digicol
       tmplct.quality =  digiIt->getQuality();
       tmplct.pattern = digiIt->getPattern();
       tmplct.BX = digiIt->getBX();
+      tmplct.eighthStrip = (tmplct.keyStrip*4 + digiIt->getQuartStripBit()*2 + digiIt->getEighthStripBit());
+      tmplct.slope = digiIt->getSlope();
+      tmplct.bend = digiIt->getBend();
       tmpidlcts.second.push_back(tmplct);
 
 	   if (doDebug > 2) cout <<"fillLCT "<< idLCT << endl;
@@ -937,8 +938,6 @@ void GifDisplay::fillGEMCluster(GEMPadDigiClusterCollection gemclusters, vector<
      gemcluster_container.push_back(tmpGEMCluster);
    }
 }
-
-
 
 // ------------ method called once each job just before starting event loop  ------------
 void 

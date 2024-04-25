@@ -221,6 +221,9 @@ struct CorrelatedLCT{
   int pattern;
   int BX;
   int run3_pattern;
+  int eighthStrip;
+  int slope;
+  int bend;  
   CorrelatedLCT(){
       this->keyStrip = -1;
       this->keyWG = -1;
@@ -228,6 +231,9 @@ struct CorrelatedLCT{
       this->pattern = -1;
       this->BX = -1;
       this->run3_pattern = -1;  
+      this->eighthStrip = -1;
+      this->slope = -1;
+      this->bend = -1;
   }
 };
 

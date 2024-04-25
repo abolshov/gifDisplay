@@ -49,6 +49,8 @@ options.register("dqmOutputFile", "step_DQM.root", VarParsing.multiplicity.singl
                  "Name of the DQM output file. Default: step_DQM.root")
 options.register("saveEdmOutput", False, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
                  "Set to True if you want to keep the EDM ROOT after unpacking and re-emulating.")
+options.register("doGEMCSC", False, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
+                 "Set to True if you want to enable GEMCSC plotting.")
 options.parseArguments()
 process_era = Run3
 if not options.run3:
@@ -116,7 +118,6 @@ else:
       process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '')
       if options.run3:
             process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
-
 #process.GlobalTag.globaltag = '74X_dataRun2_Prompt_v0'
 #process.GlobalTag.globaltag = '92X_dataRun2_Prompt_v11'
 #process.GlobalTag.globaltag = '102X_dataRun2_Prompt_v1'
@@ -359,6 +360,7 @@ gemPadClusterTagSrc    = cms.untracked.InputTag(""),
 addEmulation = cms.untracked.bool(options.l1 or options.l1GEM),
 addSimHits = cms.untracked.bool(True),
 doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM),
+doGEMCSC = cms.untracked.bool(options.doGEMCSC),  
 
 debug = cms.untracked.int32(1),
 eventList = cms.untracked.string(eventlist_display),

@@ -256,9 +256,9 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
           c1->cd(1)->SetGridy();
           gPad->SetTopMargin(0.15);
           gPad->SetBottomMargin(0.2);
-          TH2F* wireDis = new TH2F("wireDis", "", nWireGroup, 1, nWireGroup+1, 6, 1, 7);
-          TH2F* wireDis_text = new TH2F("wireDis_text", "", nWireGroup, 1, nWireGroup+1, 6, 1, 7);
-          TH2F* alctDis = new TH2F("alctDis", "", nWireGroup, 1, nWireGroup+1, 6, 1, 7);
+          TH2F* wireDis = new TH2F("wireDis", "", nWireGroup+1, 0, nWireGroup+1, 6, 1, 7);
+          TH2F* wireDis_text = new TH2F("wireDis_text", "", nWireGroup, 0, nWireGroup+1, 6, 1, 7);
+          TH2F* alctDis = new TH2F("alctDis", "", nWireGroup+1, 0, nWireGroup+1, 6, 1, 7);
           TPaveText *pt1 = new TPaveText(0.4,.90,0.6,0.96, "NDC");
 
           WireDisplay(id, layer_wire, wire, wireDis, wireDis_text, alctDis, alcts);
@@ -278,9 +278,9 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
           c1->cd(2)->SetGridy();
               gPad->SetBottomMargin(0.2);
           TPaveText *pt4 = new TPaveText(0.4,.90,0.6,0.96, "NDC");
-          TH2F* comparatorDis = new TH2F("comparatorDis", "", nStrip*2+2, 1, nStrip*2+3, 6, 1, 7);
-          TH2F* comparatorDis_text = new TH2F("comparatorDis_text", "", nStrip*2+2, 1, nStrip*2+3, 6, 1, 7);
-          TH2F* clctDis = new TH2F("clctDis", "", nStrip*2+2, 1, nStrip*2+3, 6, 1, 7);
+          TH2F* comparatorDis = new TH2F("comparatorDis", "", nStrip*2+2, 0, nStrip*2+2, 6, 1, 7);
+          TH2F* comparatorDis_text = new TH2F("comparatorDis_text", "", nStrip*2+2, 0, nStrip*2+2, 6, 1, 7);
+          TH2F* clctDis = new TH2F("clctDis", "", nStrip*2+2, 0, nStrip*2+2, 6, 1, 7);
           if (addEmulation) 
               ComparatorDisplay(id, layer_comparator, comparator, comparatorDis, comparatorDis_text, clctDis, clcts_emul);
           else 
@@ -308,7 +308,7 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
           c1->Update();
           c1->SaveAs(name + ".png");
           c1->SaveAs(name + ".pdf");
-          //c1->SaveAs(name + ".C");
+          // c1->SaveAs(name + ".C");
 
           delete c1;
           delete wireDis;
@@ -654,7 +654,7 @@ void MakeOneLayerWireDisplay(int layer, vector<Wire> &w, TH2F* wireDisplay){
 
 void MakeOneLayerCLCT(int layer, TH2F* clctDis, vector<CorrelatedLCT>& clcts) {
         for (CorrelatedLCT track : clcts) {
-            int position = track.keyStrip;
+            int position = track.keyStrip + 1;
             if (track.run3_pattern == 0) {
                 if (layer == 1) {
                     position += 3;
@@ -745,7 +745,7 @@ void MakeOneLayerComparatorDisplay(int layer, vector<Comparator> &c, TH2F* compa
             double time = c[i].TimeBin;
             if (time==0){time+=0.1;}
 
-            int comparator = 2*(c[i].Strip-1)+c[i].ComparatorNumber%2;
+            int comparator = 2*(c[i].Strip-1)+c[i].ComparatorNumber%2 + 1;
 
             if (doStagger && (layer == 1 || layer == 3 || layer ==5)){
 

@@ -76,13 +76,18 @@ vector<CorrelatedLCT> findStubsInChamber(CSCDetID id, vector<CSCIDLCTs> alllcts)
 
 
 //GEM display part
-void GEMPadDisplay(TString address, GEMDetID id, vector<GEMSIMHIT> &simhits, vector<GEMPAD> & gempads, vector<GEMCLUSTER> &gemclusters,\
- vector<GEMDetID> &usedChamber, int Run, int Event, int doDebug= 0);
+void GEMPadDisplay(TString address, GEMDetID id, CSCDetID CSCid, vector<GEMSIMHIT> &simhits, vector<GEMPAD> & gempads, vector<GEMCLUSTER> &gemclusters,\
+vector<GEMDetID> &usedChamber, vector<CSCIDLCTs> &alllcts, vector<CSCIDLCTs> &alllcts_emul, int Run, int Event, bool addEmulation, bool doGEMCSC, int doDebug= 0);
 void SetSaveNameLegendNameGEM(TString& name, TString& legendName, TString address, GEMDetID id, int Run, int Event);
 void GEMSimHitDisplay(GEMDetID id, vector<GEMDetID>& allIds, vector<GEMSIMHIT>& gemsimHits, TH2F* stripDis, int doDebug=0);
 void MakeOneLayerGEMSimHitDisplay(GEMDetID tempId, vector<SimHit> &shs, TH2F* stripDisplay);
 void PadDigiDisplay(GEMDetID id, vector<GEMDetID>& allIds, vector<GEMPAD>& gempads, TH2F*padDis,int doDebug=0);
 void MakeOneLayerGEMPadDisplay(GEMDetID tempId, vector<GEMPad> &pads, TH2F* padDisplay);
 vector<GEMPadCluster> findClustersInChamber(GEMDetID id, vector<GEMCLUSTER>& allcluster);
+pair<int, int> EighthStripToPad(int eighthStrip, bool evenChamber, bool ME1a, bool ME1b, string luts_folder);
+pair<int, int> HalfStripToPad(int halfStrip, bool evenChamber, bool ME1a, bool ME1b, string luts_folder);
+int slopePropagation(int slope, int layer, bool evenChamber, bool ME1a, bool ME1b, string luts_folder);
+int WireToRoll(int wireGroup, int layer, bool evenChamber, string luts_folder);
+void LCTPropagationDisplay(GEMDetID id, vector<CorrelatedLCT> &lcts, TH2F* extrapLCT, TH2F* unextrapLCT, string luts_folder);
 
 #endif
