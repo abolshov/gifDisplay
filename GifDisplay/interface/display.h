@@ -33,7 +33,8 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhits, vec
 			vector<CSCIDLCTs> &idalcts,vector<CSCIDLCTs> &idalcts_emul, 
 			vector<CSCIDLCTs> &idclcts,vector<CSCIDLCTs> &idclcts_emul, 
 			vector<CSCIDLCTs> &idlcts,vector<CSCIDLCTs> &idlcts_emul, 
-			vector<CSCDetID> &usedChamber, int Run, int Event, bool addEmulation, int doDebug=0);
+			vector<CSCDetID> &usedChamber, int Run, int Event, bool addEmulation, 
+            TString compareA, TString compareB, int doDebug=0);
 bool ChamberUsedForEventDisplay(CSCDetID id, vector<CSCDetID> usedChamber);
 bool GEMChamberUsedForEventDisplay(CSCDetID id, vector<CSCDetID> usedChamber);
 void SetSaveNameLegendName(TString& name, TString& legendName, TString address, CSCDetID id, int Run, int Event);

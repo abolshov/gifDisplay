@@ -221,6 +221,7 @@ struct CorrelatedLCT{
   int pattern;
   int BX;
   int run3_pattern;
+  int CC; //comparator code for CLCT
   int eighthStrip;
   int slope;
   int bend;  
@@ -230,6 +231,7 @@ struct CorrelatedLCT{
       this->quality = -1;
       this->pattern = -1;
       this->BX = -1;
+      this->CC = 0;
       this->run3_pattern = -1;  
       this->eighthStrip = -1;
       this->slope = -1;

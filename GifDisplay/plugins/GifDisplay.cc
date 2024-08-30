@@ -188,24 +188,26 @@ class GifDisplay : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
 //edm::InputTag corrlctDigiTag;
 //edm::InputTag hltTag;
 
-//std::string theRootFileName,pdf;
-std::string eventDisplayDir;
-std::vector<double> eventList;
-std::vector<int> runList;
-std::vector<int> endcapList;
-std::vector<int> stationList;
-std::vector<int> ringList;
-std::vector<int> chamberList;
-std::string eventlistFile;
-
-
-//std::string chamberType;
-
-int doDebug;
-bool addEmulation;
-bool addSimHits;
-bool doGEMDisplay;
-bool doGEMCSC;
+  //std::string theRootFileName,pdf;
+  std::string eventDisplayDir;
+  std::string compareA;
+  std::string compareB;
+  std::vector<double> eventList;
+  std::vector<int> runList;
+  std::vector<int> endcapList;
+  std::vector<int> stationList;
+  std::vector<int> ringList;
+  std::vector<int> chamberList;
+  std::string eventlistFile;
+  
+  
+  //std::string chamberType;
+  
+  int doDebug;
+  bool addEmulation;
+  bool addSimHits;
+  bool doGEMDisplay;
+  bool doGEMCSC;
 };
 
 //
@@ -254,6 +256,8 @@ fout->cd();
   eventDisplayDir = iConfig.getUntrackedParameter<std::string>("eventDisplayDir","/home/mhl/public_html/2017/20171025_cscSeg/eventdisplay/");
   eventlistFile = iConfig.getUntrackedParameter<std::string>("eventList","eventList.txt");
   std::cout <<"Eventlist file "<< eventlistFile <<" outfolder "<< eventDisplayDir << (addEmulation ? " addEmulation":" NOEmulation") << std::endl;
+  compareA = iConfig.getUntrackedParameter<std::string>("compareA","Data");
+  compareB = iConfig.getUntrackedParameter<std::string>("compareB","Emul");
  //eventlistFile = "eventList.txt";
   //chamberType = iConfig.getUntrackedParameter<std::string>("chamberType", "11");
   doDebug = iConfig.getUntrackedParameter<int>("debug", 0);
@@ -739,7 +743,7 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
       if (doDebug > 0) 
          cout <<"Start to display event "<< eventL <<" "<< tmpId <<endl;
 
-      WireStripDisplay(eventDisplayDir, tmpId, simhit_container, wire_container, strip_container, com_container, alct_container, alct_emul_container, clct_container, clct_emul_container, lct_container, lct_emul_container, usedChamber, Run, Event, addEmulation);
+      WireStripDisplay(eventDisplayDir, tmpId, simhit_container, wire_container, strip_container, com_container, alct_container, alct_emul_container, clct_container, clct_emul_container, lct_container, lct_emul_container, usedChamber, Run, Event, addEmulation, compareA, compareB);
       //if (stationL == 1 and (ringL== 1 or ringL==2)) 
       if (doGEMDisplay and stationL == 1 and (ringL== 1)){// only GE11 now
         if (doDebug) cout <<"doGEMdisplay, station  "<< stationL <<" endcap "<< endcapL <<" chamber "<< chamberL <<endl; 
@@ -838,6 +842,7 @@ void GifDisplay::fillCLCT(edm::Handle<CSCCLCTDigiCollection> digicoll, vector<CS
       tmplct.quality =  digiIt->getQuality();
       tmplct.pattern = digiIt->getPattern();
       tmplct.BX = digiIt->getBX();
+      tmplct.CC = digiIt->getCompCode();
       tmplct.run3_pattern = digiIt->getRun3Pattern();
       tmpidlcts.second.push_back(tmplct);
 

@@ -43,7 +43,8 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
 			 vector<CSCIDLCTs> &allalcts, vector<CSCIDLCTs> &allalcts_emul, 
 			 vector<CSCIDLCTs> &allclcts, vector<CSCIDLCTs> &allclcts_emul, 
 			 vector<CSCIDLCTs> &alllcts, vector<CSCIDLCTs> &alllcts_emul, 
-			 vector<CSCDetID> &usedChamber, int Run, int Event, bool addEmulation, int doDebug){
+			 vector<CSCDetID> &usedChamber, int Run, int Event, bool addEmulation, 
+             TString compareA, TString compareB, int doDebug){
 
         gStyle->SetPalette(55);
 
@@ -171,17 +172,17 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
 	  tex1->AddText(ss.str().c_str());
 	  stringstream ss_alcts[10];
 	  for (unsigned int ilct = 0; ilct < alcts.size(); ilct++){
-	      ss_alcts[ilct] <<"Run2 #"<<ilct<<" ALCT keyWg "<< alcts[ilct].keyWG <<" Quality "<< alcts[ilct].quality <<" Pattern "<< alcts[ilct].pattern<<" bx "<<  alcts[ilct].BX;
+	      ss_alcts[ilct] <<compareA<<" #"<<ilct<<" ALCT keyWg "<< alcts[ilct].keyWG <<" Quality "<< alcts[ilct].quality <<" Pattern "<< alcts[ilct].pattern<<" bx "<<  alcts[ilct].BX;
 	      tex1->AddText(ss_alcts[ilct].str().c_str());
 	  }
 	  stringstream ss_clcts[10];
 	  for (unsigned int ilct = 0; ilct < clcts.size(); ilct++){
-	      ss_clcts[ilct] <<"Run2 #"<<ilct<<" CLCT HS "<< clcts[ilct].keyStrip <<" Quality "<< clcts[ilct].quality <<" Pattern "<< clcts[ilct].pattern << " Run3_Pattern " << clcts[ilct].run3_pattern << " bx "<<  clcts[ilct].BX;
+	      ss_clcts[ilct] <<compareA<<" #"<<ilct<<" CLCT HS "<< clcts[ilct].keyStrip <<" Quality "<< clcts[ilct].quality <<" Pattern "<< clcts[ilct].pattern << " Run3_Pattern " << clcts[ilct].run3_pattern <<" CC 0x"<<std::hex<<clcts[ilct].CC <<std::dec<< " bx "<<  clcts[ilct].BX;
 	      tex1->AddText(ss_clcts[ilct].str().c_str());
 	  }
 	  stringstream ss_lcts[10];
 	  for (unsigned int ilct = 0; ilct < lcts.size(); ilct++){
-	      ss_lcts[ilct] <<"Run2 #"<<ilct<<" LCT keyWg "<< lcts[ilct].keyWG <<" HS "<< lcts[ilct].keyStrip <<" Quality "<< lcts[ilct].quality <<" Pattern "<< lcts[ilct].pattern << " bx "<<  lcts[ilct].BX;
+	      ss_lcts[ilct] <<compareA<<" #"<<ilct<<" LCT keyWg "<< lcts[ilct].keyWG <<" HS "<< lcts[ilct].keyStrip <<" Quality "<< lcts[ilct].quality <<" Pattern "<< lcts[ilct].pattern << " bx "<<  lcts[ilct].BX;
 	      tex1->AddText(ss_lcts[ilct].str().c_str());
 	  }
           vector<CorrelatedLCT> alcts_emul;
@@ -193,17 +194,17 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
 	     lcts_emul = findStubsInChamber(id, alllcts_emul);
 	     stringstream ss_alcts_emul[10];
 	     for (unsigned int ilct = 0; ilct < alcts_emul.size(); ilct++){
-	         ss_alcts_emul[ilct] <<"Run3 #"<<ilct<<" ALCT keyWg "<< alcts_emul[ilct].keyWG <<" Quality "<< alcts_emul[ilct].quality <<" Pattern "<< alcts_emul[ilct].pattern<<" bx "<<  alcts_emul[ilct].BX;
+	         ss_alcts_emul[ilct] <<compareB<<" #"<<ilct<<" ALCT keyWg "<< alcts_emul[ilct].keyWG <<" Quality "<< alcts_emul[ilct].quality <<" Pattern "<< alcts_emul[ilct].pattern<<" bx "<<  alcts_emul[ilct].BX;
 	         tex1->AddText(ss_alcts_emul[ilct].str().c_str());
 	     }
 	     stringstream ss_clcts_emul[10];
 	     for (unsigned int ilct = 0; ilct < clcts_emul.size(); ilct++){
-	         ss_clcts_emul[ilct] <<"Run3 #"<<ilct<<" CLCT HS "<< clcts_emul[ilct].keyStrip <<" Quality "<< clcts_emul[ilct].quality <<" Pattern "<< clcts_emul[ilct].pattern << " Run3_Pattern " << clcts_emul[ilct].run3_pattern << " bx "<< clcts_emul[ilct].BX;
+	         ss_clcts_emul[ilct] <<compareB<<" #"<<ilct<<" CLCT HS "<< clcts_emul[ilct].keyStrip <<" Quality "<< clcts_emul[ilct].quality <<" Pattern "<< clcts_emul[ilct].pattern << " Run3_Pattern " << clcts_emul[ilct].run3_pattern <<" CC 0x"<<std::hex<<clcts_emul[ilct].CC << std::dec << " bx "<< clcts_emul[ilct].BX;
 	         tex1->AddText(ss_clcts_emul[ilct].str().c_str());
 	     }
 	     stringstream ss_lcts_emul[10];
 	     for (unsigned int ilct = 0; ilct < lcts_emul.size(); ilct++){
-	         ss_lcts_emul[ilct] <<"Run3 #"<<ilct<<" LCT keyWg "<< lcts_emul[ilct].keyWG <<" HS "<< lcts_emul[ilct].keyStrip <<" Quality "<< lcts_emul[ilct].quality <<" Pattern "<< lcts_emul[ilct].pattern << " bx "<<  lcts_emul[ilct].BX;
+	         ss_lcts_emul[ilct] <<compareB<<" #"<<ilct<<" LCT keyWg "<< lcts_emul[ilct].keyWG <<" HS "<< lcts_emul[ilct].keyStrip <<" Quality "<< lcts_emul[ilct].quality <<" Pattern "<< lcts_emul[ilct].pattern << " bx "<<  lcts_emul[ilct].BX;
 	         tex1->AddText(ss_lcts_emul[ilct].str().c_str());
 	     }
 	  }

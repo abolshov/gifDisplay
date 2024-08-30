@@ -82,10 +82,6 @@ process.load("DQM.L1TMonitor.L1TdeCSCTPG_cfi")
 process.load("DQM.L1TMonitor.L1TdeGEMTPG_cfi")
 
 
-process.options = cms.untracked.PSet(
-	SkipEvent = cms.untracked.vstring('LogicError','ProductNotFound')
-)
-
 
 process.maxEvents = cms.untracked.PSet(
      input = cms.untracked.int32(-1)
@@ -117,7 +113,8 @@ if options.mc:
 else:
       process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '')
       if options.run3:
-            process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
+            #process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
+            process.GlobalTag = GlobalTag(process.GlobalTag, '140X_dataRun3_Prompt_v2', '')
 #process.GlobalTag.globaltag = '74X_dataRun2_Prompt_v0'
 #process.GlobalTag.globaltag = '92X_dataRun2_Prompt_v11'
 #process.GlobalTag.globaltag = '102X_dataRun2_Prompt_v1'
@@ -257,28 +254,29 @@ process.DQMoutput = cms.OutputModule("DQMRootOutputModule",
 )
 
 ## helper for files on dCache/EOS (LPC)
-#def useInputDir(process, inputDir, onEOS = True):
-#    theInputFiles = []
-#    for d in range(len(inputDir)):
-#        my_dir = inputDir[d]
-#        if not os.path.isdir(my_dir):
-#            print "ERROR: This is not a valid directory: ", my_dir
-#            if d==len(inputDir)-1:
-#                print "ERROR: No input files were selected"
-#                exit()
-#            continue
-#        print "Proceed to next directory"
-#        ls = os.listdir(my_dir)
-#        if onEOS:
-#            theInputFiles.extend(['file:' + my_dir[:] + x for x in ls if x.endswith('root')])
-#        else:
-#            ## this works only if you pass the location on pnfs - FIXME for files staring with store/user/...                                                            
-#            theInputFiles.extend([my_dir[16:] + x for x in ls if x.endswith('root')])
-#
-#    process.source.fileNames = cms.untracked.vstring(*theInputFiles)
-#    return process
+def useInputDir(process, inputDir, onEOS = True):
+    theInputFiles = []
+    for d in range(len(inputDir)):
+        my_dir = inputDir[d]
+        if not os.path.isdir(my_dir):
+            print("ERROR: This is not a valid directory: ", my_dir)
+            if d==len(inputDir)-1:
+                print("ERROR: No input files were selected")
+                exit()
+            continue
+        print("Proceed to next directory")
+        ls = os.listdir(my_dir)
+        if onEOS:
+            theInputFiles.extend(['file:' + my_dir[:] + x for x in ls if x.endswith('root') and x.startswith('lcts')])
+        else:
+            ## this works only if you pass the location on pnfs - FIXME for files staring with store/user/...                                                            
+            theInputFiles.extend([my_dir[16:] + x for x in ls if x.endswith('root')])
+
+    process.source.fileNames = cms.untracked.vstring(*theInputFiles)
+    return process
 
 #inputdirs = ["/eos/cms/store/data/Run2018D/SingleMuon/RAW/v1/000/323/524/00000/"]
+#inputdirs = ['/eos/user/p/pflanaga/crab3_out_2024/Trigger/2024-08-16/Muon0/2024-08-16/240816_202747/0000/']
 #useInputDir(process, inputdirs)
 
 print("===============================================")
@@ -354,15 +352,18 @@ corrlctDigiTagSrc_Emul = cms.untracked.InputTag('cscTriggerPrimitiveDigis'),
 
 simHitTagSrc           = cms.untracked.InputTag(""),
 gemsimHitTagSrc        = cms.untracked.InputTag(""),
-gemPadTagSrc           = cms.untracked.InputTag(""),
-gemPadClusterTagSrc    = cms.untracked.InputTag(""),
+gemPadTagSrc           = cms.untracked.InputTag("simMuonGEMPadDigis"),
+gemPadClusterTagSrc    = cms.untracked.InputTag("simMuonGEMPadDigiClusters"),
 
 addEmulation = cms.untracked.bool(options.l1 or options.l1GEM),
-addSimHits = cms.untracked.bool(True),
-doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM),
-doGEMCSC = cms.untracked.bool(options.doGEMCSC),  
+addSimHits = cms.untracked.bool(options.mc),
+doGEMCSC = cms.untracked.bool(options.doGEMCSC),
+#doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM),
+doGEMDisplay = cms.untracked.bool(False),
 
 debug = cms.untracked.int32(1),
+compareA = cms.untracked.string("Data"),#box4, top part name
+compareB = cms.untracked.string("Emul"),#box4, bottom part name
 eventList = cms.untracked.string(eventlist_display),
 #directory for eventdisplay
 eventDisplayDir = cms.untracked.string(options.plotdir)
@@ -405,20 +406,20 @@ if options.unpackGEM:
             process.unpacksequence += process.emtfStage2Digis
 process.p1 = cms.Path(process.unpacksequence)
 
-#process.l1sequence = cms.Sequence(l1csc)
+process.l1sequence = cms.Sequence(l1csc)
 #if options.l1GEM:
 #      ## not sure if append would work for the GEM-CSC trigger
 #      ## maybe the modules need to come first
 #      process.l1sequence += process.simMuonGEMPadDigis
 #      process.l1sequence += process.simMuonGEMPadDigiClusters
 #redefine the l1 sequence 
-process.l1sequence = cms.Sequence(
-        process.simMuonGEMPadDigis *
-        process.simMuonGEMPadDigiClusters *
-        l1csc *
-        process.simCscTriggerPrimitiveDigisRun2
-        #process.simCscTriggerPrimitiveDigisRun3CCLUTv0
-        )
+#process.l1sequence = cms.Sequence(
+#        process.simMuonGEMPadDigis *
+#        process.simMuonGEMPadDigiClusters *
+#        l1csc *
+#        process.simCscTriggerPrimitiveDigisRun2
+#        #process.simCscTriggerPrimitiveDigisRun3CCLUTv0
+#        )
 
 process.p2 = cms.Path(process.l1sequence)
 
