@@ -1,0 +1,375 @@
+#log1: fail: Commit 9bdfe3d
+yumeng@lxplus970 gifDisplay]$ git fetch origin
+[yumeng@lxplus970 gifDisplay]$ git status
+On branch CMSSW_12_5_0
+Your branch is behind 'origin/CMSSW_12_5_0' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   CSCEventDisplay.py
+        deleted:    runDisplay.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        CSCEventDisplay_realdata.py
+        c1.pdf
+        c1.png
+        eventList_realdata.txt
+        eventList_yumeng.txt
+        plots/
+        runDisplayYumeng.sh
+        runDisplay_realdata.sh
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[yumeng@lxplus970 gifDisplay]$ git diff origin/main -- CSCEventDisplay.py
+fatal: bad revision 'origin/main'
+[yumeng@lxplus970 gifDisplay]$ git branch
+* CMSSW_12_5_0
+[yumeng@lxplus970 gifDisplay]$ git diff origin/CMSSW_12_5_0 -- CSCEventDisplay.py
+diff --git a/CSCEventDisplay.py b/CSCEventDisplay.py
+index aeffac4..d8a7810 100644
+--- a/CSCEventDisplay.py
++++ b/CSCEventDisplay.py
+@@ -82,6 +82,10 @@ process.load("DQM.L1TMonitor.L1TdeCSCTPG_cfi")
+ process.load("DQM.L1TMonitor.L1TdeGEMTPG_cfi")
+ 
+ 
++process.options = cms.untracked.PSet(
++       SkipEvent = cms.untracked.vstring('LogicError','ProductNotFound')
++)
++
+ 
+ process.maxEvents = cms.untracked.PSet(
+      input = cms.untracked.int32(-1)
+@@ -106,15 +110,17 @@ if options.unpackGEM:
+ ## global tag (data or MC, Run-2 or Run-3)
+ from Configuration.AlCa.GlobalTag import GlobalTag
+ if options.mc:
+-      process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_mc', '')
+-      if options.run3:
+-            #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2021_realistic', '')
+-            process.GlobalTag = GlobalTag(process.GlobalTag, '123X_mcRun3_2021_realistic_v14', '')
++    #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_mc', '')
++    process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
++    if options.run3:
++          process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2022_realistic', '')
++          #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2021_realistic', '')
++            #process.GlobalTag = GlobalTag(process.GlobalTag, '123X_mcRun3_2021_realistic_v14', '')
+ else:
+-      process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '')
+-      if options.run3:
+[yumeng@lxplus970 gifDisplay]$ 
+[yumeng@lxplus970 gifDisplay]$ git status
+On branch CMSSW_12_5_0
+Your branch is behind 'origin/CMSSW_12_5_0' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   CSCEventDisplay.py
+        deleted:    runDisplay.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        CSCEventDisplay_realdata.py
+        c1.pdf
+        c1.png
+        eventList_realdata.txt
+        eventList_yumeng.txt
+        plots/
+        runDisplayYumeng.sh
+        runDisplay_realdata.sh
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[yumeng@lxplus970 gifDisplay]$ git pull origin 
+Updating 89c6557..9bdfe3d
+error: Your local changes to the following files would be overwritten by merge:
+        CSCEventDisplay.py
+Please commit your changes or stash them before you merge.
+Aborting
+[yumeng@lxplus970 gifDisplay]$ git stach
+git: 'stach' is not a git command. See 'git --help'.
+
+The most similar command is
+        stash
+[yumeng@lxplus970 gifDisplay]$ git stash
+Saved working directory and index state WIP on CMSSW_12_5_0: 89c6557 LCT propagation to GEM
+[yumeng@lxplus970 gifDisplay]$ git pull
+Updating 89c6557..9bdfe3d
+Fast-forward
+ CSCEventDisplay.py                      | 77 +++++++++++++++++++++++++++++++++++++++--------------------------------------
+ GifDisplay/interface/display.h          |  3 ++-
+ GifDisplay/interface/structForDisplay.h |  2 ++
+ GifDisplay/plugins/GifDisplay.cc        | 43 ++++++++++++++++++++++++-------------------
+ GifDisplay/src/display.cc               | 15 ++++++++-------
+ 5 files changed, 75 insertions(+), 65 deletions(-)
+[yumeng@lxplus970 gifDisplay]$ git stash pop
+Auto-merging CSCEventDisplay.py
+CONFLICT (content): Merge conflict in CSCEventDisplay.py
+On branch CMSSW_12_5_0
+Your branch is up to date with 'origin/CMSSW_12_5_0'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        deleted:    runDisplay.sh
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+        both modified:   CSCEventDisplay.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        CSCEventDisplay_realdata.py
+        c1.pdf
+        c1.png
+        eventList_realdata.txt
+        eventList_yumeng.txt
+        plots/
+        runDisplayYumeng.sh
+        runDisplay_realdata.sh
+
+The stash entry is kept in case you need it again.
+[yumeng@lxplus970 gifDisplay]$ git stash pop
+Auto-merging CSCEventDisplay.py
+On branch CMSSW_12_5_0
+Your branch is up to date with 'origin/CMSSW_12_5_0'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   CSCEventDisplay.py
+        deleted:    runDisplay.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        CSCEventDisplay_realdata.py
+        c1.pdf
+        c1.png
+        eventList_realdata.txt
+        eventList_yumeng.txt
+        plots/
+        runDisplayYumeng.sh
+        runDisplay_realdata.sh
+
+Dropped refs/stash@{0} (01664b664fe1711d0aa02dc6fe9d3d1667bdf7c4)
+[yumeng@lxplus970 gifDisplay]$ git ferch origin
+git: 'ferch' is not a git command. See 'git --help'.
+
+The most similar command is
+        fetch
+[yumeng@lxplus970 gifDisplay]$ git fetch origin
+[yumeng@lxplus970 gifDisplay]$ git status
+On branch CMSSW_12_5_0
+Your branch is up to date with 'origin/CMSSW_12_5_0'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   CSCEventDisplay.py
+        deleted:    runDisplay.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        CSCEventDisplay_realdata.py
+        c1.pdf
+        c1.png
+        eventList_realdata.txt
+        eventList_yumeng.txt
+        plots/
+        runDisplayYumeng.sh
+        runDisplay_realdata.sh
+
+[yumeng@lxplus970 gifDisplay]$ git log --oneline
+9bdfe3d (HEAD -> CMSSW_12_5_0, origin/HEAD, origin/CMSSW_12_5_0) update the gifdisplay to correct the names for box4
+89c6557 LCT propagation to GEM
+e1c0ffc ALCT and CLCT displays added
+7adabd8 update the CSC event display with event list file as argument input
+496ca4e Update README.md
+d8dd1a0 add GE11 event display to the package
+dda1e32 minor bug fixed
+9a15671 Merge branch 'CMSSW_12_5_0' of https://github.com/tahuang1991/gifDisplay into CMSSW_12_5_0
+81a18e0 add the simhits displayy
+5e9ccc0 Update README.md
+abb6e94 fixed the configuration file and package to make it fully work
+7b61d67 update the code to improve package. continue to debug this
+f5ea1dd 1.update the buildfile from Raul debug 2.update the configuration to run right now it is not fully working yet. debugging continues
+75cc481 update the header files
+3f715c9 update build file
+7a47fbc Update README.md
+ec0c09f Update README.md
+2909674 update readme and eventList file
+1cf43cf update the display package to CMSSW_12_5_0
+7bfebf2 (origin/master) Update README.md
+2ec4e00 update the README
+39bf5f0 first command, inherited from Hualin's CSC event display package
+18a2d83 Update README.md
+2cae6f8 working version for P5 data under CMSSW_9_2_13
+d1a4cc6 working version for P5 data under CMSSW_9_2_13
+129c34e working version for P5 data under CMSSW_9_2_13
+d2bc3eb clean up
+13bf446 working verion for P5 data
+760d48b Create README.md
+843d82b Create README.md
+2cf5101 Create GifDisplay.cc
+81b66b0 me21 and me11 modify for gif missing cfeb, and right wire number, strip number
+[yumeng@lxplus970 gifDisplay]$ 
+[yumeng@lxplus970 gifDisplay]$ git stash pop
+No stash entries found.
+[yumeng@lxplus970 gifDisplay]$ git pull
+Already up to date.
+[yumeng@lxplus970 gifDisplay]$ ls
+c1.pdf  CSCEventDisplay.py           eventList_example.txt   eventList.txt         GifDisplay  README.md               runDisplayYumeng.sh
+c1.png  CSCEventDisplay_realdata.py  eventList_realdata.txt  eventList_yumeng.txt  plots       runDisplay_realdata.sh
+[yumeng@lxplus970 gifDisplay]$ ./runDisplayYumeng.sh 
+./runDisplayYumeng.sh: line 6: cmsRun: command not found
+[yumeng@lxplus970 gifDisplay]$ cmsenv
+[yumeng@lxplus970 gifDisplay]$ ./runDisplayYumeng.sh 
+----- Begin Fatal Exception 23-May-2025 22:04:20 CEST-----------------------
+An exception of category 'ConfigFileReadError' occurred while
+   [0] Processing the python configuration file named CSCEventDisplay.py
+Exception Message:
+ unknown python problem occurred.
+SyntaxError: invalid syntax (CSCEventDisplay.py, line 87)
+----- End Fatal Exception -------------------------------------------------
+[yumeng@lxplus970 gifDisplay]$ ./runDisplayYumeng.sh 
+===============================================
+input files: 
+cms.untracked.vstring('file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root')
+===============================================
+List of event for display eventList_yumeng.txt
+1 2002 1 1 1 33
+1 2002 1 4 1 17
+1 2038 2 1 1 6
+1 2038 1 1 1 24
+1 2038 1 3 1 12
+1 2043 2 2 1 6
+1 2043 2 3 1 6
+1 2043 1 1 1 30
+1 2080 1 4 1 6
+1 2080 2 2 1 15
+1 2098 1 2 1 16
+1 2098 1 3 1 16
+1 2098 1 4 1 16Events to run  cms.untracked.VEventRange("1:2002-1:2002", "1:2038-1:2038", "1:2043-1:2043", "1:2080-1:2080", "1:2098-1:2098")
+process.maxEvents  cms.untracked.int32(-1)
+All scheduled processes:  cms.Schedule(*[ process.p2, process.display, process.p6 ])
+
+23-May-2025 22:07:55 CEST  Initiating request to open file file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root
+23-May-2025 22:08:01 CEST  Successfully opened file file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root
+%MSG-w RootFile:  AfterFile 23-May-2025 22:08:03 CEST pre-events
+Branch 'GlobalAlgBlkBXVector_simGtStage2Digis__HLT.' is being dropped from the input
+of file 'file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+%MSG-w RootFile:  AfterFile 23-May-2025 22:08:03 CEST pre-events
+Branch 'GlobalObjectMapRecord_simGtStage2Digis__HLT.' is being dropped from the input
+of file 'file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+%MSG-w RootFile:  AfterFile 23-May-2025 22:08:03 CEST pre-events
+Branch 'l1tMuonShowerBXVector_simGmtShowerDigis__HLT.' is being dropped from the input
+of file 'file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+%MSG-w RootFile:  AfterFile 23-May-2025 22:08:03 CEST pre-events
+Branch 'l1tRegionalMuonShowerBXVector_simEmtfShowers_EMTF_HLT.' is being dropped from the input
+of file 'file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+Eventlist file eventList_yumeng.txt outfolder ./plots NOEmulation
+Begin processing the 1st record. Run 1, Event 2002, LumiSection 21 on stream 0 at 23-May-2025 22:08:12.875 CEST
+this run 1 this Event 2002
+Begin processing the 2nd record. Run 1, Event 2038, LumiSection 21 on stream 0 at 23-May-2025 22:08:13.043 CEST
+this run 1 this Event 2038
+Begin processing the 3rd record. Run 1, Event 2043, LumiSection 21 on stream 0 at 23-May-2025 22:08:13.553 CEST
+this run 1 this Event 2043
+Begin processing the 4th record. Run 1, Event 2080, LumiSection 21 on stream 0 at 23-May-2025 22:08:13.593 CEST
+this run 1 this Event 2080
+Begin processing the 5th record. Run 1, Event 2098, LumiSection 21 on stream 0 at 23-May-2025 22:08:13.615 CEST
+this run 1 this Event 2098
+23-May-2025 22:08:13 CEST  Closed file file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root
+[yumeng@lxplus970 gifDisplay]$
+
+#log2: succeed: 89c6557+change global tag,logic error (see above) 20250508
+[yumeng@lxplus968 gifDisplay]$ ./runDisplayYumeng.sh
+===============================================
+input files: 
+cms.untracked.vstring('file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root')
+===============================================
+List of event for display eventList_yumeng.txt
+1 2002 1 1 1 33
+1 2002 1 4 1 17
+1 2038 2 1 1 6
+1 2038 1 1 1 24
+1 2038 1 3 1 12
+1 2043 2 2 1 6
+1 2043 2 3 1 6
+1 2043 1 1 1 30
+1 2080 1 4 1 6
+1 2080 2 2 1 15
+1 2098 1 2 1 16
+1 2098 1 3 1 16
+1 2098 1 4 1 16Events to run  cms.untracked.VEventRange("1:2002-1:2002", "1:2038-1:2038", "1:2043-1:2043", "1:2080-1:2080", "1:2098-1:2098")
+process.maxEvents  cms.untracked.int32(-1)
+All scheduled processes:  cms.Schedule(*[ process.p2, process.display, process.p6 ])
+
+26-May-2025 01:25:42 CEST  Initiating request to open file file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root
+26-May-2025 01:25:46 CEST  Successfully opened file file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root
+%MSG-w RootFile:  AfterFile 26-May-2025 01:25:48 CEST pre-events
+Branch 'GlobalAlgBlkBXVector_simGtStage2Digis__HLT.' is being dropped from the input
+of file 'file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+%MSG-w RootFile:  AfterFile 26-May-2025 01:25:48 CEST pre-events
+Branch 'GlobalObjectMapRecord_simGtStage2Digis__HLT.' is being dropped from the input
+of file 'file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+%MSG-w RootFile:  AfterFile 26-May-2025 01:25:48 CEST pre-events
+Branch 'l1tMuonShowerBXVector_simGmtShowerDigis__HLT.' is being dropped from the input
+of file 'file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+%MSG-w RootFile:  AfterFile 26-May-2025 01:25:48 CEST pre-events
+Branch 'l1tRegionalMuonShowerBXVector_simEmtfShowers_EMTF_HLT.' is being dropped from the input
+of file 'file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+Eventlist file eventList_yumeng.txt outfolder ./plots NOEmulation
+Begin processing the 1st record. Run 1, Event 2002, LumiSection 21 on stream 0 at 26-May-2025 01:25:50.216 CEST
+this run 1 this Event 2002
+Start to display event 2002 E:1 S:1 R:1 Chamber:33 layer:0
+doGEMdisplay, station  1 endcap 1 chamber 33
+Start to display event 2002 E:1 S:4 R:1 Chamber:17 layer:0
+Begin processing the 2nd record. Run 1, Event 2038, LumiSection 21 on stream 0 at 26-May-2025 01:25:50.648 CEST
+this run 1 this Event 2038
+Start to display event 2038 E:2 S:1 R:1 Chamber:6 layer:0
+doGEMdisplay, station  1 endcap 2 chamber 6
+Start to display event 2038 E:1 S:1 R:1 Chamber:24 layer:0
+doGEMdisplay, station  1 endcap 1 chamber 24
+Start to display event 2038 E:1 S:3 R:1 Chamber:12 layer:0
+Begin processing the 3rd record. Run 1, Event 2043, LumiSection 21 on stream 0 at 26-May-2025 01:25:52.242 CEST
+this run 1 this Event 2043
+Start to display event 2043 E:2 S:2 R:1 Chamber:6 layer:0
+Start to display event 2043 E:2 S:3 R:1 Chamber:6 layer:0
+Start to display event 2043 E:1 S:1 R:1 Chamber:30 layer:0
+doGEMdisplay, station  1 endcap 1 chamber 30
+Begin processing the 4th record. Run 1, Event 2080, LumiSection 21 on stream 0 at 26-May-2025 01:25:52.495 CEST
+this run 1 this Event 2080
+Start to display event 2080 E:1 S:4 R:1 Chamber:6 layer:0
+Start to display event 2080 E:2 S:2 R:1 Chamber:15 layer:0
+Begin processing the 5th record. Run 1, Event 2098, LumiSection 21 on stream 0 at 26-May-2025 01:25:52.617 CEST
+this run 1 this Event 2098
+Start to display event 2098 E:1 S:2 R:1 Chamber:16 layer:0
+Start to display event 2098 E:1 S:3 R:1 Chamber:16 layer:0
+Start to display event 2098 E:1 S:4 R:1 Chamber:16 layer:0
+26-May-2025 01:25:52 CEST  Closed file file:/eos/user/s/sgottlie/RelValSamples/CMSSW_12_4_0_pre3/1000GeV/27a95851-6358-485b-b15b-619f3404d795.root
