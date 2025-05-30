@@ -413,12 +413,12 @@ if options.unpackGEM:
 process.p1 = cms.Path(process.unpacksequence)
 
 process.l1sequence = cms.Sequence(l1csc)
-if options.l1GEM:
-     ## not sure if append would work for the GEM-CSC trigger
-     ## maybe the modules need to come first
-     process.l1sequence += process.simMuonGEMPadDigis
-     process.l1sequence += process.simMuonGEMPadDigiClusters
-redefine the l1 sequence 
+# if options.l1GEM:
+#      ## not sure if append would work for the GEM-CSC trigger
+#      ## maybe the modules need to come first
+#      process.l1sequence += process.simMuonGEMPadDigis
+#      process.l1sequence += process.simMuonGEMPadDigiClusters
+#redefine the l1 sequence 
 process.l1sequence = cms.Sequence(
        process.simMuonGEMPadDigis *
        process.simMuonGEMPadDigiClusters *
