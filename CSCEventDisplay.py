@@ -116,7 +116,8 @@ if options.mc:
       if options.run3:
             #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2021_realistic', '')
             #process.GlobalTag = GlobalTag(process.GlobalTag, '123X_mcRun3_2021_realistic_v14', '')
-            process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2022_realistic', '')
+            #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2022_realistic', '')
+            process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase2_realistic', '')
 
 else:
       #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '')
