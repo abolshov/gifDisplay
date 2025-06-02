@@ -60,7 +60,9 @@ if not options.run3:
 from Configuration.StandardSequences.Eras import eras
 process = cms.Process("CSCDisplay", process_era)
 
+#previous Geometry using the following one:
 #process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
+
 #process.load("Configuration/Geometry/GeometryIdeal2015Reco_cff")
 #process.load("Configuration/Geometry/IdealGeometry_cff")
 #process.load("Configuration/StandardSequences/Geometry_cff")
