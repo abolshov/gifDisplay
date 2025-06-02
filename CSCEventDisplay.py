@@ -373,7 +373,7 @@ addEmulation = cms.untracked.bool(options.l1 or options.l1GEM),
 addSimHits = cms.untracked.bool(options.mc),
 doGEMCSC = cms.untracked.bool(options.doGEMCSC),
 #doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM),
-doGEMDisplay = cms.untracked.bool(False),
+doGEMDisplay = cms.untracked.bool(options.doGEMCSC),
 
 debug = cms.untracked.int32(1),
 compareA = cms.untracked.string("Data"),#box4, top part name
@@ -420,7 +420,7 @@ if options.unpackGEM:
             process.unpacksequence += process.emtfStage2Digis
 process.p1 = cms.Path(process.unpacksequence)
 
-process.l1sequence = cms.Sequence(l1csc)
+#process.l1sequence = cms.Sequence(l1csc)
 # if options.l1GEM:
 #      ## not sure if append would work for the GEM-CSC trigger
 #      ## maybe the modules need to come first
