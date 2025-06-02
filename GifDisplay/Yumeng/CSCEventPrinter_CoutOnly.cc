@@ -8,31 +8,18 @@
 #include "DataFormats/CSCDigi/interface/CSCCLCTDigiCollection.h"
 #include "FWCore/Framework/interface/MakerMacros.h"
 
-#include <fstream>
-#include <set>
-
 class CSCEventPrinter : public edm::one::EDAnalyzer<> {
 public:
   explicit CSCEventPrinter(const edm::ParameterSet&);
   void analyze(const edm::Event&, const edm::EventSetup&) override;
-  ~CSCEventPrinter() override;
 
 private:
   edm::EDGetTokenT<CSCCLCTDigiCollection> clctToken_;
-  std::ofstream outputFile_;
-  std::set<std::tuple<uint32_t, uint32_t, int, int, int, int>> printedEvents_;
 };
 
 CSCEventPrinter::CSCEventPrinter(const edm::ParameterSet& iConfig) {
   auto clctTag = iConfig.getParameter<edm::InputTag>("clctTag");
   clctToken_ = consumes<CSCCLCTDigiCollection>(clctTag);
-
-  outputFile_.open("eventList_temp.txt");
-  outputFile_ << "## run eventnumber endcap station ring chamber\n";
-}
-
-CSCEventPrinter::~CSCEventPrinter() {
-  outputFile_.close();
 }
 
 void CSCEventPrinter::analyze(const edm::Event& iEvent, const edm::EventSetup&) {
@@ -44,9 +31,8 @@ void CSCEventPrinter::analyze(const edm::Event& iEvent, const edm::EventSetup&) 
     return;
   }
 
-  uint32_t run = iEvent.id().run();
-  uint32_t event = iEvent.id().event();
-  edm::LogVerbatim("CSCEventPrinter") << "Run: " << run << ", Event: " << event;
+  edm::LogVerbatim("CSCEventPrinter") << "Run: " << iEvent.id().run()
+                                      << ", Event: " << iEvent.id().event();
 
   for (auto it = clcts->begin(); it != clcts->end(); ++it) {
     const CSCDetId& id = (*it).first;
@@ -54,19 +40,7 @@ void CSCEventPrinter::analyze(const edm::Event& iEvent, const edm::EventSetup&) 
 
     for (auto digi = range.first; digi != range.second; ++digi) {
       if (!digi->isValid()) continue;
-
       edm::LogVerbatim("CSCEventPrinter") << "CSCDetId: " << id << ", CLCT: " << *digi;
-
-      std::tuple<uint32_t, uint32_t, int, int, int, int> entry =
-          std::make_tuple(run, event, id.endcap(), id.station(), id.ring(), id.chamber());
-
-      if (printedEvents_.insert(entry).second) {
-        outputFile_ << run << " " << event << " "
-                    << id.endcap() << " "
-                    << id.station() << " "
-                    << id.ring() << " "
-                    << id.chamber() << "\n";
-      }
     }
   }
 }
