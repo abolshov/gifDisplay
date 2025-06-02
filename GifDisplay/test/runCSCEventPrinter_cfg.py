@@ -16,7 +16,7 @@ process.source = cms.Source("PoolSource",
 )
 
 process.CSCEventPrinter = cms.EDAnalyzer("CSCEventPrinter",
-    clctTag = cms.InputTag("muonCSCDigis", "MuonCSCCLCTDigi")
+    clctTag = cms.InputTag("simCscTriggerPrimitiveDigis", "", "HLT")
 )
 
 process.p = cms.Path(process.CSCEventPrinter)

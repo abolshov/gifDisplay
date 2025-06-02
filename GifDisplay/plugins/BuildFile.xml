@@ -24,3 +24,14 @@
 <export>
    <lib name="1"/>
 </export>
+
+<!--
+<library file="CSCEventPrinter.cc" name="gifDisplayCSCEventPrinter">
+  <use name="FWCore/Framework"/>
+  <use name="FWCore/ParameterSet"/>
+  <use name="FWCore/Utilities"/>
+  <use name="FWCore/MessageLogger"/>
+  <use name="DataFormats/CSCDigi"/>
+</library>
+-->
+
