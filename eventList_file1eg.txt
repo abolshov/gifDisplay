@@ -1,0 +1,3 @@
+## run eventnumber endcap station ring chamber
+1 3798 1 1 1 4
+1 3798 1 1 1 9

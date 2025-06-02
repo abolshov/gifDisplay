@@ -9,9 +9,9 @@ process.MessageLogger = cms.Service("MessageLogger",
     cout = cms.untracked.PSet(
         threshold = cms.untracked.string('INFO'),
         #default   = cms.untracked.PSet(limit = cms.untracked.int32(1000000))
-        #replace above with suppressing all information and allow my logs:
+        #replace above with suppressing all information and allow my logs(couts):
         default   = cms.untracked.PSet(limit = cms.untracked.int32(0)),
-        CSCEventPrinter = cms.untracked.PSet(limit = cms.untracked.int32(1000000)) 
+        #CSCEventPrinter = cms.untracked.PSet(limit = cms.untracked.int32(1000000)) 
     ),
     cerr = cms.untracked.PSet(
         threshold = cms.untracked.string('WARNING'),

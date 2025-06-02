@@ -1,7 +1,8 @@
 import FWCore.ParameterSet.Config as cms
 from FWCore.ParameterSet.VarParsing import VarParsing
-from Configuration.Eras.Era_Run3_cff import Run3
-from Configuration.Eras.Era_Run2_2018_cff import Run2_2018
+# from Configuration.Eras.Era_Run3_cff import Run3
+# from Configuration.Eras.Era_Run2_2018_cff import Run2_2018
+from Configuration.Eras.Era_Phase2C17I13M9_cff import Phase2C17I13M9
 
 import sys, os
 ### cmsRun CSCEventDisplay.py plotdir="/afs/cern.ch/work/t/tahuang/CSCEmulation/CMSSW_10_2_1/src/displayplots/"
@@ -52,16 +53,19 @@ options.register("saveEdmOutput", False, VarParsing.multiplicity.singleton, VarP
 options.register("doGEMCSC", False, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
                  "Set to True if you want to enable GEMCSC plotting.")
 options.parseArguments()
-process_era = Run3
+#process_era = Run3
+process_era = Phase2C17I13M9
 if not options.run3:
           process_era = Run2_2018
 from Configuration.StandardSequences.Eras import eras
 process = cms.Process("CSCDisplay", process_era)
 
-process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
+#process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 #process.load("Configuration/Geometry/GeometryIdeal2015Reco_cff")
 #process.load("Configuration/Geometry/IdealGeometry_cff")
 #process.load("Configuration/StandardSequences/Geometry_cff")
+process.load('Configuration.Geometry.GeometryExtended2026D110Reco_cff')
+process.load('Configuration.Geometry.GeometryExtended2026D110_cff')
 process.load("Configuration/StandardSequences/MagneticField_cff")
 process.load("Configuration/StandardSequences/FrontierConditions_GlobalTag_cff")
 #process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
@@ -113,6 +117,7 @@ if options.mc:
             #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2021_realistic', '')
             #process.GlobalTag = GlobalTag(process.GlobalTag, '123X_mcRun3_2021_realistic_v14', '')
             process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2022_realistic', '')
+
 else:
       #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '')
       process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
