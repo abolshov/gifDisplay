@@ -5,9 +5,13 @@ process = cms.Process("CSCPrint")
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.MessageLogger = cms.Service("MessageLogger",
     destinations = cms.untracked.vstring('cout', 'cerr'),
+    categories = cms.untracked.vstring('CSCEventPrinter'), 
     cout = cms.untracked.PSet(
         threshold = cms.untracked.string('INFO'),
-        default   = cms.untracked.PSet(limit = cms.untracked.int32(1000000))
+        #default   = cms.untracked.PSet(limit = cms.untracked.int32(1000000))
+        #replace above with suppressing all information and allow my logs:
+        default   = cms.untracked.PSet(limit = cms.untracked.int32(0)),
+        CSCEventPrinter = cms.untracked.PSet(limit = cms.untracked.int32(1000000)) 
     ),
     cerr = cms.untracked.PSet(
         threshold = cms.untracked.string('WARNING'),
@@ -16,7 +20,7 @@ process.MessageLogger = cms.Service("MessageLogger",
 )
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)  # set to -1 to run all events
+    input = cms.untracked.int32(10)  # -1 to run all events
 )
 
 process.source = cms.Source("PoolSource",
