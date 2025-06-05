@@ -20,13 +20,14 @@ process.MessageLogger = cms.Service("MessageLogger",
 )
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(2)  # -1 to run all events
+    input = cms.untracked.int32(-1)  # -1 to run all events
 )
 
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
-        "root://cmsxrootd.fnal.gov//store/mc/Phase2Spring24DIGIRECOMiniAOD/DYToLL_M-10To50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU140_Trk1GeV_140X_mcRun4_realistic_v4_ext1-v1/70000/0f1a4693-63c6-461d-b2be-7c966f3c6e37.root"
+        #root://cmsxrootd.fnal.gov//store/mc/Phase2Spring24DIGIRECOMiniAOD/DYToLL_M-10To50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU140_Trk1GeV_140X_mcRun4_realistic_v4_ext1-v1/70000/0f1a4693-63c6-461d-b2be-7c966f3c6e37.root"
         #"file:/eos/user/y/yumeng/CMSSW_14_2_0_pre1/gifDisplay/Phase2Spring24_DYToLL_M-10To50/0f1a4693-63c6-461d-b2be-7c966f3c6e37.root"
+        "file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root"
     )
 )
 
