@@ -92,6 +92,8 @@ struct  SimHit{ //GEM and CSC?
   float Stripf;
   int Strip;
   int PdgId;
+  // yumeng
+  int TrackID;
 
   bool operator == ( const SimHit& sh) const{
 

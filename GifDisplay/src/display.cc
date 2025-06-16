@@ -26,6 +26,9 @@
 #include "TLorentzVector.h"
 #define PI 3.14159265
 
+// yumeng
+#include "TLatex.h"
+
 vector<CorrelatedLCT> findStubsInChamber(CSCDetID id, vector<CSCIDLCTs> alllcts){
    vector<CorrelatedLCT> lcts;
    for (auto idlcts : alllcts){
@@ -48,7 +51,8 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
 
         gStyle->SetPalette(55);
 
-	
+        std::vector<TLatex*> simhitLabels;
+
         TH2F* NWireGroup = new TH2F("NWireGroup", "NWireGroup", 4, 1, 5, 4, 1, 5);
         TH2F* NStrip = new TH2F("NStrip", "NStrip", 4, 1, 5, 4, 1, 5);
 
@@ -131,6 +135,7 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
                SetTitle(pt3, "SimHits and PDGID");
 
                stripDis->Draw("COLZtext");
+               for (auto* label : simhitLabels) label->Draw("same"); 
            }else{
                TH1F* cfebNotInstall_me21 = new TH1F("cfebNotInstall_me21", "", 81, 1, 82);
                TH1F* cfebNotInstall_me11 = new TH1F("cfebNotInstall_me11", "", 81, 1, 82);
@@ -403,6 +408,7 @@ void SimHitDisplay(/*TCanvas* c1,*/ CSCDetID id, vector<int>& layer_simhit, vect
            TH2F* stripDis_text = new TH2F("stripDis_text", "", 162, 1, 82, 6, 1, 7);
            TH1F* cfebNotReadOut = new TH1F("cfebNotReadOut", "", 81, 1, 82);
 */
+    std::vector<TLatex*> simhitLabels;
            for (int i = 0; i < int(layer_simhit.size()); i++){//in each interesting layer has strip hits
 
                int tempStation = simhit[layer_simhit[i]].first.Station;
@@ -419,11 +425,11 @@ void SimHitDisplay(/*TCanvas* c1,*/ CSCDetID id, vector<int>& layer_simhit, vect
                bool doStagger = false;
                if (!(tempStation == 1 &&(tempRing==1 || tempRing==4))) doStagger = true;
 
-               MakeOneLayerSimHitDisplay(tempLayer, tempSimHit, stripDis, option2, doStagger);
+               MakeOneLayerSimHitDisplay(tempLayer, tempSimHit, stripDis, option2, doStagger, simhitLabels);
 
                if (tempLayer == id.Layer){//chamber level??
 
-                  MakeOneLayerSimHitDisplay(tempLayer, tempSimHit, stripDis_text, option2, doStagger);
+                  MakeOneLayerSimHitDisplay(tempLayer, tempSimHit, stripDis_text, option2, doStagger, simhitLabels);
 
                   }
                }
@@ -446,57 +452,120 @@ void SimHitDisplay(/*TCanvas* c1,*/ CSCDetID id, vector<int>& layer_simhit, vect
           stripDis->GetXaxis()->SetNdivisions(1010);
           stripDis->GetYaxis()->SetNdivisions(110);
           stripDis->SetTitle("");
+
+          for (auto* label : simhitLabels) {
+            label->Draw("same");
+          }
 }
 
 
-void MakeOneLayerSimHitDisplay(int layer, vector<SimHit> &s, TH2F* stripDisplay, int option, bool doStagger){
+// void MakeOneLayerSimHitDisplay(int layer, vector<SimHit> &s, TH2F* stripDisplay, int option, bool doStagger){
 
-      if (option == 1){
+//       if (option == 1){
 
-        for (int i = 0; i < int(s.size()); i++){
+//         for (int i = 0; i < int(s.size()); i++){
 
-           int x1 = stripDisplay->GetXaxis()->FindBin(s[i].Stripf);
-           int x2 = x1+1;
-           int x3 = x1+2;
+//            int x1 = stripDisplay->GetXaxis()->FindBin(s[i].Stripf);
+//            int x2 = x1+1;
+//            int x3 = x1+2;
 
-           if(doStagger && (layer == 1 || layer == 3 || layer == 5)){
+//            if(doStagger && (layer == 1 || layer == 3 || layer == 5)){
 
-              stripDisplay->SetBinContent(x2, layer, s[i].PdgId);
-              stripDisplay->SetBinContent(x3, layer, s[i].PdgId);
+//               stripDisplay->SetBinContent(x2, layer, s[i].PdgId);
+//               stripDisplay->SetBinContent(x3, layer, s[i].PdgId);
 
-             }else {// if(layer == 2 || layer == 4 || layer ==6){
+//              }else {// if(layer == 2 || layer == 4 || layer ==6){
 
-                      stripDisplay->SetBinContent(x1, layer, s[i].PdgId);
-                      stripDisplay->SetBinContent(x2, layer, s[i].PdgId);
+//                       stripDisplay->SetBinContent(x1, layer, s[i].PdgId);
+//                       stripDisplay->SetBinContent(x2, layer, s[i].PdgId);
 
-                      }
+//                       }
 
-            }
+//             }
 
-        }else if(option == 2){
+//         }else if(option == 2){
 
-                          for (int i = 0; i < int(s.size()); i++){
+//                           for (int i = 0; i < int(s.size()); i++){
 
-                            int x1 = 2*(s[i].Strip-1) + 1;
-                            int x2 = 2*(s[i].Strip-1) + 2;
+//                             int x1 = 2*(s[i].Strip-1) + 1;
+//                             int x2 = 2*(s[i].Strip-1) + 2;
 
-                            if (doStagger && (layer == 1 || layer == 3 || layer ==5) ){
+//                             if (doStagger && (layer == 1 || layer == 3 || layer ==5) ){
 
-                               stripDisplay->SetBinContent(x2, layer, s[i].PdgId);
+//                                stripDisplay->SetBinContent(x2, layer, s[i].PdgId);
 
-                               }else {//if(layer == 2 || layer == 4 || layer == 6){
+//                                }else {//if(layer == 2 || layer == 4 || layer == 6){
 
-                                        stripDisplay->SetBinContent(x1, layer, s[i].PdgId);
+//                                         stripDisplay->SetBinContent(x1, layer, s[i].PdgId);
                                                                                                                                                        
-                                        }
-                              }
+//                                         }
+//                               }
 
-                          }
+//                           }
 
 
+// }
+
+// yumeng
+void MakeOneLayerSimHitDisplay(int layer, vector<SimHit>& s, TH2F* stripDisplay, int option, bool doStagger, std::vector<TLatex*>& simhitLabels) {
+  if (option == 1) {
+    for (int i = 0; i < int(s.size()); i++) {
+      int x1 = stripDisplay->GetXaxis()->FindBin(s[i].Stripf);
+      int x2 = 2 * (s[i].Strip - 1) + 2;
+      int x3 = 2 * (s[i].Strip - 1) + 3;
+
+      float value = 1.0;
+      //float value = s[i].PdgId
+      int color = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) : 15;
+
+      if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
+        stripDisplay->SetBinContent(x2, layer, value);
+        stripDisplay->SetBinContent(x3, layer, value);
+
+        TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("%d", s[i].PdgId));
+        text->SetTextSize(0.06);
+        text->SetTextColor(color);
+        if (s[i].PdgId != 13) text->SetTextColorAlpha(color, 0.2);
+        simhitLabels.push_back(text);
+      } else {
+        stripDisplay->SetBinContent(x1, layer, value);
+        stripDisplay->SetBinContent(x2, layer, value);
+
+        TLatex* text = new TLatex(x1 + 0.3, layer + 0.1, Form("%d", s[i].PdgId));
+        text->SetTextSize(0.06);
+        text->SetTextColor(color);
+        if (s[i].PdgId != 13) text->SetTextColorAlpha(color, 0.2);
+        simhitLabels.push_back(text);
+      }
+    }
+  } else if (option == 2) {
+    for (int i = 0; i < int(s.size()); i++) {
+      int x1 = 2 * (s[i].Strip - 1) + 1;
+      int x2 = 2 * (s[i].Strip - 1) + 2;
+
+      float value = 1.0;
+      int color = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) : 15;
+
+      if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
+        stripDisplay->SetBinContent(x2, layer, value);
+
+        TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("%d", s[i].PdgId));
+        text->SetTextSize(0.06);
+        text->SetTextColor(color);
+        if (s[i].PdgId != 13) text->SetTextColorAlpha(color, 0.2);
+        simhitLabels.push_back(text);
+      } else {
+        stripDisplay->SetBinContent(x1, layer, value);
+
+        TLatex* text = new TLatex(x1 + 0.3, layer + 0.1, Form("%d", s[i].PdgId));
+        text->SetTextSize(0.06);
+        text->SetTextColor(color);
+        if (s[i].PdgId != 13) text->SetTextColorAlpha(color, 0.2);
+        simhitLabels.push_back(text);
+      }
+    }
+  }
 }
-
-
 
 
 void StripDisplay(/*TCanvas* c1,*/ CSCDetID id, vector<int>& layer_strip, vector<STRIP>& strip, double cfeb[], TH2F* stripDis, TH2F* stripDis_text, TH1F* cfebNotReadOut, TH1F* cfebNotInstall_me21, TH1F* cfebNotInstall_me11){ 
