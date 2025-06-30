@@ -397,6 +397,7 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
             tmpSH.Strip = id.ring()==4 ? layerG->nearestStrip(lp)+64 : layerG->nearestStrip(lp);
             tmpSH.PdgId = abs(pdgid);
             tmpSH.Stripf = layerG->strip(lp);
+            tmpSH.TrackID = sh.trackId();
             //cout <<"chamber "<< id <<" CSC simhit pdgid "<< pdgid <<" wg "<< tmpSH.WireGroup <<" strip "<< tmpSH.Strip << endl;
             bool found = false;
             for (auto& idsh : simhit_container){
@@ -440,6 +441,7 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
             tmpSH.Stripf = etaPart->strip(lp); 
             tmpSH.Strip  = int(etaPart->strip(lp)+0.5); 
             tmpSH.PdgId = abs(pdgid);
+            tmpSH.TrackID = sh.trackId();
             bool found = false;
             for (auto& idsh : gemsimhit_container){
                if (idsh.first == tmpID) {

@@ -49,10 +49,19 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
 			 vector<CSCDetID> &usedChamber, int Run, int Event, bool addEmulation, 
              TString compareA, TString compareB, int doDebug){
 
-        gStyle->SetPalette(55);
-
+        //yumeng
+        //gStyle->SetPalette(55);
         std::vector<TLatex*> simhitLabels;
-
+        static bool paletteDone = false;
+        if (!paletteDone) {
+            const int N = 11;                  // allocate up to index 10
+            Int_t pal[N];
+            for (int i = 0; i < N; ++i) pal[i] = i;         // start with ROOT defaults
+            pal[10] = TColor::GetColorTransparent(kGray, 0.2);
+            gStyle->SetPalette(N, pal);
+            paletteDone = true;
+        }
+        
         TH2F* NWireGroup = new TH2F("NWireGroup", "NWireGroup", 4, 1, 5, 4, 1, 5);
         TH2F* NStrip = new TH2F("NStrip", "NStrip", 4, 1, 5, 4, 1, 5);
 
@@ -425,21 +434,28 @@ void SimHitDisplay(/*TCanvas* c1,*/ CSCDetID id, vector<int>& layer_simhit, vect
                bool doStagger = false;
                if (!(tempStation == 1 &&(tempRing==1 || tempRing==4))) doStagger = true;
 
+               //yumeng
+               //MakeOneLayerSimHitDisplay(tempLayer, tempSimHit, stripDis, option2, doStagger);
                MakeOneLayerSimHitDisplay(tempLayer, tempSimHit, stripDis, option2, doStagger, simhitLabels);
 
                if (tempLayer == id.Layer){//chamber level??
 
+                  //yumeng
+                  //MakeOneLayerSimHitDisplay(tempLayer, tempSimHit, stripDis_text, option2, doStagger);
                   MakeOneLayerSimHitDisplay(tempLayer, tempSimHit, stripDis_text, option2, doStagger, simhitLabels);
 
                   }
                }
 
-          SetHistContour(stripDis, 11, 22);
+          //yumeng
+          //SetHistContour(stripDis, 11, 22);
+          SetHistContour(stripDis, 1, 10);
+          //stripDis->GetZaxis()->SetRangeUser(11, 22);
+          stripDis->GetZaxis()->SetRangeUser(1, 10);
 
           stripDis_text->SetMarkerSize(1.5);
 
           stripDis->GetZaxis()->SetLabelSize(0.1);
-          stripDis->GetZaxis()->SetRangeUser(11, 22);
           stripDis->SetStats(0);
           stripDis->GetXaxis()->SetTitle("Strip Number, SimHit");
           stripDis->GetYaxis()->SetTitle("Layer");
@@ -506,7 +522,7 @@ void SimHitDisplay(/*TCanvas* c1,*/ CSCDetID id, vector<int>& layer_simhit, vect
 
 // }
 
-// yumeng
+//yumeng
 void MakeOneLayerSimHitDisplay(int layer, vector<SimHit>& s, TH2F* stripDisplay, int option, bool doStagger, std::vector<TLatex*>& simhitLabels) {
   if (option == 1) {
     for (int i = 0; i < int(s.size()); i++) {
@@ -514,53 +530,81 @@ void MakeOneLayerSimHitDisplay(int layer, vector<SimHit>& s, TH2F* stripDisplay,
       int x2 = 2 * (s[i].Strip - 1) + 2;
       int x3 = 2 * (s[i].Strip - 1) + 3;
 
-      float value = 1.0;
+    //   std::cout << "Layer " << layer 
+    //       << ", Strip " << s[i].Strip 
+    //       << ", TrackID = " << s[i].TrackID 
+    //       << ", PDG ID = " << s[i].PdgId 
+    //       << std::endl;
       //float value = s[i].PdgId
-      int color = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) : 15;
+
+      float value = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) :10.;
+      static int grayIdx = TColor::GetColorTransparent(kGray+1, 0.2);
+      int color = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) : grayIdx;
+      TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("%d", s[i].TrackID));
 
       if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
         stripDisplay->SetBinContent(x2, layer, value);
         stripDisplay->SetBinContent(x3, layer, value);
 
-        TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("%d", s[i].PdgId));
         text->SetTextSize(0.06);
         text->SetTextColor(color);
-        if (s[i].PdgId != 13) text->SetTextColorAlpha(color, 0.2);
         simhitLabels.push_back(text);
       } else {
         stripDisplay->SetBinContent(x1, layer, value);
         stripDisplay->SetBinContent(x2, layer, value);
 
-        TLatex* text = new TLatex(x1 + 0.3, layer + 0.1, Form("%d", s[i].PdgId));
         text->SetTextSize(0.06);
         text->SetTextColor(color);
-        if (s[i].PdgId != 13) text->SetTextColorAlpha(color, 0.2);
         simhitLabels.push_back(text);
       }
     }
   } else if (option == 2) {
+    static int grayIdx = TColor::GetColorTransparent(kGray+1, 0.2);
+    //std::map<int, int> muonTrackIDColorMap;
+    //int nextColorIndex = 1;
+    
     for (int i = 0; i < int(s.size()); i++) {
       int x1 = 2 * (s[i].Strip - 1) + 1;
       int x2 = 2 * (s[i].Strip - 1) + 2;
 
-      float value = 1.0;
-      int color = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) : 15;
+      std::cout << "Layer " << layer 
+          << ", Strip " << s[i].Strip 
+          << ", TrackID = " << s[i].TrackID 
+          << ", PDG ID = " << s[i].PdgId 
+          << std::endl;
+     
+      //float value = s[i].PdgId
+      
+      //float value = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) :10.;
+      float value = (s[i].PdgId == 13) ? (s[i].TrackID) :10.;
+      int color = (s[i].PdgId == 13) ? (s[i].TrackID) : grayIdx;
+
+    // int color = grayIdx;
+    //   float value = 10.;  // default for non-muons
+
+    //   if (s[i].PdgId == 13) {
+    //     int tid = s[i].TrackID;
+    //     if (muonTrackIDColorMap.count(tid) == 0) {
+    //         muonTrackIDColorMap[tid] = nextColorIndex++;
+    //     }
+    //     int colorIdx = muonTrackIDColorMap[tid];
+    //     color = colorIdx;
+    //     value = colorIdx;
+    //   }
+
+      TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("%d", s[i].TrackID));
 
       if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
         stripDisplay->SetBinContent(x2, layer, value);
 
-        TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("%d", s[i].PdgId));
         text->SetTextSize(0.06);
         text->SetTextColor(color);
-        if (s[i].PdgId != 13) text->SetTextColorAlpha(color, 0.2);
         simhitLabels.push_back(text);
       } else {
         stripDisplay->SetBinContent(x1, layer, value);
 
-        TLatex* text = new TLatex(x1 + 0.3, layer + 0.1, Form("%d", s[i].PdgId));
         text->SetTextSize(0.06);
         text->SetTextColor(color);
-        if (s[i].PdgId != 13) text->SetTextColorAlpha(color, 0.2);
         simhitLabels.push_back(text);
       }
     }
