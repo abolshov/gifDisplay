@@ -398,6 +398,10 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
             tmpSH.PdgId = abs(pdgid);
             tmpSH.Stripf = layerG->strip(lp);
             tmpSH.TrackID = sh.trackId();
+            tmpSH.OriginalTrackID = sh.originalTrackId();
+            tmpSH.ProcessType = sh.processType();                // add process type
+            tmpSH.EventId = sh.eventId().event();
+            tmpSH.BunchCrossing = sh.eventId().bunchCrossing();
             //cout <<"chamber "<< id <<" CSC simhit pdgid "<< pdgid <<" wg "<< tmpSH.WireGroup <<" strip "<< tmpSH.Strip << endl;
             bool found = false;
             for (auto& idsh : simhit_container){

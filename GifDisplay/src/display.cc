@@ -569,8 +569,12 @@ void MakeOneLayerSimHitDisplay(int layer, vector<SimHit>& s, TH2F* stripDisplay,
 
       std::cout << "Layer " << layer 
           << ", Strip " << s[i].Strip 
-          << ", TrackID = " << s[i].TrackID 
-          << ", PDG ID = " << s[i].PdgId 
+          << ", PDG ID = " << s[i].PdgId
+          << ", TrackID = " << s[i].TrackID  
+          << ", OriginalTrackID = " << s[i].OriginalTrackID 
+          << ", ProcessType = " << s[i].ProcessType 
+          << ", EventId = " << s[i].EventId 
+          << ", BunchCrossing = " << s[i].BunchCrossing 
           << std::endl;
      
       //float value = s[i].PdgId

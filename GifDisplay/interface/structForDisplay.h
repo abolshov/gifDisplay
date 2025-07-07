@@ -94,6 +94,10 @@ struct  SimHit{ //GEM and CSC?
   int PdgId;
   // yumeng
   int TrackID;
+  int OriginalTrackID;
+  int ProcessType;
+  int EventId;  
+  int BunchCrossing;
 
   bool operator == ( const SimHit& sh) const{
 
