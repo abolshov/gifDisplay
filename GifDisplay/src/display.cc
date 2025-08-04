@@ -28,6 +28,7 @@
 
 // yumeng
 #include "TLatex.h"
+#include "TMarker.h"
 
 vector<CorrelatedLCT> findStubsInChamber(CSCDetID id, vector<CSCIDLCTs> alllcts){
    vector<CorrelatedLCT> lcts;
@@ -49,7 +50,9 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
 			 vector<CSCDetID> &usedChamber, int Run, int Event, bool addEmulation, 
              TString compareA, TString compareB, int doDebug){
 
-        //yumeng
+        const int alct_bx_offset = 5;  // ALCT BX offset
+        const int clct_bx_offset = 1;  // CLCT BX offset
+
         //gStyle->SetPalette(55);
         std::vector<TLatex*> simhitLabels;
         static bool paletteDone = false;
@@ -187,12 +190,12 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
 	  stringstream ss_alcts[10];
 	//yumeng:
       //   for (unsigned int ilct = 0; ilct < alcts.size(); ilct++){
-	//       ss_alcts[ilct] <<compareA<<" #"<<ilct<<" ALCT keyWg "<< alcts[ilct].keyWG <<" Quality "<< alcts[ilct].quality <<" Pattern "<< alcts[ilct].pattern<<" bx "<<  (alcts[ilct].BX + 5);
+	//       ss_alcts[ilct] <<compareA<<" #"<<ilct<<" ALCT keyWg "<< alcts[ilct].keyWG <<" Quality "<< alcts[ilct].quality <<" Pattern "<< alcts[ilct].pattern<<" bx "<<  (alcts[ilct].BX + alct_bx_offset);
 	//       tex1->AddText(ss_alcts[ilct].str().c_str());
 	//   }
 	//   stringstream ss_clcts[10];
 	//   for (unsigned int ilct = 0; ilct < clcts.size(); ilct++){
-	//       ss_clcts[ilct] <<compareA<<" #"<<ilct<<" CLCT HS "<< clcts[ilct].keyStrip <<" Quality "<< clcts[ilct].quality <<" Pattern "<< clcts[ilct].pattern << " Run3_Pattern " << clcts[ilct].run3_pattern <<" CC 0x"<<std::hex<<clcts[ilct].CC <<std::dec<< " bx "<<  (clcts[ilct].BX + 1);
+	//       ss_clcts[ilct] <<compareA<<" #"<<ilct<<" CLCT HS "<< clcts[ilct].keyStrip <<" Quality "<< clcts[ilct].quality <<" Pattern "<< clcts[ilct].pattern << " Run3_Pattern " << clcts[ilct].run3_pattern <<" CC 0x"<<std::hex<<clcts[ilct].CC <<std::dec<< " bx "<<  (clcts[ilct].BX + clct_bx_offset);
 	//       tex1->AddText(ss_clcts[ilct].str().c_str());
 	//   }
 	//   stringstream ss_lcts[10];
@@ -209,12 +212,12 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT> &simhit, vect
 	     lcts_emul = findStubsInChamber(id, alllcts_emul);
 	     stringstream ss_alcts_emul[10];
 	     for (unsigned int ilct = 0; ilct < alcts_emul.size(); ilct++){
-	         ss_alcts_emul[ilct] <<compareB<<" #"<<ilct<<" ALCT keyWg "<< alcts_emul[ilct].keyWG <<" Quality "<< alcts_emul[ilct].quality <<" Pattern "<< alcts_emul[ilct].pattern<<" bx "<<  (alcts_emul[ilct].BX + 5);
+	         ss_alcts_emul[ilct] <<compareB<<" #"<<ilct<<" ALCT keyWg "<< alcts_emul[ilct].keyWG <<" Quality "<< alcts_emul[ilct].quality <<" Pattern "<< alcts_emul[ilct].pattern<<" bx "<<  (alcts_emul[ilct].BX + alct_bx_offset);
 	         tex1->AddText(ss_alcts_emul[ilct].str().c_str());
 	     }
 	     stringstream ss_clcts_emul[10];
 	     for (unsigned int ilct = 0; ilct < clcts_emul.size(); ilct++){
-	         ss_clcts_emul[ilct] <<compareB<<" #"<<ilct<<" CLCT HS "<< clcts_emul[ilct].keyStrip <<" Quality "<< clcts_emul[ilct].quality <<" Pattern "<< clcts_emul[ilct].pattern << " Run3_Pattern " << clcts_emul[ilct].run3_pattern <<" CC 0x"<<std::hex<<clcts_emul[ilct].CC << std::dec << " bx "<<  (clcts_emul[ilct].BX + 1);
+	         ss_clcts_emul[ilct] <<compareB<<" #"<<ilct<<" CLCT HS "<< clcts_emul[ilct].keyStrip <<" Quality "<< clcts_emul[ilct].quality <<" Pattern "<< clcts_emul[ilct].pattern << " Run3_Pattern " << clcts_emul[ilct].run3_pattern <<" CC 0x"<<std::hex<<clcts_emul[ilct].CC << std::dec << " bx "<<  (clcts_emul[ilct].BX + clct_bx_offset);
 	         tex1->AddText(ss_clcts_emul[ilct].str().c_str());
 	     }
 	     stringstream ss_lcts_emul[10];
@@ -530,30 +533,27 @@ void MakeOneLayerSimHitDisplay(int layer, vector<SimHit>& s, TH2F* stripDisplay,
       int x1 = stripDisplay->GetXaxis()->FindBin(s[i].Stripf);
       int x2 = 2 * (s[i].Strip - 1) + 2;
       int x3 = 2 * (s[i].Strip - 1) + 3;
-
-    //   std::cout << "Layer " << layer 
-    //       << ", Strip " << s[i].Strip 
-    //       << ", TrackID = " << s[i].TrackID 
-    //       << ", PDG ID = " << s[i].PdgId 
-    //       << std::endl;
-      //float value = s[i].PdgId
-
       float value = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) :10.;
       static int grayIdx = TColor::GetColorTransparent(kGray+1, 0.2);
       int color = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) : grayIdx;
-      TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("%d", s[i].TrackID));
-
+      TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("Trk:%d", s[i].TrackID));
+      if (s[i].PdgId == 13) {
+        // Draw a black marker at the simhit position
+        TMarker* marker = new TMarker(x2, layer, 20); // 20 = full circle
+        marker->SetMarkerColor(kBlack);
+        marker->SetMarkerStyle(20);
+        marker->SetMarkerSize(1.2);
+        simhitLabels.push_back((TLatex*)marker); // Will be drawn in the same loop
+      }
       if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
         stripDisplay->SetBinContent(x2, layer, value);
         stripDisplay->SetBinContent(x3, layer, value);
-
         text->SetTextSize(0.06);
         text->SetTextColor(color);
         simhitLabels.push_back(text);
       } else {
         stripDisplay->SetBinContent(x1, layer, value);
         stripDisplay->SetBinContent(x2, layer, value);
-
         text->SetTextSize(0.06);
         text->SetTextColor(color);
         simhitLabels.push_back(text);
@@ -561,53 +561,27 @@ void MakeOneLayerSimHitDisplay(int layer, vector<SimHit>& s, TH2F* stripDisplay,
     }
   } else if (option == 2) {
     static int grayIdx = TColor::GetColorTransparent(kGray+1, 0.2);
-    //std::map<int, int> muonTrackIDColorMap;
-    //int nextColorIndex = 1;
-    
     for (int i = 0; i < int(s.size()); i++) {
       int x1 = 2 * (s[i].Strip - 1) + 1;
       int x2 = 2 * (s[i].Strip - 1) + 2;
-
-      std::cout << "Layer " << layer 
-          << ", Strip " << s[i].Strip 
-          << ", PDG ID = " << s[i].PdgId
-          << ", TrackID = " << s[i].TrackID  
-          << ", OriginalTrackID = " << s[i].OriginalTrackID 
-          << ", ProcessType = " << s[i].ProcessType 
-          << ", EventId = " << s[i].EventId 
-          << ", BunchCrossing = " << s[i].BunchCrossing 
-          << std::endl;
-     
-      //float value = s[i].PdgId
-      
-      //float value = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) :10.;
       float value = (s[i].PdgId == 13) ? (s[i].TrackID) :10.;
       int color = (s[i].PdgId == 13) ? (s[i].TrackID) : grayIdx;
-
-    // int color = grayIdx;
-    //   float value = 10.;  // default for non-muons
-
-    //   if (s[i].PdgId == 13) {
-    //     int tid = s[i].TrackID;
-    //     if (muonTrackIDColorMap.count(tid) == 0) {
-    //         muonTrackIDColorMap[tid] = nextColorIndex++;
-    //     }
-    //     int colorIdx = muonTrackIDColorMap[tid];
-    //     color = colorIdx;
-    //     value = colorIdx;
-    //   }
-
-      TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("%d", s[i].TrackID));
-
+      TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("Trk:%d", s[i].TrackID));
+      if (s[i].PdgId == 13) {
+        // Draw a black marker at the simhit position
+        TMarker* marker = new TMarker(x2, layer, 20); // 20 = full circle
+        marker->SetMarkerColor(kBlack);
+        marker->SetMarkerStyle(20);
+        marker->SetMarkerSize(1.2);
+        simhitLabels.push_back((TLatex*)marker); // Will be drawn in the same loop
+      }
       if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
         stripDisplay->SetBinContent(x2, layer, value);
-
         text->SetTextSize(0.06);
         text->SetTextColor(color);
         simhitLabels.push_back(text);
       } else {
         stripDisplay->SetBinContent(x1, layer, value);
-
         text->SetTextSize(0.06);
         text->SetTextColor(color);
         simhitLabels.push_back(text);
