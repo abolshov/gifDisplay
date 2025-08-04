@@ -533,12 +533,19 @@ void MakeOneLayerSimHitDisplay(int layer, vector<SimHit>& s, TH2F* stripDisplay,
       int x1 = stripDisplay->GetXaxis()->FindBin(s[i].Stripf);
       int x2 = 2 * (s[i].Strip - 1) + 2;
       int x3 = 2 * (s[i].Strip - 1) + 3;
+      
+      //   std::cout << "Layer " << layer 
+      //       << ", Strip " << s[i].Strip 
+      //       << ", TrackID = " << s[i].TrackID 
+      //       << ", PDG ID = " << s[i].PdgId 
+      //       << std::endl;
+      //float value = s[i].PdgId
+
       float value = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) :10.;
       static int grayIdx = TColor::GetColorTransparent(kGray+1, 0.2);
       int color = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) : grayIdx;
       TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("Trk:%d", s[i].TrackID));
       if (s[i].PdgId == 13) {
-        // Draw a black marker at the simhit position
         TMarker* marker = new TMarker(x2, layer, 20); // 20 = full circle
         marker->SetMarkerColor(kBlack);
         marker->SetMarkerStyle(20);
@@ -548,12 +555,14 @@ void MakeOneLayerSimHitDisplay(int layer, vector<SimHit>& s, TH2F* stripDisplay,
       if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
         stripDisplay->SetBinContent(x2, layer, value);
         stripDisplay->SetBinContent(x3, layer, value);
+        
         text->SetTextSize(0.06);
         text->SetTextColor(color);
         simhitLabels.push_back(text);
       } else {
         stripDisplay->SetBinContent(x1, layer, value);
         stripDisplay->SetBinContent(x2, layer, value);
+        
         text->SetTextSize(0.06);
         text->SetTextColor(color);
         simhitLabels.push_back(text);
@@ -561,27 +570,61 @@ void MakeOneLayerSimHitDisplay(int layer, vector<SimHit>& s, TH2F* stripDisplay,
     }
   } else if (option == 2) {
     static int grayIdx = TColor::GetColorTransparent(kGray+1, 0.2);
+    //std::map<int, int> muonTrackIDColorMap;
+    //int nextColorIndex = 1;
+
     for (int i = 0; i < int(s.size()); i++) {
       int x1 = 2 * (s[i].Strip - 1) + 1;
       int x2 = 2 * (s[i].Strip - 1) + 2;
+      
+      std::cout << "Layer " << layer 
+          << ", Strip " << s[i].Strip 
+          << ", PDG ID = " << s[i].PdgId
+          << ", TrackID = " << s[i].TrackID  
+          << ", OriginalTrackID = " << s[i].OriginalTrackID 
+          << ", ProcessType = " << s[i].ProcessType 
+          << ", EventId = " << s[i].EventId 
+          << ", BunchCrossing = " << s[i].BunchCrossing 
+          << std::endl;
+     
+      //float value = s[i].PdgId
+      //float value = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) :10.;
+
       float value = (s[i].PdgId == 13) ? (s[i].TrackID) :10.;
       int color = (s[i].PdgId == 13) ? (s[i].TrackID) : grayIdx;
+
+    // int color = grayIdx;
+    //   float value = 10.;  // default for non-muons
+
+    //   if (s[i].PdgId == 13) {
+    //     int tid = s[i].TrackID;
+    //     if (muonTrackIDColorMap.count(tid) == 0) {
+    //         muonTrackIDColorMap[tid] = nextColorIndex++;
+    //     }
+    //     int colorIdx = muonTrackIDColorMap[tid];
+    //     color = colorIdx;
+    //     value = colorIdx;
+    //   }
+
       TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("Trk:%d", s[i].TrackID));
+      
       if (s[i].PdgId == 13) {
-        // Draw a black marker at the simhit position
-        TMarker* marker = new TMarker(x2, layer, 20); // 20 = full circle
+        TMarker* marker = new TMarker(x2, layer, 20);
         marker->SetMarkerColor(kBlack);
         marker->SetMarkerStyle(20);
         marker->SetMarkerSize(1.2);
         simhitLabels.push_back((TLatex*)marker); // Will be drawn in the same loop
       }
+      
       if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
         stripDisplay->SetBinContent(x2, layer, value);
+        
         text->SetTextSize(0.06);
         text->SetTextColor(color);
         simhitLabels.push_back(text);
       } else {
         stripDisplay->SetBinContent(x1, layer, value);
+        
         text->SetTextSize(0.06);
         text->SetTextColor(color);
         simhitLabels.push_back(text);
