@@ -43,10 +43,13 @@ void SetSaveNameLegendName(TString& name, TString& legendName, TString address, 
 void SaveUsedChamber(CSCDetID id, vector<int> layer_strip, vector<int> layer_wire, vector<int> layer_comparator, vector<CSCDetID> &usedChamber);
 void StripDisplay(CSCDetID id, vector<int>& layer_strip, vector<STRIP>& strip, double cfeb[], TH2F* stripDis, TH2F* stripDis_text, TH1F* cfebNotReadOut, TH1F* cfebNotInstall_me21, TH1F* cfebNotInstall_me11);
 void SimHitDisplay(CSCDetID id, vector<int>& layer_simhit, vector<SIMHIT>& simhit, TH2F* stripDis, TH2F* stripDis_text);
+//yumeng
+void SimHitWireDisplay(CSCDetID id, vector<int>& layer_simhit, vector<SIMHIT>& simhit, TH2F* wireDis, TH2F* wireDis_text);
 void MakeOneLayerStripDisplay(int layer, vector<Strips> &s, TH2F* stripDisplay, int option, bool doStagger);
 //yumeng
 //void MakeOneLayerSimHitDisplay(int layer, vector<SimHit> &s, TH2F* stripDisplay, int option, bool doStagger);
 void MakeOneLayerSimHitDisplay(int layer, vector<SimHit> &s, TH2F* stripDisplay, int option, bool doStagger,std::vector<TLatex*>& simhitLabels);
+void MakeOneLayerSimHitWireDisplay(int layer, vector<SimHit> &s, TH2F* wireDisplay, std::vector<TLatex*>& simhitLabels);
 void MakeOneLayerWireDisplay(int layer, vector<Wire> &w, TH2F* wireDisplay);
 void MakeOneLayerComparatorDisplay(int layer, vector<Comparator> &c, TH2F* comparatorDisplay, bool doStagger);
 void MakeOneLayerALCT(int layer, TH2F* alctDis, vector<CorrelatedLCT>& alcts);
