@@ -1,0 +1,1059 @@
+Start to display event 994263 E:2 S:1 R:1 Chamber:26 layer:0
+Layer 1, Strip 107, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 107, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 107, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 107, PDG ID = 11, TrackID = 918696, OriginalTrackID = 918696, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 107, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 107, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 107, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 14, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 15, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 15, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 15, PDG ID = 11, TrackID = 918696, OriginalTrackID = 918696, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 15, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 15, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 15, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 26
+Begin processing the 16th record. Run 1, Event 994301, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:20.451 CEST
+this run 1 this Event 994301
+Start to display event 994301 E:2 S:1 R:1 Chamber:32 layer:0
+Layer 1, Strip 74, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 74, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 74, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 74, PDG ID = 11, TrackID = 875681, OriginalTrackID = 875681, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 74, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 74, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 74, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 4, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 4, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 4, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 4, PDG ID = 11, TrackID = 875681, OriginalTrackID = 875681, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 4, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 5, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 5, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 32
+Begin processing the 17th record. Run 1, Event 994317, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:20.744 CEST
+this run 1 this Event 994317
+Start to display event 994317 E:2 S:1 R:1 Chamber:8 layer:0
+Layer 1, Strip 88, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 88, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 88, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 88, PDG ID = 11, TrackID = 996227, OriginalTrackID = 996227, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 88, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 88, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 88, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 5, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 5, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 5, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 5, PDG ID = 11, TrackID = 996227, OriginalTrackID = 996227, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 5, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 5, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 5, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 8
+Begin processing the 18th record. Run 1, Event 994335, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:21.079 CEST
+this run 1 this Event 994335
+Start to display event 994335 E:2 S:1 R:1 Chamber:7 layer:0
+Layer 3, Strip 15, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 15, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 15, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 15, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 15, PDG ID = 11, TrackID = 156539, OriginalTrackID = 156539, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 75, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 75, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 12, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 12, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 13, PDG ID = 11, TrackID = 156539, OriginalTrackID = 156539, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 12, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 12, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 7
+Begin processing the 19th record. Run 1, Event 994331, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:21.343 CEST
+this run 1 this Event 994331
+Start to display event 994331 E:2 S:1 R:1 Chamber:30 layer:0
+Layer 1, Strip 108, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 108, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 108, PDG ID = 11, TrackID = 753923, OriginalTrackID = 753923, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 108, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 108, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 108, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 108, PDG ID = 11, TrackID = 753955, OriginalTrackID = 753955, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 108, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 13, PDG ID = 11, TrackID = 753923, OriginalTrackID = 753923, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 13, PDG ID = 11, TrackID = 753955, OriginalTrackID = 753955, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 14, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 30
+Begin processing the 20th record. Run 1, Event 994352, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:21.638 CEST
+this run 1 this Event 994352
+Start to display event 994352 E:2 S:1 R:1 Chamber:32 layer:0
+Layer 1, Strip 106, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 106, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 106, PDG ID = 11, TrackID = 295994, OriginalTrackID = 295994, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 106, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 106, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 106, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 106, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 11, TrackID = 295994, OriginalTrackID = 295994, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 32
+Begin processing the 21st record. Run 1, Event 994358, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:21.895 CEST
+this run 1 this Event 994358
+Start to display event 994358 E:2 S:1 R:1 Chamber:28 layer:0
+Layer 1, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 79, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 75, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 77, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 79, PDG ID = 11, TrackID = 309782, OriginalTrackID = 309782, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 82, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 68, PDG ID = 11, TrackID = 315130, OriginalTrackID = 315130, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 68, PDG ID = 11, TrackID = 315132, OriginalTrackID = 315132, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 78, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 78, PDG ID = 11, TrackID = 315059, OriginalTrackID = 315059, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 78, PDG ID = 11, TrackID = 315058, OriginalTrackID = 315058, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 78, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 4, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 4, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 4, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 3, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 4, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 4, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 4, PDG ID = 11, TrackID = 309782, OriginalTrackID = 309782, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 4, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 5, PDG ID = 11, TrackID = 315130, OriginalTrackID = 315130, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 5, PDG ID = 11, TrackID = 315132, OriginalTrackID = 315132, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 4, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 3, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 3, PDG ID = 11, TrackID = 315059, OriginalTrackID = 315059, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 3, PDG ID = 11, TrackID = 315058, OriginalTrackID = 315058, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 5, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 3, PDG ID = 11, TrackID = 309746, OriginalTrackID = 309746, ProcessType = 2, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 28
+Begin processing the 22nd record. Run 1, Event 994411, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:22.224 CEST
+this run 1 this Event 994411
+Start to display event 994411 E:2 S:1 R:1 Chamber:27 layer:0
+Layer 1, Strip 78, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 81, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 78, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 78, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 81, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 78, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 78, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 81, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 78, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 78, PDG ID = 11, TrackID = 1007580, OriginalTrackID = 1007580, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 78, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 80, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 79, PDG ID = 11, TrackID = 1007421, OriginalTrackID = 1007421, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 78, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 77, PDG ID = 11, TrackID = 1007580, OriginalTrackID = 1007580, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 77, PDG ID = 11, TrackID = 1007893, OriginalTrackID = 1007893, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 78, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 78, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 77, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 77, PDG ID = 11, TrackID = 1007594, OriginalTrackID = 1007594, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 78, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 77, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 77, PDG ID = 11, TrackID = 1007451, OriginalTrackID = 1007451, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 77, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 78, PDG ID = 11, TrackID = 1007594, OriginalTrackID = 1007594, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 78, PDG ID = 11, TrackID = 1007841, OriginalTrackID = 1007841, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 2, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 2, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 2, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 2, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 3, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 1007580, OriginalTrackID = 1007580, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 3, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 11, TrackID = 1007421, OriginalTrackID = 1007421, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 3, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 3, PDG ID = 11, TrackID = 1007580, OriginalTrackID = 1007580, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 3, PDG ID = 11, TrackID = 1007893, OriginalTrackID = 1007893, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 3, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 2, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 3, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 3, PDG ID = 11, TrackID = 1007594, OriginalTrackID = 1007594, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 3, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 2, PDG ID = 11, TrackID = 1002966, OriginalTrackID = 1002966, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 2, PDG ID = 11, TrackID = 1007451, OriginalTrackID = 1007451, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 3, PDG ID = 11, TrackID = 1002965, OriginalTrackID = 1002965, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 3, PDG ID = 11, TrackID = 1007594, OriginalTrackID = 1007594, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 3, PDG ID = 11, TrackID = 1007841, OriginalTrackID = 1007841, ProcessType = 2, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 27
+Begin processing the 23rd record. Run 1, Event 994404, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:22.606 CEST
+this run 1 this Event 994404
+Start to display event 994404 E:1 S:1 R:1 Chamber:3 layer:0
+Layer 1, Strip 83, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 82, PDG ID = 11, TrackID = 2275997, OriginalTrackID = 2275997, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 82, PDG ID = 11, TrackID = 2284541, OriginalTrackID = 2284541, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 83, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 83, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 83, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 83, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 83, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 2, PDG ID = 11, TrackID = 2275997, OriginalTrackID = 2275997, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 2, PDG ID = 11, TrackID = 2284541, OriginalTrackID = 2284541, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 3
+Begin processing the 24th record. Run 1, Event 994422, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:29.293 CEST
+this run 1 this Event 994422
+Start to display event 994422 E:1 S:1 R:1 Chamber:6 layer:0
+Layer 1, Strip 95, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 95, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 95, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 95, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 95, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 95, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 1, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 1, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 2, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 2, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 6
+Begin processing the 25th record. Run 1, Event 994431, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:29.539 CEST
+this run 1 this Event 994431
+Start to display event 994431 E:1 S:1 R:1 Chamber:27 layer:0
+Layer 1, Strip 86, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 86, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 86, PDG ID = 11, TrackID = 1055415, OriginalTrackID = 1055415, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 86, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 86, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 86, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 86, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 7, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 7, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 7, PDG ID = 11, TrackID = 1055415, OriginalTrackID = 1055415, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 7, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 7, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 7, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 7, PDG ID = 13, TrackID = 4, OriginalTrackID = 4, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 27
+Begin processing the 26th record. Run 1, Event 994459, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:29.797 CEST
+this run 1 this Event 994459
+Start to display event 994459 E:2 S:1 R:1 Chamber:17 layer:0
+Layer 1, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 79, PDG ID = 11, TrackID = 1073605, OriginalTrackID = 1073605, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 6, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 7, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 7, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 7, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 7, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 7, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 7, PDG ID = 11, TrackID = 1073605, OriginalTrackID = 1073605, ProcessType = 2, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 17
+Begin processing the 27th record. Run 1, Event 994487, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:30.076 CEST
+this run 1 this Event 994487
+Start to display event 994487 E:2 S:1 R:1 Chamber:22 layer:0
+Layer 1, Strip 111, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 111, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 111, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 110, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 110, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 110, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 22
+Begin processing the 28th record. Run 1, Event 994481, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:30.328 CEST
+this run 1 this Event 994481
+Start to display event 994481 E:2 S:1 R:1 Chamber:8 layer:0
+Layer 4, Strip 35, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 35, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 35, PDG ID = 11, TrackID = 2440392, OriginalTrackID = 2440392, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 35, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 90, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 90, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 90, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 14, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 14, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 14, PDG ID = 11, TrackID = 2440392, OriginalTrackID = 2440392, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 14, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 14, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 8
+Begin processing the 29th record. Run 1, Event 994509, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:30.541 CEST
+this run 1 this Event 994509
+Start to display event 994509 E:1 S:1 R:1 Chamber:34 layer:0
+Layer 1, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 100, PDG ID = 11, TrackID = 550867, OriginalTrackID = 550867, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 4, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 4, PDG ID = 11, TrackID = 550867, OriginalTrackID = 550867, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 5, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 5, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 5, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 5, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 5, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 34
+Begin processing the 30th record. Run 1, Event 994553, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:30.899 CEST
+this run 1 this Event 994553
+Start to display event 994553 E:2 S:1 R:1 Chamber:14 layer:0
+Layer 1, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 87, PDG ID = 11, TrackID = 599165, OriginalTrackID = 599165, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 86, PDG ID = 11, TrackID = 599167, OriginalTrackID = 599167, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 87, PDG ID = 11, TrackID = 599164, OriginalTrackID = 599164, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 87, PDG ID = 11, TrackID = 599232, OriginalTrackID = 599232, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 94, PDG ID = 11, TrackID = 585847, OriginalTrackID = 585847, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 86, PDG ID = 11, TrackID = 599165, OriginalTrackID = 599165, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 86, PDG ID = 11, TrackID = 599191, OriginalTrackID = 599191, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 86, PDG ID = 11, TrackID = 599164, OriginalTrackID = 599164, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 86, PDG ID = 11, TrackID = 599164, OriginalTrackID = 599164, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 76, PDG ID = 11, TrackID = 598334, OriginalTrackID = 598334, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 86, PDG ID = 11, TrackID = 599164, OriginalTrackID = 599164, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 599165, OriginalTrackID = 599165, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 599167, OriginalTrackID = 599167, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 599164, OriginalTrackID = 599164, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 599232, OriginalTrackID = 599232, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 11, TrackID = 585847, OriginalTrackID = 585847, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 11, TrackID = 599165, OriginalTrackID = 599165, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 1, PDG ID = 11, TrackID = 599191, OriginalTrackID = 599191, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 11, TrackID = 599164, OriginalTrackID = 599164, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 2, PDG ID = 11, TrackID = 599164, OriginalTrackID = 599164, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 2, PDG ID = 11, TrackID = 598334, OriginalTrackID = 598334, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 2, PDG ID = 11, TrackID = 599164, OriginalTrackID = 599164, ProcessType = 14, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 14
+Begin processing the 31st record. Run 1, Event 994552, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:31.115 CEST
+this run 1 this Event 994552
+Start to display event 994552 E:1 S:1 R:1 Chamber:21 layer:0
+Layer 1, Strip 110, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 82, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 111, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 111, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 107, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 103, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 108, PDG ID = 11, TrackID = 1280979, OriginalTrackID = 1280979, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 107, PDG ID = 11, TrackID = 1280990, OriginalTrackID = 1280990, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 104, PDG ID = 11, TrackID = 1285406, OriginalTrackID = 1285406, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 110, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 81, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 110, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 110, PDG ID = 11, TrackID = 1246545, OriginalTrackID = 1246545, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 111, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 111, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 111, PDG ID = 11, TrackID = 1250787, OriginalTrackID = 1250787, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 104, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 111, PDG ID = 11, TrackID = 1282106, OriginalTrackID = 1282106, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 104, PDG ID = 11, TrackID = 1285406, OriginalTrackID = 1285406, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 110, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 83, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 108, PDG ID = 11, TrackID = 1235324, OriginalTrackID = 1235324, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 110, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 111, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 110, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 109, PDG ID = 11, TrackID = 1250815, OriginalTrackID = 1250815, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 111, PDG ID = 11, TrackID = 1250787, OriginalTrackID = 1250787, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 107, PDG ID = 11, TrackID = 1272263, OriginalTrackID = 1272263, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 103, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 110, PDG ID = 11, TrackID = 1282106, OriginalTrackID = 1282106, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 110, PDG ID = 11, TrackID = 1282150, OriginalTrackID = 1282150, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 105, PDG ID = 11, TrackID = 1285406, OriginalTrackID = 1285406, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 104, PDG ID = 11, TrackID = 1287753, OriginalTrackID = 1287753, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 110, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 82, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 110, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 110, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 110, PDG ID = 11, TrackID = 1250525, OriginalTrackID = 1250525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 108, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 108, PDG ID = 11, TrackID = 1250833, OriginalTrackID = 1250833, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 111, PDG ID = 11, TrackID = 1266952, OriginalTrackID = 1266952, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 105, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 109, PDG ID = 11, TrackID = 1282106, OriginalTrackID = 1282106, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 105, PDG ID = 11, TrackID = 1285406, OriginalTrackID = 1285406, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 105, PDG ID = 11, TrackID = 1287753, OriginalTrackID = 1287753, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 110, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 81, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 109, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 109, PDG ID = 11, TrackID = 1246604, OriginalTrackID = 1246604, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 111, PDG ID = 11, TrackID = 1246501, OriginalTrackID = 1246501, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 110, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 111, PDG ID = 11, TrackID = 1250525, OriginalTrackID = 1250525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 110, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 109, PDG ID = 11, TrackID = 1266952, OriginalTrackID = 1266952, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 105, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 109, PDG ID = 11, TrackID = 1282106, OriginalTrackID = 1282106, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 105, PDG ID = 11, TrackID = 1285406, OriginalTrackID = 1285406, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 105, PDG ID = 11, TrackID = 1287753, OriginalTrackID = 1287753, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 105, PDG ID = 11, TrackID = 1287809, OriginalTrackID = 1287809, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 110, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 110, PDG ID = 11, TrackID = 1217648, OriginalTrackID = 1217648, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 110, PDG ID = 11, TrackID = 1222071, OriginalTrackID = 1222071, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 81, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 108, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 111, PDG ID = 11, TrackID = 1246501, OriginalTrackID = 1246501, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 110, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 107, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 109, PDG ID = 11, TrackID = 1266952, OriginalTrackID = 1266952, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 103, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 109, PDG ID = 11, TrackID = 1282106, OriginalTrackID = 1282106, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 104, PDG ID = 11, TrackID = 1287753, OriginalTrackID = 1287753, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 10, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 6, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 11, TrackID = 1280979, OriginalTrackID = 1280979, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 11, TrackID = 1280990, OriginalTrackID = 1280990, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 7, PDG ID = 11, TrackID = 1285406, OriginalTrackID = 1285406, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 11, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 11, TrackID = 1246545, OriginalTrackID = 1246545, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 11, TrackID = 1250787, OriginalTrackID = 1250787, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 6, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 11, TrackID = 1282106, OriginalTrackID = 1282106, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 7, PDG ID = 11, TrackID = 1285406, OriginalTrackID = 1285406, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 11, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 6, PDG ID = 11, TrackID = 1235324, OriginalTrackID = 1235324, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 7, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 7, PDG ID = 11, TrackID = 1250815, OriginalTrackID = 1250815, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 11, TrackID = 1250787, OriginalTrackID = 1250787, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 7, PDG ID = 11, TrackID = 1272263, OriginalTrackID = 1272263, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 6, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 11, TrackID = 1282106, OriginalTrackID = 1282106, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 11, TrackID = 1282150, OriginalTrackID = 1282150, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 7, PDG ID = 11, TrackID = 1285406, OriginalTrackID = 1285406, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 10, PDG ID = 11, TrackID = 1287753, OriginalTrackID = 1287753, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 11, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 11, TrackID = 1250525, OriginalTrackID = 1250525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 11, TrackID = 1250833, OriginalTrackID = 1250833, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 7, PDG ID = 11, TrackID = 1266952, OriginalTrackID = 1266952, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 6, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 11, TrackID = 1282106, OriginalTrackID = 1282106, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 7, PDG ID = 11, TrackID = 1285406, OriginalTrackID = 1285406, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 10, PDG ID = 11, TrackID = 1287753, OriginalTrackID = 1287753, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 11, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 1246604, OriginalTrackID = 1246604, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 7, PDG ID = 11, TrackID = 1246501, OriginalTrackID = 1246501, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 1250525, OriginalTrackID = 1250525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 7, PDG ID = 11, TrackID = 1266952, OriginalTrackID = 1266952, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 6, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 1282106, OriginalTrackID = 1282106, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 7, PDG ID = 11, TrackID = 1285406, OriginalTrackID = 1285406, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 10, PDG ID = 11, TrackID = 1287753, OriginalTrackID = 1287753, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 10, PDG ID = 11, TrackID = 1287809, OriginalTrackID = 1287809, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 1217648, OriginalTrackID = 1217648, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 1222071, OriginalTrackID = 1222071, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 11, PDG ID = 11, TrackID = 1234614, OriginalTrackID = 1234614, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 9, PDG ID = 11, TrackID = 1246502, OriginalTrackID = 1246502, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 7, PDG ID = 11, TrackID = 1246501, OriginalTrackID = 1246501, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 1250465, OriginalTrackID = 1250465, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 1250735, OriginalTrackID = 1250735, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 1266952, OriginalTrackID = 1266952, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 7, PDG ID = 11, TrackID = 1276086, OriginalTrackID = 1276086, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 1282106, OriginalTrackID = 1282106, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 10, PDG ID = 11, TrackID = 1287753, OriginalTrackID = 1287753, ProcessType = 13, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 21
+Begin processing the 32nd record. Run 1, Event 994589, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:31.451 CEST
+this run 1 this Event 994589
+Start to display event 994589 E:1 S:1 R:1 Chamber:16 layer:0
+Layer 1, Strip 99, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 99, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 99, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 99, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 99, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 99, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 16
+Begin processing the 33rd record. Run 1, Event 994594, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:31.699 CEST
+this run 1 this Event 994594
+Start to display event 994594 E:2 S:1 R:1 Chamber:9 layer:0
+Layer 1, Strip 95, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 95, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 95, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 95, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 95, PDG ID = 11, TrackID = 129436, OriginalTrackID = 129436, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 95, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 95, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 10, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 10, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 11, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 11, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 11, PDG ID = 11, TrackID = 129436, OriginalTrackID = 129436, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 11, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 11, PDG ID = 13, TrackID = 151, OriginalTrackID = 151, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 9
+Begin processing the 34th record. Run 1, Event 994598, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:31.937 CEST
+this run 1 this Event 994598
+Start to display event 994598 E:2 S:1 R:1 Chamber:3 layer:0
+Layer 1, Strip 107, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 107, PDG ID = 11, TrackID = 1162678, OriginalTrackID = 1162678, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 107, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 107, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 107, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 107, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 107, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 10, PDG ID = 11, TrackID = 1162678, OriginalTrackID = 1162678, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 11, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 11, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 11, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 3
+Begin processing the 35th record. Run 1, Event 994620, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:32.242 CEST
+this run 1 this Event 994620
+Start to display event 994620 E:2 S:1 R:1 Chamber:3 layer:0
+Layer 1, Strip 93, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 93, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 93, PDG ID = 11, TrackID = 761647, OriginalTrackID = 761647, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 93, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 93, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 93, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 93, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 9, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 9, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 9, PDG ID = 11, TrackID = 761647, OriginalTrackID = 761647, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 3
+Begin processing the 36th record. Run 1, Event 994665, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:32.538 CEST
+this run 1 this Event 994665
+Start to display event 994665 E:1 S:1 R:1 Chamber:12 layer:0
+Layer 1, Strip 67, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 67, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 67, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 67, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 67, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 67, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 10, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 12
+Start to display event 994665 E:1 S:1 R:1 Chamber:29 layer:0
+Layer 1, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 94, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 7, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 29
+Begin processing the 37th record. Run 1, Event 994663, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:32.865 CEST
+this run 1 this Event 994663
+Start to display event 994663 E:1 S:1 R:1 Chamber:23 layer:0
+Layer 1, Strip 76, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 76, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 76, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 76, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 76, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 76, PDG ID = 11, TrackID = 276794, OriginalTrackID = 276794, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 76, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 11, TrackID = 276794, OriginalTrackID = 276794, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 9, PDG ID = 13, TrackID = 225, OriginalTrackID = 225, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 23
+Begin processing the 38th record. Run 1, Event 994682, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:33.129 CEST
+this run 1 this Event 994682
+Start to display event 994682 E:1 S:1 R:1 Chamber:30 layer:0
+Layer 1, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 91, PDG ID = 11, TrackID = 353290, OriginalTrackID = 353290, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 3, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 3, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 3, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 3, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 3, PDG ID = 11, TrackID = 353290, OriginalTrackID = 353290, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 4, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 4, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 30
+Begin processing the 39th record. Run 1, Event 994757, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:33.353 CEST
+this run 1 this Event 994757
+Start to display event 994757 E:1 S:1 R:1 Chamber:20 layer:0
+Layer 3, Strip 67, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 67, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 67, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 67, PDG ID = 11, TrackID = 610893, OriginalTrackID = 610893, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 67, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 2, PDG ID = 11, TrackID = 610893, OriginalTrackID = 610893, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 20
+Begin processing the 40th record. Run 1, Event 994758, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:33.641 CEST
+this run 1 this Event 994758
+Start to display event 994758 E:1 S:1 R:1 Chamber:36 layer:0
+Layer 1, Strip 72, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 72, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 71, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 72, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 71, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 71, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 71, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 70, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 70, PDG ID = 11, TrackID = 641591, OriginalTrackID = 641591, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 71, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 70, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 71, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 70, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 10, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 10, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 10, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 10, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 10, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 10, PDG ID = 11, TrackID = 641591, OriginalTrackID = 641591, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 11, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 10, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 11, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 10, PDG ID = 11, TrackID = 635220, OriginalTrackID = 635220, ProcessType = 2, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 36
+Begin processing the 41st record. Run 1, Event 994791, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:33.923 CEST
+this run 1 this Event 994791
+Start to display event 994791 E:1 S:1 R:1 Chamber:4 layer:0
+Layer 1, Strip 98, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 98, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 98, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 98, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 98, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 98, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 3, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 3, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 4, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 4, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 4, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 4, PDG ID = 13, TrackID = 160, OriginalTrackID = 160, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 4
+Begin processing the 42nd record. Run 1, Event 994803, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:34.270 CEST
+this run 1 this Event 994803
+Start to display event 994803 E:2 S:1 R:1 Chamber:19 layer:0
+Layer 1, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 80, PDG ID = 11, TrackID = 1387818, OriginalTrackID = 1387818, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 79, PDG ID = 11, TrackID = 1387858, OriginalTrackID = 1387858, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 79, PDG ID = 11, TrackID = 1387857, OriginalTrackID = 1387857, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 80, PDG ID = 11, TrackID = 1387818, OriginalTrackID = 1387818, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 79, PDG ID = 11, TrackID = 1387818, OriginalTrackID = 1387818, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 79, PDG ID = 11, TrackID = 1393161, OriginalTrackID = 1393161, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 79, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 2, PDG ID = 11, TrackID = 1387818, OriginalTrackID = 1387818, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 1387858, OriginalTrackID = 1387858, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 1387857, OriginalTrackID = 1387857, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 11, TrackID = 1387818, OriginalTrackID = 1387818, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 11, TrackID = 1387818, OriginalTrackID = 1387818, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 11, TrackID = 1393161, OriginalTrackID = 1393161, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 3, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 19
+Begin processing the 43rd record. Run 1, Event 994827, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:34.534 CEST
+this run 1 this Event 994827
+Start to display event 994827 E:1 S:1 R:1 Chamber:7 layer:0
+Layer 1, Strip 73, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 73, PDG ID = 11, TrackID = 38167, OriginalTrackID = 38167, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 73, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 73, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 73, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 73, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 73, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 7, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 7, PDG ID = 11, TrackID = 38167, OriginalTrackID = 38167, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 7, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 7, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 7, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 7, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 7
+Begin processing the 44th record. Run 1, Event 994819, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:34.774 CEST
+this run 1 this Event 994819
+Start to display event 994819 E:2 S:1 R:1 Chamber:16 layer:0
+Layer 1, Strip 99, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 99, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 99, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 99, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 99, PDG ID = 11, TrackID = 993530, OriginalTrackID = 993530, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 99, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 99, PDG ID = 11, TrackID = 993545, OriginalTrackID = 993545, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 99, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 9, PDG ID = 11, TrackID = 993530, OriginalTrackID = 993530, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 11, TrackID = 993545, OriginalTrackID = 993545, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 10, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 16
+Begin processing the 45th record. Run 1, Event 994831, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:35.044 CEST
+this run 1 this Event 994831
+Start to display event 994831 E:1 S:1 R:1 Chamber:36 layer:0
+Layer 6, Strip 8, PDG ID = 2212, TrackID = 424203, OriginalTrackID = 424203, ProcessType = 111, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 8, PDG ID = 11, TrackID = 424254, OriginalTrackID = 424254, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 95, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 95, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 95, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 95, PDG ID = 11, TrackID = 454961, OriginalTrackID = 454961, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 95, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 95, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 95, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 16, PDG ID = 2212, TrackID = 424203, OriginalTrackID = 424203, ProcessType = 111, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 16, PDG ID = 11, TrackID = 424254, OriginalTrackID = 424254, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 2, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 1, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 1, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 1, PDG ID = 11, TrackID = 454961, OriginalTrackID = 454961, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 1, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 1, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 1, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 36
+Begin processing the 46th record. Run 1, Event 994821, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:35.296 CEST
+this run 1 this Event 994821
+Start to display event 994821 E:1 S:1 R:1 Chamber:35 layer:0
+Layer 1, Strip 81, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 81, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 75, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 81, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 81, PDG ID = 11, TrackID = 1611458, OriginalTrackID = 1611458, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 83, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 76, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 81, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 81, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 75, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 81, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 81, PDG ID = 11, TrackID = 1611495, OriginalTrackID = 1611495, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 82, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 74, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 81, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 83, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 82, PDG ID = 11, TrackID = 1622716, OriginalTrackID = 1622716, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 74, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 81, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 81, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 74, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 13, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 12, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 12, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 13, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 13, PDG ID = 11, TrackID = 1611458, OriginalTrackID = 1611458, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 12, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 12, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 13, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 12, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 12, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 13, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 13, PDG ID = 11, TrackID = 1611495, OriginalTrackID = 1611495, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 12, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 12, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 13, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 12, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 12, PDG ID = 11, TrackID = 1622716, OriginalTrackID = 1622716, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 12, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 14, PDG ID = 13, TrackID = 6, OriginalTrackID = 6, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 12, PDG ID = 11, TrackID = 1611425, OriginalTrackID = 1611425, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 12, PDG ID = 11, TrackID = 1610858, OriginalTrackID = 1610858, ProcessType = 4, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 35
+Begin processing the 47th record. Run 1, Event 994847, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:35.554 CEST
+this run 1 this Event 994847
+Start to display event 994847 E:2 S:1 R:1 Chamber:8 layer:0
+Layer 1, Strip 82, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 82, PDG ID = 11, TrackID = 432896, OriginalTrackID = 432896, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 83, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 78, PDG ID = 11, TrackID = 442043, OriginalTrackID = 442043, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 79, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 82, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 82, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 77, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 77, PDG ID = 11, TrackID = 442926, OriginalTrackID = 442926, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 82, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 80, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 76, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 82, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 80, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 76, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 82, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 102, PDG ID = 11, TrackID = 441393, OriginalTrackID = 441393, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 101, PDG ID = 11, TrackID = 441408, OriginalTrackID = 441408, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 102, PDG ID = 11, TrackID = 441392, OriginalTrackID = 441392, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 102, PDG ID = 11, TrackID = 441455, OriginalTrackID = 441455, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 81, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 82, PDG ID = 11, TrackID = 441858, OriginalTrackID = 441858, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 81, PDG ID = 11, TrackID = 442581, OriginalTrackID = 442581, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 80, PDG ID = 11, TrackID = 442598, OriginalTrackID = 442598, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 76, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 82, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 102, PDG ID = 11, TrackID = 441393, OriginalTrackID = 441393, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 103, PDG ID = 11, TrackID = 441392, OriginalTrackID = 441392, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 83, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 80, PDG ID = 11, TrackID = 442581, OriginalTrackID = 442581, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 77, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 76, PDG ID = 11, TrackID = 442979, OriginalTrackID = 442979, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 11, TrackID = 432896, OriginalTrackID = 432896, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 8, PDG ID = 11, TrackID = 442043, OriginalTrackID = 442043, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 9, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 7, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 11, TrackID = 442926, OriginalTrackID = 442926, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 9, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 7, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 9, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 7, PDG ID = 11, TrackID = 441393, OriginalTrackID = 441393, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 7, PDG ID = 11, TrackID = 441408, OriginalTrackID = 441408, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 441392, OriginalTrackID = 441392, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 441455, OriginalTrackID = 441455, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 441858, OriginalTrackID = 441858, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 11, TrackID = 442581, OriginalTrackID = 442581, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 11, TrackID = 442598, OriginalTrackID = 442598, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 9, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 441393, OriginalTrackID = 441393, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 441392, OriginalTrackID = 441392, ProcessType = 14, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 432698, OriginalTrackID = 432698, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 9, PDG ID = 11, TrackID = 442581, OriginalTrackID = 442581, ProcessType = 13, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 432697, OriginalTrackID = 432697, ProcessType = 4, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 11, TrackID = 442979, OriginalTrackID = 442979, ProcessType = 2, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 8
+Begin processing the 48th record. Run 1, Event 994852, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:35.885 CEST
+this run 1 this Event 994852
+Start to display event 994852 E:1 S:1 R:1 Chamber:22 layer:0
+Layer 1, Strip 97, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 97, PDG ID = 11, TrackID = 459599, OriginalTrackID = 459599, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 97, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 97, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 97, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 97, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 97, PDG ID = 11, TrackID = 459653, OriginalTrackID = 459653, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 97, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 1, PDG ID = 11, TrackID = 459599, OriginalTrackID = 459599, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 1, PDG ID = 11, TrackID = 459653, OriginalTrackID = 459653, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 22
+Begin processing the 49th record. Run 1, Event 994884, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:36.231 CEST
+this run 1 this Event 994884
+Start to display event 994884 E:1 S:1 R:1 Chamber:14 layer:0
+Layer 1, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 91, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 1, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 2, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 14
+Begin processing the 50th record. Run 1, Event 994914, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:36.905 CEST
+this run 1 this Event 994914
+Start to display event 994914 E:1 S:1 R:1 Chamber:3 layer:0
+Layer 1, Strip 69, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 69, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 69, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 69, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 69, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 69, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 12, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 13, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 13, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 13, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 13, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 13, PDG ID = 13, TrackID = 175, OriginalTrackID = 175, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 3
+Begin processing the 51st record. Run 1, Event 994932, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:37.387 CEST
+this run 1 this Event 994932
+Start to display event 994932 E:2 S:1 R:1 Chamber:27 layer:0
+Layer 3, Strip 58, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 58, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 58, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 58, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 108, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 108, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 58, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 58, PDG ID = 11, TrackID = 850947, OriginalTrackID = 850947, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 16, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 16, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 16, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 16, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 15, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 16, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 16, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 16, PDG ID = 11, TrackID = 850947, OriginalTrackID = 850947, ProcessType = 2, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 27
+Begin processing the 52nd record. Run 1, Event 994929, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:37.752 CEST
+this run 1 this Event 994929
+Start to display event 994929 E:2 S:1 R:1 Chamber:15 layer:0
+Layer 1, Strip 91, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 91, PDG ID = 11, TrackID = 1000525, OriginalTrackID = 1000525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 92, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 91, PDG ID = 11, TrackID = 1000525, OriginalTrackID = 1000525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 92, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 91, PDG ID = 11, TrackID = 1000525, OriginalTrackID = 1000525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 92, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 91, PDG ID = 11, TrackID = 1000525, OriginalTrackID = 1000525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 92, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 90, PDG ID = 11, TrackID = 1000525, OriginalTrackID = 1000525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 91, PDG ID = 11, TrackID = 1006423, OriginalTrackID = 1006423, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 92, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 9, PDG ID = 11, TrackID = 1000525, OriginalTrackID = 1000525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 9, PDG ID = 11, TrackID = 1000525, OriginalTrackID = 1000525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 9, PDG ID = 11, TrackID = 1000525, OriginalTrackID = 1000525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 9, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 9, PDG ID = 11, TrackID = 1000525, OriginalTrackID = 1000525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 10, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 11, TrackID = 1000525, OriginalTrackID = 1000525, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 9, PDG ID = 11, TrackID = 1006423, OriginalTrackID = 1006423, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 10, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 2 chamber 15
+Begin processing the 53rd record. Run 1, Event 994962, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:37.994 CEST
+this run 1 this Event 994962
+Start to display event 994962 E:1 S:1 R:1 Chamber:12 layer:0
+Layer 1, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 100, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 7, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 8, PDG ID = 13, TrackID = 2, OriginalTrackID = 2, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 12
+Begin processing the 54th record. Run 1, Event 994995, LumiSection 995 on stream 0 at 11-Aug-2025 16:29:38.447 CEST
+this run 1 this Event 994995
+Start to display event 994995 E:1 S:1 R:1 Chamber:25 layer:0
+Layer 1, Strip 87, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 87, PDG ID = 11, TrackID = 808273, OriginalTrackID = 808273, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 87, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 87, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 87, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 88, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 88, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 12, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 12, PDG ID = 11, TrackID = 808273, OriginalTrackID = 808273, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 12, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 12, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 25
+Start to display event 994995 E:1 S:1 R:1 Chamber:25 layer:0
+Layer 1, Strip 87, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, Strip 87, PDG ID = 11, TrackID = 808273, OriginalTrackID = 808273, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, Strip 87, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, Strip 87, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, Strip 87, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, Strip 88, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, Strip 88, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 12, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 1, WireGroup 12, PDG ID = 11, TrackID = 808273, OriginalTrackID = 808273, ProcessType = 2, EventId = 0, BunchCrossing = 0
+Layer 2, WireGroup 12, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 3, WireGroup 12, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 4, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 5, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+Layer 6, WireGroup 13, PDG ID = 13, TrackID = 1, OriginalTrackID = 1, ProcessType = 0, EventId = 0, BunchCrossing = 0
+doGEMdisplay, station  1 endcap 1 chamber 25
+11-Aug-2025 16:29:38 CEST  Closed file file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root

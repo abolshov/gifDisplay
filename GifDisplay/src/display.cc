@@ -138,9 +138,7 @@ void WireStripDisplay(TString address,
   //draw event display
   TCanvas* c1 = new TCanvas("c1", "c1", 0, 0, 600, 800);
 
-  //yumeng  c1->Divide(1, 5);
-  c1->Divide(1, 6);
-
+  c1->Divide(1, 5);
   c1->SetRightMargin(0.15);
   c1->SetBottomMargin(0.25);
   c1->SetTopMargin(0.25);
@@ -157,7 +155,7 @@ void WireStripDisplay(TString address,
   TPaveText* pt3 = new TPaveText(0.4, 0.90, 0.6, 0.96, "NDC");
   if (doSimHit) {
     SimHitDisplay(/*c1,*/ id, layer_simhit, simhit, stripDis, stripDis_text);
-    SetTitle(pt3, "SimHits and PDGID");
+    SetTitle(pt3, "SimHit Strips");
 
     stripDis->Draw("COLZtext");
     for (auto* label : simhitLabels)
@@ -198,7 +196,7 @@ void WireStripDisplay(TString address,
   }
   pt3->Draw();
 
-  c1->cd(4)->SetGridy();
+  c1->cd(1)->SetGridy();
   gPad->SetTopMargin(0.15);
   gPad->SetBottomMargin(0.2);
   TH2F* simhitWireDis = new TH2F("simhitWireDis", "", nWireGroup + 1, 0, nWireGroup + 1, 6, 1, 7);
@@ -207,7 +205,7 @@ void WireStripDisplay(TString address,
   
   if (doSimHit) {
     SimHitWireDisplay(id, layer_simhit, simhit, simhitWireDis, simhitWireDis_text);
-    SetTitle(pt4, "SimHit Wire Groups (Truth)");
+    SetTitle(pt4, "SimHit Wire Groups");
     
     simhitWireDis->SetMarkerSize(2);
     simhitWireDis->Draw("COLZ text");
@@ -323,7 +321,7 @@ void WireStripDisplay(TString address,
 */
 
   //wire display
-  c1->cd(1)->SetGridy();
+  c1->cd(2)->SetGridy();
   gPad->SetTopMargin(0.15);
   gPad->SetBottomMargin(0.2);
   TH2F* wireDis = new TH2F("wireDis", "", nWireGroup + 1, 0, nWireGroup + 1, 6, 1, 7);
@@ -345,7 +343,7 @@ void WireStripDisplay(TString address,
   pt1->Draw();
 
   //comparator display
-  c1->cd(2)->SetGridy();
+  c1->cd(4)->SetGridy();
   gPad->SetBottomMargin(0.2);
   TPaveText* pt2 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
   TH2F* comparatorDis = new TH2F("comparatorDis", "", nStrip * 2 + 2, 0, nStrip * 2 + 2, 6, 1, 7);
