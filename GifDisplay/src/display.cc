@@ -201,11 +201,11 @@ void WireStripDisplay(TString address,
   gPad->SetBottomMargin(0.2);
   TH2F* simhitWireDis = new TH2F("simhitWireDis", "", nWireGroup + 1, 0, nWireGroup + 1, 6, 1, 7);
   TH2F* simhitWireDis_text = new TH2F("simhitWireDis_text", "", nWireGroup, 0, nWireGroup + 1, 6, 1, 7);
-  TPaveText* pt4 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
+  TPaveText* pt1 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
   
   if (doSimHit) {
     SimHitWireDisplay(id, layer_simhit, simhit, simhitWireDis, simhitWireDis_text);
-    SetTitle(pt4, "SimHit Wire Groups");
+    SetTitle(pt1, "SimHit Wire Groups");
     
     simhitWireDis->SetMarkerSize(2);
     simhitWireDis->Draw("COLZ text");
@@ -213,7 +213,7 @@ void WireStripDisplay(TString address,
     for (auto* label : simhitLabels)
       label->Draw("same");
   }
-  pt4->Draw();
+  pt1->Draw();
 
   //show LCTs
   c1->cd(5);
@@ -327,10 +327,10 @@ void WireStripDisplay(TString address,
   TH2F* wireDis = new TH2F("wireDis", "", nWireGroup + 1, 0, nWireGroup + 1, 6, 1, 7);
   TH2F* wireDis_text = new TH2F("wireDis_text", "", nWireGroup, 0, nWireGroup + 1, 6, 1, 7);
   TH2F* alctDis = new TH2F("alctDis", "", nWireGroup + 1, 0, nWireGroup + 1, 6, 1, 7);
-  TPaveText* pt1 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
+  TPaveText* pt2 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
 
   WireDisplay(id, layer_wire, wire, wireDis, wireDis_text, alctDis, alcts);
-  SetTitle(pt1, "Anode Hits");
+  SetTitle(pt2, "Anode Hits");
 
   wireDis->SetMarkerSize(2);
   wireDis->Draw("COLZ text");
@@ -340,12 +340,12 @@ void WireStripDisplay(TString address,
   alctDis->SetFillColorAlpha(kBlack, 0.5);
   alctDis->SetLineWidth(2);
   alctDis->Draw("BOX SAME");
-  pt1->Draw();
+  pt2->Draw();
 
   //comparator display
   c1->cd(4)->SetGridy();
   gPad->SetBottomMargin(0.2);
-  TPaveText* pt2 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
+  TPaveText* pt4 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
   TH2F* comparatorDis = new TH2F("comparatorDis", "", nStrip * 2 + 2, 0, nStrip * 2 + 2, 6, 1, 7);
   TH2F* comparatorDis_text = new TH2F("comparatorDis_text", "", nStrip * 2 + 2, 0, nStrip * 2 + 2, 6, 1, 7);
   TH2F* clctDis = new TH2F("clctDis", "", nStrip * 2 + 2, 0, nStrip * 2 + 2, 6, 1, 7);
@@ -370,8 +370,8 @@ void WireStripDisplay(TString address,
                        cfebNotInstall_comparator_me11->Draw("B same");
                        }
 */
-  SetTitle(pt2, "Comparator Hits");
-  pt2->Draw();
+  SetTitle(pt4, "Comparator Hits");
+  pt4->Draw();
 
   c1->Update();
   c1->SaveAs(name + ".png");
@@ -401,7 +401,9 @@ bool ChamberUsedForEventDisplay(CSCDetID id, vector<CSCDetID> usedChamber) {
   for (int i = 0; i < int(usedChamber.size()); i++) {
     CSCDetID tempID = usedChamber[i];
 
-    if (id.Endcap == tempID.Endcap && id.Station == tempID.Endcap && id.Ring == tempID.Ring &&
+    //yumeng debug
+    //if (id.Endcap == tempID.Endcap && id.Station == tempID.Endcap && id.Ring == tempID.Ring &&
+    if (id.Endcap == tempID.Endcap && id.Station == tempID.Station && id.Ring == tempID.Ring &&  
         id.Chamber == tempID.Chamber) {
       flag = true;
     }
@@ -604,13 +606,6 @@ void MakeOneLayerSimHitDisplay(
       int x1 = stripDisplay->GetXaxis()->FindBin(s[i].Stripf);
       int x2 = 2 * (s[i].Strip - 1) + 2;
       int x3 = 2 * (s[i].Strip - 1) + 3;
-
-      //   std::cout << "Layer " << layer
-      //       << ", Strip " << s[i].Strip
-      //       << ", TrackID = " << s[i].TrackID
-      //       << ", PDG ID = " << s[i].PdgId
-      //       << std::endl;
-      //float value = s[i].PdgId
 
       float value = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) : 10.;
       static int grayIdx = TColor::GetColorTransparent(kGray + 1, 0.2);
