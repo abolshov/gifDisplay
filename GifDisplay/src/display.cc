@@ -335,6 +335,7 @@ void WireStripDisplay(TString address,
   WireDisplay(id, layer_wire, wire, wireDis, wireDis_text, alctDis, alcts_emul);
   else
   WireDisplay(id, layer_wire, wire, wireDis, wireDis_text, alctDis, alcts);
+  SetTitle(pt2, "Anode Hits");
 
   wireDis->SetMarkerSize(2);
   wireDis->Draw("COLZ text");
