@@ -386,7 +386,8 @@ addEmulation = cms.untracked.bool(options.l1 or options.l1GEM),
 addSimHits = cms.untracked.bool(options.mc),
 doGEMCSC = cms.untracked.bool(options.doGEMCSC),
 #doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM),
-doGEMDisplay = cms.untracked.bool(options.doGEMCSC),
+#doGEMDisplay = cms.untracked.bool(options.doGEMCSC),
+doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM or options.doGEMCSC),
 
 debug = cms.untracked.int32(1),
 compareA = cms.untracked.string("Data"),#box4, top part name
@@ -408,12 +409,19 @@ if options.mc:
     #process.GifDisplay.alctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun2', '', processName)
     #process.GifDisplay.clctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun2', '', processName)
     #process.GifDisplay.corrlctDigiTagSrc      = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun2', '', processName)
-    process.GifDisplay.alctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
-    process.GifDisplay.clctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
-    process.GifDisplay.corrlctDigiTagSrc      = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
-    process.GifDisplay.alctDigiTagSrc_Emul    = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
-    process.GifDisplay.clctDigiTagSrc_Emul    = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
-    process.GifDisplay.corrlctDigiTagSrc_Emul = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
+   
+#     process.GifDisplay.alctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
+#     process.GifDisplay.clctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
+#     process.GifDisplay.corrlctDigiTagSrc      = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
+#     process.GifDisplay.alctDigiTagSrc_Emul    = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
+#     process.GifDisplay.clctDigiTagSrc_Emul    = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
+#     process.GifDisplay.corrlctDigiTagSrc_Emul = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
+    process.GifDisplay.alctDigiTagSrc_Emul         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
+    process.GifDisplay.clctDigiTagSrc_Emul         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
+    process.GifDisplay.corrlctDigiTagSrc_Emul      = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
+    process.GifDisplay.alctDigiTagSrc    = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
+    process.GifDisplay.clctDigiTagSrc    = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
+    process.GifDisplay.corrlctDigiTagSrc = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
 if options.runME11ILT or options.runME21ILT or options.l1GEM:
     #process.GifDisplay.gemPadTagSrc          = cms.untracked.InputTag('MuonGEMPadDigis')
     process.GifDisplay.gemPadTagSrc          = cms.untracked.InputTag('simMuonGEMPadDigis')

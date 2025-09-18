@@ -231,20 +231,22 @@ void WireStripDisplay(TString address,
   tex1->AddText(ss.str().c_str());
   stringstream ss_alcts[10];
   //yumeng:
-  //   for (unsigned int ilct = 0; ilct < alcts.size(); ilct++){
-  //       ss_alcts[ilct] <<compareA<<" #"<<ilct<<" ALCT keyWg "<< alcts[ilct].keyWG <<" Quality "<< alcts[ilct].quality <<" Pattern "<< alcts[ilct].pattern<<" bx "<<  (alcts[ilct].BX + alct_bx_offset);
-  //       tex1->AddText(ss_alcts[ilct].str().c_str());
-  //   }
-  //   stringstream ss_clcts[10];
-  //   for (unsigned int ilct = 0; ilct < clcts.size(); ilct++){
-  //       ss_clcts[ilct] <<compareA<<" #"<<ilct<<" CLCT HS "<< clcts[ilct].keyStrip <<" Quality "<< clcts[ilct].quality <<" Pattern "<< clcts[ilct].pattern << " Run3_Pattern " << clcts[ilct].run3_pattern <<" CC 0x"<<std::hex<<clcts[ilct].CC <<std::dec<< " bx "<<  (clcts[ilct].BX + clct_bx_offset);
-  //       tex1->AddText(ss_clcts[ilct].str().c_str());
-  //   }
-  //   stringstream ss_lcts[10];
-  //   for (unsigned int ilct = 0; ilct < lcts.size(); ilct++){
-  //       ss_lcts[ilct] <<compareA<<" #"<<ilct<<" LCT keyWg "<< lcts[ilct].keyWG <<" HS "<< lcts[ilct].keyStrip <<" Quality "<< lcts[ilct].quality <<" Pattern "<< lcts[ilct].pattern << " bx "<<  lcts[ilct].BX;
-  //       tex1->AddText(ss_lcts[ilct].str().c_str());
-  //   }
+  if (!doSimHit && addEmulation) {
+    for (unsigned int ilct = 0; ilct < alcts.size(); ilct++){
+        ss_alcts[ilct] <<compareA<<" #"<<ilct<<" ALCT keyWg "<< alcts[ilct].keyWG <<" Quality "<< alcts[ilct].quality <<" Pattern "<< alcts[ilct].pattern<<" bx "<<  (alcts[ilct].BX);
+        tex1->AddText(ss_alcts[ilct].str().c_str());
+    }
+    stringstream ss_clcts[10];
+    for (unsigned int ilct = 0; ilct < clcts.size(); ilct++){
+        ss_clcts[ilct] <<compareA<<" #"<<ilct<<" CLCT HS "<< clcts[ilct].keyStrip <<" Quality "<< clcts[ilct].quality <<" Pattern "<< clcts[ilct].pattern << " Run3_Pattern " << clcts[ilct].run3_pattern <<" CC 0x"<<std::hex<<clcts[ilct].CC <<std::dec<< " bx "<<  (clcts[ilct].BX);
+        tex1->AddText(ss_clcts[ilct].str().c_str());
+    }
+    stringstream ss_lcts[10];
+    for (unsigned int ilct = 0; ilct < lcts.size(); ilct++){
+        ss_lcts[ilct] <<compareA<<" #"<<ilct<<" LCT keyWg "<< lcts[ilct].keyWG <<" HS "<< lcts[ilct].keyStrip <<" Quality "<< lcts[ilct].quality <<" Pattern "<< lcts[ilct].pattern << " bx "<<  lcts[ilct].BX;
+        tex1->AddText(ss_lcts[ilct].str().c_str());
+    }
+  }
   vector<CorrelatedLCT> alcts_emul;
   vector<CorrelatedLCT> clcts_emul;
   vector<CorrelatedLCT> lcts_emul;
@@ -329,8 +331,10 @@ void WireStripDisplay(TString address,
   TH2F* alctDis = new TH2F("alctDis", "", nWireGroup + 1, 0, nWireGroup + 1, 6, 1, 7);
   TPaveText* pt2 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
 
+  if (addEmulation)
+  WireDisplay(id, layer_wire, wire, wireDis, wireDis_text, alctDis, alcts_emul);
+  else
   WireDisplay(id, layer_wire, wire, wireDis, wireDis_text, alctDis, alcts);
-  SetTitle(pt2, "Anode Hits");
 
   wireDis->SetMarkerSize(2);
   wireDis->Draw("COLZ text");
