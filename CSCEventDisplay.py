@@ -125,10 +125,8 @@ else:
       #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '')
       process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
       if options.run3:
-            #process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
             process.GlobalTag = GlobalTag(process.GlobalTag, '140X_dataRun3_Prompt_v2', '')
             process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
-            #process.GlobalTag = GlobalTag(process.GlobalTag, '140X_dataRun3_Prompt_v2', '')
 #process.GlobalTag.globaltag = '74X_dataRun2_Prompt_v0'
 #process.GlobalTag.globaltag = '92X_dataRun2_Prompt_v11'
 #process.GlobalTag.globaltag = '102X_dataRun2_Prompt_v1'

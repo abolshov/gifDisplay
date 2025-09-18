@@ -82,9 +82,10 @@ process.load("DQM.L1TMonitor.L1TdeCSCTPG_cfi")
 process.load("DQM.L1TMonitor.L1TdeGEMTPG_cfi")
 
 
-process.options = cms.untracked.PSet(
-	SkipEvent = cms.untracked.vstring('LogicError','ProductNotFound')
-)
+#yumeng
+# process.options = cms.untracked.PSet(
+# 	SkipEvent = cms.untracked.vstring('LogicError','ProductNotFound')
+# )
 
 
 process.maxEvents = cms.untracked.PSet(
@@ -120,8 +121,9 @@ else:
     #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '') 
     process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
     if options.run3:
-           # process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
-            process.GlobalTag = GlobalTag(process.GlobalTag, '130X_dataRun3_Prompt_v2', '')
+            #process.GlobalTag = GlobalTag(process.GlobalTag, '130X_dataRun3_Prompt_v2', '')
+            process.GlobalTag = GlobalTag(process.GlobalTag, '140X_dataRun3_Prompt_v2', '')
+            #process.GlobalTag = GlobalTag(process.GlobalTag, '112X_dataRun3_Prompt_v5', '')
 #process.GlobalTag.globaltag = '74X_dataRun2_Prompt_v0'
 #process.GlobalTag.globaltag = '92X_dataRun2_Prompt_v11'
 #process.GlobalTag.globaltag = '102X_dataRun2_Prompt_v1'
@@ -184,7 +186,7 @@ process.simCscTriggerPrimitiveDigisRun2.tmbPhase1.tmbReadoutEarliest2 = cms.bool
 #print("Run2 emulation, CLCT parameter ", process.simCscTriggerPrimitiveDigisRun2.clctPhase1)
 process.simCscTriggerPrimitiveDigisRun2.commonParam.GEMPadDigiClusterProducer = cms.InputTag("simMuonGEMPadDigiClusters")
 
-## Run-3 patterns with CCLUT, with ILT, no deadtime zone
+## Run-3 patterns with CCLUT, with ILT, ?no deadtime zone
 process.simCscTriggerPrimitiveDigisRun3CCLUTv0 = process.cscTriggerPrimitiveDigis.clone()
 process.simCscTriggerPrimitiveDigisRun3CCLUTv0.commonParam.runME11Up = cms.bool(True)
 process.simCscTriggerPrimitiveDigisRun3CCLUTv0.commonParam.runME21Up = cms.bool(True)
@@ -196,8 +198,23 @@ process.simCscTriggerPrimitiveDigisRun3CCLUTv0.commonParam.runCCLUT_TMB = cms.bo
 process.simCscTriggerPrimitiveDigisRun3CCLUTv0.commonParam.runME11ILT = True
 process.simCscTriggerPrimitiveDigisRun3CCLUTv0.commonParam.run3 = True
 process.simCscTriggerPrimitiveDigisRun3CCLUTv0.commonParam.runPhase2 = True
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2.clctNplanesHitPattern = cms.uint32(3)
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.commonParam.clctStateMachineZone = cms.uint32(4)
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2.clctStateMachineZone = cms.uint32(4)
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.commonParam.clctPretriggerTriggerZone = cms.uint32(224)
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2.clctPretriggerTriggerZone = cms.uint32(224)
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2.verbosity = cms.int32(10)
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2GEM.verbosity = cms.int32(10)
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.tmbPhase2.verbosity = cms.int32(10)
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.tmbPhase1.verbosity = cms.int32(5)
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2.clctLocalShowerZone = 20
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2.clctLocalShowerThresh = 10
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2GEM.clctLocalShowerZone = 20
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2GEM.clctLocalShowerThresh = 10
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.tmbPhase2.sortClctBx     = False 
+process.simCscTriggerPrimitiveDigisRun3CCLUTv0.tmbPhase2GE11.sortClctBx = False 
 process.simCscTriggerPrimitiveDigisRun3CCLUTv0.commonParam.GEMPadDigiClusterProducer = cms.InputTag("simMuonGEMPadDigiClusters")
-process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2.useDeadTimeZoning = False
+#process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2.useDeadTimeZoning = False
 #print("Run3 CCLUT nodeadtime, common parameter ", process.simCscTriggerPrimitiveDigisRun3CCLUTv0.commonParam)
 #print("CLCT parameter ", process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2)
 #print("CLCT parameter ", process.simCscTriggerPrimitiveDigisRun3CCLUTv0.clctPhase2GEM)
@@ -360,11 +377,14 @@ simHitTagSrc           = cms.untracked.InputTag(""),
 gemsimHitTagSrc        = cms.untracked.InputTag(""),
 gemPadTagSrc           = cms.untracked.InputTag(""),
 gemPadClusterTagSrc    = cms.untracked.InputTag(""),
+# gemPadTagSrc           = cms.untracked.InputTag("simMuonGEMPadDigis"),
+# gemPadClusterTagSrc    = cms.untracked.InputTag("simMuonGEMPadDigiClusters"),
 
-addEmulation = cms.untracked.bool(True),
-#addEmulation = cms.untracked.bool(options.l1 or options.l1GEM),
-addSimHits = cms.untracked.bool(True),
-doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM),
+#addEmulation = cms.untracked.bool(True),
+addEmulation = cms.untracked.bool(options.l1 or options.l1GEM),
+#addSimHits = cms.untracked.bool(True),
+addSimHits = cms.untracked.bool(options.mc),
+#doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM),
 doGEMCSC = cms.untracked.bool(options.doGEMCSC),  
 
 debug = cms.untracked.int32(1),
@@ -382,12 +402,12 @@ if options.mc:
     #process.GifDisplay.alctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigis', '')
     #process.GifDisplay.clctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigis', '')
     #process.GifDisplay.corrlctDigiTagSrc      = cms.untracked.InputTag('simCscTriggerPrimitiveDigis', '')
-    process.GifDisplay.alctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun2', '', processName)
-    process.GifDisplay.clctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun2', '', processName)
-    process.GifDisplay.corrlctDigiTagSrc      = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun2', '', processName)
-    #process.GifDisplay.alctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
-    #process.GifDisplay.clctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
-    #process.GifDisplay.corrlctDigiTagSrc      = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
+#     process.GifDisplay.alctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun2', '', processName)
+#     process.GifDisplay.clctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun2', '', processName)
+#     process.GifDisplay.corrlctDigiTagSrc      = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun2', '', processName)
+    process.GifDisplay.alctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
+    process.GifDisplay.clctDigiTagSrc         = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
+    process.GifDisplay.corrlctDigiTagSrc      = cms.untracked.InputTag('simCscTriggerPrimitiveDigisRun3CCLUTv0', '', processName)
     process.GifDisplay.alctDigiTagSrc_Emul    = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
     process.GifDisplay.clctDigiTagSrc_Emul    = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
     process.GifDisplay.corrlctDigiTagSrc_Emul = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
@@ -421,8 +441,8 @@ process.l1sequence = cms.Sequence(
         process.simMuonGEMPadDigis *
         process.simMuonGEMPadDigiClusters *
         l1csc *
-        process.simCscTriggerPrimitiveDigisRun2
-        #process.simCscTriggerPrimitiveDigisRun3CCLUTv0
+        #process.simCscTriggerPrimitiveDigisRun2
+        process.simCscTriggerPrimitiveDigisRun3CCLUTv0
         )
 
 process.p2 = cms.Path(process.l1sequence)
