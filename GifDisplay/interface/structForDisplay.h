@@ -99,6 +99,20 @@ struct  SimHit{ //GEM and CSC?
   int EventId;  
   int BunchCrossing;
 
+  float EntryX;
+  float EntryY;
+  float EntryZ;
+  float ExitX;
+  float ExitY;
+  float ExitZ;
+  float ThetaAtEntry;
+  float PhiAtEntry;
+  float Pabs;
+  float EnergyLoss;
+  float TimeofFlight;
+  int ParticleType;
+  int DetUnitId;
+
   bool operator == ( const SimHit& sh) const{
 
        return sh.WireGroup == this->WireGroup && sh.Strip == this->Strip && sh.PdgId == this->PdgId;
@@ -114,6 +128,93 @@ struct  SimHit{ //GEM and CSC?
         this->PdgId = 0;
 
         }
+
+};
+
+// SIMTRACK structure to hold track information
+struct SIMTRACK{
+
+  int type;           // PDG ID of the particle
+  int trackId;        // Track ID
+  int vertIndex;      // Index of associated SimVertex
+  int genpartIndex;   // Index of associated generator particle
+  bool isPrimary;     // Whether track is primary
+  
+  // CoreSimTrack properties
+  float momentumX;
+  float momentumY;
+  float momentumZ;
+  float momentumMag;
+  float charge;
+  float mass;
+  
+  // Boundary crossing information
+  bool crossedBoundary;
+  float positionAtBoundaryX;
+  float positionAtBoundaryY;
+  float positionAtBoundaryZ;
+  float momentumAtBoundaryX;
+  float momentumAtBoundaryY;
+  float momentumAtBoundaryZ;
+  int idAtBoundary;
+  
+  // Additional track information
+  bool isFromBackScattering;
+  int trackInfo;
+  
+  // Tracker surface information
+  float trackerSurfacePositionX;
+  float trackerSurfacePositionY;
+  float trackerSurfacePositionZ;
+  float trackerSurfaceMomentumX;
+  float trackerSurfaceMomentumY;
+  float trackerSurfaceMomentumZ;
+
+  bool operator == ( const SIMTRACK& st) const{
+       return st.trackId == this->trackId;
+  }
+
+  SIMTRACK(){
+        this->type = 0;
+        this->trackId = -99;
+        this->vertIndex = -99;
+        this->genpartIndex = -99;
+        this->isPrimary = false;
+        
+        this->momentumX = 0.0;
+        this->momentumY = 0.0;
+        this->momentumZ = 0.0;
+        this->momentumMag = 0.0;
+        this->charge = 0.0;
+        this->mass = 0.0;
+        
+        this->crossedBoundary = false;
+        this->positionAtBoundaryX = 0.0;
+        this->positionAtBoundaryY = 0.0;
+        this->positionAtBoundaryZ = 0.0;
+        this->momentumAtBoundaryX = 0.0;
+        this->momentumAtBoundaryY = 0.0;
+        this->momentumAtBoundaryZ = 0.0;
+        this->idAtBoundary = -99;
+        
+        this->isFromBackScattering = false;
+        this->trackInfo = 0;
+        
+        this->trackerSurfacePositionX = 0.0;
+        this->trackerSurfacePositionY = 0.0;
+        this->trackerSurfacePositionZ = 0.0;
+        this->trackerSurfaceMomentumX = 0.0;
+        this->trackerSurfaceMomentumY = 0.0;
+        this->trackerSurfaceMomentumZ = 0.0;
+  }
+
+  friend ostream& operator << (ostream& os, const SIMTRACK& st)
+  {
+        os << "TrackID:" << st.trackId << " Type:" << st.type << " Primary:" << st.isPrimary 
+           << " Charge:" << st.charge << " Mass:" << st.mass << " Momentum:(" 
+           << st.momentumX << "," << st.momentumY << "," << st.momentumZ << ")";
+        return os;
+  }
 
 };
 

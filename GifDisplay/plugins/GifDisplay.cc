@@ -36,6 +36,8 @@
 #include <DataFormats/Provenance/interface/EventID.h> 
 
 #include "SimDataFormats/TrackingHit/interface/PSimHitContainer.h"
+#include "SimDataFormats/Track/interface/SimTrackContainer.h"
+#include "SimDataFormats/Track/interface/SimTrack.h"
 #include "DataFormats/CSCDigi/interface/CSCWireDigi.h"
 #include "DataFormats/CSCDigi/interface/CSCWireDigiCollection.h"
 #include "DataFormats/CSCDigi/interface/CSCStripDigi.h"
@@ -160,6 +162,7 @@ class GifDisplay : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
 //edm::InputTag comparatorDigiTag;
   edm::EDGetTokenT<edm::PSimHitContainer> simHitTagSrc;
   edm::EDGetTokenT<edm::PSimHitContainer> gemsimHitTagSrc;
+  edm::EDGetTokenT<edm::SimTrackContainer> simTrackTagSrc;
 
   edm::EDGetTokenT<CSCWireDigiCollection> wireDigiTagSrc;
   edm::EDGetTokenT<CSCStripDigiCollection> stripDigiTagSrc;
@@ -238,6 +241,7 @@ fout->cd();
 //comparatorDigiTag = iConfig.getParameter<edm::InputTag>("comparatorDigiTag");
   simHitTagSrc=consumes<edm::PSimHitContainer>(iConfig.getUntrackedParameter<edm::InputTag>("simHitTagSrc")),
   gemsimHitTagSrc=consumes<edm::PSimHitContainer>(iConfig.getUntrackedParameter<edm::InputTag>("gemsimHitTagSrc")),
+  simTrackTagSrc=consumes<edm::SimTrackContainer>(iConfig.getUntrackedParameter<edm::InputTag>("simTrackTagSrc")),
   wireDigiTagSrc=consumes<CSCWireDigiCollection>(iConfig.getUntrackedParameter<edm::InputTag>("wireDigiTagSrc")),
   stripDigiTagSrc=consumes<CSCStripDigiCollection>(iConfig.getUntrackedParameter<edm::InputTag>("stripDigiTagSrc")),
   compDigiTagSrc=consumes<CSCComparatorDigiCollection>(iConfig.getUntrackedParameter<edm::InputTag>("compDigiTagSrc")),
@@ -348,6 +352,7 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 
    vector<SIMHIT>   simhit_container;
    vector<GEMSIMHIT>   gemsimhit_container;
+   vector<SIMTRACK>   simtrack_container;
    vector<GEMPAD>  gempad_container;
    vector<GEMCLUSTER> gemcluster_container;
    vector<WIRE>   wire_container;
@@ -399,9 +404,27 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
             tmpSH.Stripf = layerG->strip(lp);
             tmpSH.TrackID = sh.trackId();
             tmpSH.OriginalTrackID = sh.originalTrackId();
-            tmpSH.ProcessType = sh.processType();                // add process type
+            tmpSH.ProcessType = sh.processType();
             tmpSH.EventId = sh.eventId().event();
             tmpSH.BunchCrossing = sh.eventId().bunchCrossing();
+            
+            auto entry = sh.entryPoint();
+            auto exit  = sh.exitPoint();
+            tmpSH.EntryX = entry.x(); //cm?
+            tmpSH.EntryY = entry.y();
+            tmpSH.EntryZ = entry.z();
+            tmpSH.ExitX  = exit.x();
+            tmpSH.ExitY  = exit.y();
+            tmpSH.ExitZ  = exit.z();
+            tmpSH.ThetaAtEntry = sh.thetaAtEntry(); //rad?
+            tmpSH.PhiAtEntry = sh.phiAtEntry();
+            tmpSH.Pabs = sh.pabs();//GeV?
+            tmpSH.EnergyLoss = sh.energyLoss();//GeV?
+            tmpSH.TimeofFlight = sh.tof();//ns?
+            tmpSH.ParticleType = sh.particleType();
+            tmpSH.DetUnitId = sh.detUnitId();
+
+
             //cout <<"chamber "<< id <<" CSC simhit pdgid "<< pdgid <<" wg "<< tmpSH.WireGroup <<" strip "<< tmpSH.Strip << endl;
             bool found = false;
             for (auto& idsh : simhit_container){
@@ -468,6 +491,75 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 
       } catch (cms::Exception){
          std::cout <<" failed to find CSC/GEM simhits, ignore "<< std::endl;
+      }
+   }
+
+   //========================== SimTracks ========================
+   if(addSimHits){
+      edm::Handle<edm::SimTrackContainer> simTracks;
+      
+      try{
+         iEvent.getByToken(simTrackTagSrc, simTracks);
+         if (doDebug > 1) cout <<"Event "<<Event <<" collecting simTracks "<< endl;
+         
+         for (const auto& st : *simTracks.product()){
+            SIMTRACK tmpST;
+            
+            tmpST.type = st.type();
+            tmpST.trackId = st.trackId();
+            tmpST.vertIndex = st.vertIndex();
+            tmpST.genpartIndex = st.genpartIndex();
+            tmpST.isPrimary = st.isPrimary();
+            
+            // CoreSimTrack properties
+            auto momentum = st.momentum();
+            tmpST.momentumX = momentum.x();
+            tmpST.momentumY = momentum.y();
+            tmpST.momentumZ = momentum.z();
+            tmpST.momentumMag = momentum.mag();
+            tmpST.charge = st.charge();
+            tmpST.mass = st.mass();
+            
+            // Boundary crossing information
+            tmpST.crossedBoundary = st.crossedBoundary();
+            if (st.crossedBoundary()) {
+               auto posAtBoundary = st.getPositionAtBoundary();
+               tmpST.positionAtBoundaryX = posAtBoundary.x();
+               tmpST.positionAtBoundaryY = posAtBoundary.y();
+               tmpST.positionAtBoundaryZ = posAtBoundary.z();
+               
+               auto momAtBoundary = st.getMomentumAtBoundary();
+               tmpST.momentumAtBoundaryX = momAtBoundary.x();
+               tmpST.momentumAtBoundaryY = momAtBoundary.y();
+               tmpST.momentumAtBoundaryZ = momAtBoundary.z();
+               
+               tmpST.idAtBoundary = st.getIDAtBoundary();
+            }
+            
+            // Additional track information
+            tmpST.isFromBackScattering = st.isFromBackScattering();
+            tmpST.trackInfo = st.getTrackInfo();
+            
+            // Tracker surface information
+            auto trackerPos = st.trackerSurfacePosition();
+            tmpST.trackerSurfacePositionX = trackerPos.x();
+            tmpST.trackerSurfacePositionY = trackerPos.y();
+            tmpST.trackerSurfacePositionZ = trackerPos.z();
+            
+            auto trackerMom = st.trackerSurfaceMomentum();
+            tmpST.trackerSurfaceMomentumX = trackerMom.x();
+            tmpST.trackerSurfaceMomentumY = trackerMom.y();
+            tmpST.trackerSurfaceMomentumZ = trackerMom.z();
+            
+            simtrack_container.push_back(tmpST);
+            
+            if (doDebug > 2) {
+               cout << "SIMTRACK: " << tmpST << endl;
+            }
+         }
+         
+      } catch (cms::Exception){
+         std::cout <<" failed to find simtracks, ignore "<< std::endl;
       }
    }
 
@@ -749,7 +841,7 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
       if (doDebug > 0) 
          cout <<"Start to display event "<< eventL <<" "<< tmpId <<endl;
 
-      WireStripDisplay(eventDisplayDir, tmpId, simhit_container, wire_container, strip_container, com_container, alct_container, alct_emul_container, clct_container, clct_emul_container, lct_container, lct_emul_container, usedChamber, Run, Event, addEmulation, compareA, compareB);
+      WireStripDisplay(eventDisplayDir, tmpId, simhit_container, simtrack_container, wire_container, strip_container, com_container, alct_container, alct_emul_container, clct_container, clct_emul_container, lct_container, lct_emul_container, usedChamber, Run, Event, addEmulation, compareA, compareB);
       //if (stationL == 1 and (ringL== 1 or ringL==2)) 
       if (doGEMDisplay and stationL == 1 and (ringL== 1)){// only GE11 now
         if (doDebug) cout <<"doGEMdisplay, station  "<< stationL <<" endcap "<< endcapL <<" chamber "<< chamberL <<endl; 

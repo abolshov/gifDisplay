@@ -45,6 +45,7 @@ vector<CorrelatedLCT> findStubsInChamber(CSCDetID id, vector<CSCIDLCTs> alllcts)
 void WireStripDisplay(TString address,
                       CSCDetID id,
                       vector<SIMHIT>& simhit,
+                      vector<SIMTRACK>& simtracks,
                       vector<WIRE>& wire,
                       vector<STRIP>& strip,
                       vector<COMPARATOR>& comparator,
@@ -204,7 +205,7 @@ void WireStripDisplay(TString address,
   TPaveText* pt1 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
   
   if (doSimHit) {
-    SimHitWireDisplay(id, layer_simhit, simhit, simhitWireDis, simhitWireDis_text);
+    SimHitWireDisplay(id, layer_simhit, simhit, simtracks, simhitWireDis, simhitWireDis_text);
     SetTitle(pt1, "SimHit Wire Groups");
     
     simhitWireDis->SetMarkerSize(2);
@@ -526,6 +527,7 @@ void SimHitDisplay(/*TCanvas* c1,*/ CSCDetID id,
 void SimHitWireDisplay(CSCDetID id,
                        vector<int>& layer_simhit,
                        vector<SIMHIT>& simhit,
+                       vector<SIMTRACK>& simtracks,
                        TH2F* wireDis,
                        TH2F* wireDis_text) {
   std::vector<TLatex*> simhitLabels;
@@ -536,10 +538,10 @@ void SimHitWireDisplay(CSCDetID id,
     int tempLayer = simhit[layer_simhit[i]].first.Layer;
     vector<SimHit> tempSimHit = simhit[layer_simhit[i]].second;
 
-    MakeOneLayerSimHitWireDisplay(tempLayer, tempSimHit, wireDis, simhitLabels);
+    MakeOneLayerSimHitWireDisplay(tempLayer, tempSimHit, simtracks, wireDis, simhitLabels);
 
     if (tempLayer == id.Layer) {  //chamber level??
-      MakeOneLayerSimHitWireDisplay(tempLayer, tempSimHit, wireDis_text, simhitLabels);
+      MakeOneLayerSimHitWireDisplay(tempLayer, tempSimHit, simtracks, wireDis_text, simhitLabels);
     }
   }
 
@@ -569,7 +571,7 @@ void SimHitWireDisplay(CSCDetID id,
 
 //yumeng
 void MakeOneLayerSimHitWireDisplay(
-    int layer, vector<SimHit>& s, TH2F* wireDisplay, std::vector<TLatex*>& simhitLabels) {
+    int layer, vector<SimHit>& s, vector<SIMTRACK>& simtracks, TH2F* wireDisplay, std::vector<TLatex*>& simhitLabels) {
   
   static int grayIdx = TColor::GetColorTransparent(kGray + 1, 0.2);
 
@@ -580,7 +582,30 @@ void MakeOneLayerSimHitWireDisplay(
     std::cout << "Layer " << layer << ", WireGroup " << s[i].WireGroup << ", PDG ID = " << s[i].PdgId
               << ", TrackID = " << s[i].TrackID << ", OriginalTrackID = " << s[i].OriginalTrackID
               << ", ProcessType = " << s[i].ProcessType << ", EventId = " << s[i].EventId
-              << ", BunchCrossing = " << s[i].BunchCrossing << std::endl;
+              << ", BunchCrossing = " << s[i].BunchCrossing << ", EntryX = " << s[i].EntryX << ", EntryY = " << s[i].EntryY << ", EntryZ = " << s[i].EntryZ
+              << ", ExitX = " << s[i].ExitX << ", ExitY = " << s[i].ExitY << ", ExitZ = " << s[i].ExitZ << ", Pabs = " << s[i].Pabs << ", EnergyLoss = " << s[i].EnergyLoss
+              << ", ThetaAtEntry = " << s[i].ThetaAtEntry <<  ", PhiAtEntry = " << s[i].PhiAtEntry << ", TimeofFlight = " << s[i].TimeofFlight << ", ParticleType = " << s[i].ParticleType
+              << ", DetUnitId = " << s[i].DetUnitId << std::endl;
+
+    // Find and print corresponding SIMTRACK information
+    for (const auto& st : simtracks) {
+      if (st.trackId == s[i].TrackID) {
+        std::cout << "  -> SIMTRACK Info: Type=" << st.type << ", isPrimary=" << st.isPrimary 
+                  << ", vertIndex=" << st.vertIndex << ", genpartIndex=" << st.genpartIndex
+                  << ", charge=" << st.charge << ", mass=" << st.mass 
+                  << ", momentum=(" << st.momentumX << "," << st.momentumY << "," << st.momentumZ << ") mag=" << st.momentumMag
+                  << ", crossedBoundary=" << st.crossedBoundary;
+        if (st.crossedBoundary) {
+          std::cout << ", posAtBoundary=(" << st.positionAtBoundaryX << "," << st.positionAtBoundaryY << "," << st.positionAtBoundaryZ << ")"
+                    << ", momAtBoundary=(" << st.momentumAtBoundaryX << "," << st.momentumAtBoundaryY << "," << st.momentumAtBoundaryZ << ")"
+                    << ", idAtBoundary=" << st.idAtBoundary;
+        }
+        std::cout << ", isFromBackScattering=" << st.isFromBackScattering << ", trackInfo=" << st.trackInfo
+                  << ", trackerSurfacePos=(" << st.trackerSurfacePositionX << "," << st.trackerSurfacePositionY << "," << st.trackerSurfacePositionZ << ")"
+                  << ", trackerSurfaceMom=(" << st.trackerSurfaceMomentumX << "," << st.trackerSurfaceMomentumY << "," << st.trackerSurfaceMomentumZ << ")" << std::endl;
+        break;
+      }
+    }
 
     float value = (s[i].PdgId == 13) ? (s[i].TrackID) : 10.;
     int color = (s[i].PdgId == 13) ? (s[i].TrackID) : 10;
