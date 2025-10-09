@@ -579,6 +579,7 @@ void MakeOneLayerSimHitWireDisplay(
     int x1 = wireDisplay->GetXaxis()->FindBin(s[i].WireGroup);
     int x2 = x1 + 1;
 
+    std::cout << "\n-------- [ Info of this SIMHIT ] --------" << std::endl;
     std::cout << "Layer " << layer << ", WireGroup " << s[i].WireGroup << ", PDG ID = " << s[i].PdgId
               << ", TrackID = " << s[i].TrackID << ", OriginalTrackID = " << s[i].OriginalTrackID
               << ", ProcessType = " << s[i].ProcessType << ", EventId = " << s[i].EventId
@@ -590,9 +591,10 @@ void MakeOneLayerSimHitWireDisplay(
     // Find and print corresponding SIMTRACK information
     for (const auto& st : simtracks) {
       if (st.trackId == s[i].TrackID) {
-        std::cout << "  -> SIMTRACK Info: Type=" << st.type << ", isPrimary=" << st.isPrimary 
+        std::cout << "  -------- [ Info of its SIMTRACK ] --------" << std::endl;
+        std::cout << "  -> SIMTRACK Info: Type=" << st.type //<< ", isPrimary=" << st.isPrimary 
                   << ", vertIndex=" << st.vertIndex << ", genpartIndex=" << st.genpartIndex
-                  << ", charge=" << st.charge << ", mass=" << st.mass 
+                  << ", charge=" << st.charge 
                   << ", momentum=(" << st.momentumX << "," << st.momentumY << "," << st.momentumZ << ") mag=" << st.momentumMag
                   << ", crossedBoundary=" << st.crossedBoundary;
         if (st.crossedBoundary) {
@@ -600,7 +602,7 @@ void MakeOneLayerSimHitWireDisplay(
                     << ", momAtBoundary=(" << st.momentumAtBoundaryX << "," << st.momentumAtBoundaryY << "," << st.momentumAtBoundaryZ << ")"
                     << ", idAtBoundary=" << st.idAtBoundary;
         }
-        std::cout << ", isFromBackScattering=" << st.isFromBackScattering << ", trackInfo=" << st.trackInfo
+        std::cout //<< ", isFromBackScattering=" << st.isFromBackScattering
                   << ", trackerSurfacePos=(" << st.trackerSurfacePositionX << "," << st.trackerSurfacePositionY << "," << st.trackerSurfacePositionZ << ")"
                   << ", trackerSurfaceMom=(" << st.trackerSurfaceMomentumX << "," << st.trackerSurfaceMomentumY << "," << st.trackerSurfaceMomentumZ << ")" << std::endl;
         break;

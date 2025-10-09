@@ -379,6 +379,7 @@ corrlctDigiTagSrc_Emul = cms.untracked.InputTag('cscTriggerPrimitiveDigis'),
 
 simHitTagSrc           = cms.untracked.InputTag(""),
 gemsimHitTagSrc        = cms.untracked.InputTag(""),
+simTrackTagSrc         = cms.untracked.InputTag(""),
 gemPadTagSrc           = cms.untracked.InputTag("simMuonGEMPadDigis"),
 gemPadClusterTagSrc    = cms.untracked.InputTag("simMuonGEMPadDigiClusters"),
 
@@ -400,6 +401,7 @@ eventDisplayDir = cms.untracked.string(options.plotdir)
 if options.mc:
     process.GifDisplay.simHitTagSrc           = cms.untracked.InputTag("g4SimHits", "MuonCSCHits")
     process.GifDisplay.gemsimHitTagSrc        = cms.untracked.InputTag("g4SimHits", "MuonGEMHits")
+    process.GifDisplay.simTrackTagSrc         = cms.untracked.InputTag("g4SimHits")
     process.GifDisplay.stripDigiTagSrc        = cms.untracked.InputTag("simMuonCSCDigis", "MuonCSCStripDigi")
     process.GifDisplay.wireDigiTagSrc         = cms.untracked.InputTag("simMuonCSCDigis", "MuonCSCWireDigi")
     process.GifDisplay.compDigiTagSrc         = cms.untracked.InputTag("simMuonCSCDigis", "MuonCSCComparatorDigi")

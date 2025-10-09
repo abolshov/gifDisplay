@@ -134,19 +134,18 @@ struct  SimHit{ //GEM and CSC?
 // SIMTRACK structure to hold track information
 struct SIMTRACK{
 
-  int type;           // PDG ID of the particle
-  int trackId;        // Track ID
+  int type;           // PDG ID
+  int trackId;
   int vertIndex;      // Index of associated SimVertex
-  int genpartIndex;   // Index of associated generator particle
-  bool isPrimary;     // Whether track is primary
-  
+  //bool isPrimary;     // Whether track is primary
+  int genpartIndex;
+
   // CoreSimTrack properties
   float momentumX;
   float momentumY;
   float momentumZ;
   float momentumMag;
   float charge;
-  float mass;
   
   // Boundary crossing information
   bool crossedBoundary;
@@ -159,8 +158,7 @@ struct SIMTRACK{
   int idAtBoundary;
   
   // Additional track information
-  bool isFromBackScattering;
-  int trackInfo;
+  //bool isFromBackScattering;
   
   // Tracker surface information
   float trackerSurfacePositionX;
@@ -178,15 +176,13 @@ struct SIMTRACK{
         this->type = 0;
         this->trackId = -99;
         this->vertIndex = -99;
-        this->genpartIndex = -99;
-        this->isPrimary = false;
+        //this->isPrimary = false;
         
         this->momentumX = 0.0;
         this->momentumY = 0.0;
         this->momentumZ = 0.0;
         this->momentumMag = 0.0;
         this->charge = 0.0;
-        this->mass = 0.0;
         
         this->crossedBoundary = false;
         this->positionAtBoundaryX = 0.0;
@@ -197,8 +193,7 @@ struct SIMTRACK{
         this->momentumAtBoundaryZ = 0.0;
         this->idAtBoundary = -99;
         
-        this->isFromBackScattering = false;
-        this->trackInfo = 0;
+        //this->isFromBackScattering = false;
         
         this->trackerSurfacePositionX = 0.0;
         this->trackerSurfacePositionY = 0.0;
@@ -210,8 +205,8 @@ struct SIMTRACK{
 
   friend ostream& operator << (ostream& os, const SIMTRACK& st)
   {
-        os << "TrackID:" << st.trackId << " Type:" << st.type << " Primary:" << st.isPrimary 
-           << " Charge:" << st.charge << " Mass:" << st.mass << " Momentum:(" 
+        os << "TrackID:" << st.trackId << " Type:" << st.type << " Primary:" //<< st.isPrimary 
+           << " Charge:" << st.charge << " Momentum:(" 
            << st.momentumX << "," << st.momentumY << "," << st.momentumZ << ")";
         return os;
   }

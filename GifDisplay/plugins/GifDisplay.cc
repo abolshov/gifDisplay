@@ -508,8 +508,8 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
             tmpST.type = st.type();
             tmpST.trackId = st.trackId();
             tmpST.vertIndex = st.vertIndex();
+            //tmpST.isPrimary = st.isPrimary();
             tmpST.genpartIndex = st.genpartIndex();
-            tmpST.isPrimary = st.isPrimary();
             
             // CoreSimTrack properties
             auto momentum = st.momentum();
@@ -518,7 +518,6 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
             tmpST.momentumZ = momentum.z();
             tmpST.momentumMag = momentum.mag();
             tmpST.charge = st.charge();
-            tmpST.mass = st.mass();
             
             // Boundary crossing information
             tmpST.crossedBoundary = st.crossedBoundary();
@@ -537,8 +536,7 @@ GifDisplay::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
             }
             
             // Additional track information
-            tmpST.isFromBackScattering = st.isFromBackScattering();
-            tmpST.trackInfo = st.getTrackInfo();
+            //tmpST.isFromBackScattering = st.isFromBackScattering();
             
             // Tracker surface information
             auto trackerPos = st.trackerSurfacePosition();
