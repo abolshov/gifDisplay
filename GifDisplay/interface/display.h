@@ -19,6 +19,7 @@
 #include "TGraph.h"
 //yumeng
 #include "TLatex.h"
+#include "TObject.h"
 #define PI 3.14159265
 using namespace std;
 
@@ -43,14 +44,14 @@ bool GEMChamberUsedForEventDisplay(CSCDetID id, vector<CSCDetID> usedChamber);
 void SetSaveNameLegendName(TString& name, TString& legendName, TString address, CSCDetID id, int Run, int Event);
 void SaveUsedChamber(CSCDetID id, vector<int> layer_strip, vector<int> layer_wire, vector<int> layer_comparator, vector<CSCDetID> &usedChamber);
 void StripDisplay(CSCDetID id, vector<int>& layer_strip, vector<STRIP>& strip, double cfeb[], TH2F* stripDis, TH2F* stripDis_text, TH1F* cfebNotReadOut, TH1F* cfebNotInstall_me21, TH1F* cfebNotInstall_me11);
-void SimHitDisplay(CSCDetID id, vector<int>& layer_simhit, vector<SIMHIT>& simhit, TH2F* stripDis, TH2F* stripDis_text);
+void SimHitDisplay(CSCDetID id, vector<int>& layer_simhit, vector<SIMHIT>& simhit, TH2F* stripDis, TH2F* stripDis_text, std::vector<TObject*>& simhitLabels);
 //yumeng
-void SimHitWireDisplay(CSCDetID id, vector<int>& layer_simhit, vector<SIMHIT>& simhit, vector<SIMTRACK>& simtracks, TH2F* wireDis, TH2F* wireDis_text);
+void SimHitWireDisplay(CSCDetID id, vector<int>& layer_simhit, vector<SIMHIT>& simhit, vector<SIMTRACK>& simtracks, TH2F* wireDis, TH2F* wireDis_text, std::vector<TObject*>& wireLabels);
 void MakeOneLayerStripDisplay(int layer, vector<Strips> &s, TH2F* stripDisplay, int option, bool doStagger);
 //yumeng
 //void MakeOneLayerSimHitDisplay(int layer, vector<SimHit> &s, TH2F* stripDisplay, int option, bool doStagger);
-void MakeOneLayerSimHitDisplay(int layer, vector<SimHit> &s, TH2F* stripDisplay, int option, bool doStagger,std::vector<TLatex*>& simhitLabels);
-void MakeOneLayerSimHitWireDisplay(int layer, vector<SimHit> &s, vector<SIMTRACK>& simtracks, TH2F* wireDisplay, std::vector<TLatex*>& simhitLabels);
+void MakeOneLayerSimHitDisplay(int layer, vector<SimHit> &s, TH2F* stripDisplay, int option, bool doStagger,std::vector<TObject*>& simhitLabels);
+void MakeOneLayerSimHitWireDisplay(int layer, vector<SimHit> &s, vector<SIMTRACK>& simtracks, TH2F* wireDisplay, std::vector<TObject*>& simhitLabels);
 void MakeOneLayerWireDisplay(int layer, vector<Wire> &w, TH2F* wireDisplay);
 void MakeOneLayerComparatorDisplay(int layer, vector<Comparator> &c, TH2F* comparatorDisplay, bool doStagger);
 void MakeOneLayerALCT(int layer, TH2F* alctDis, vector<CorrelatedLCT>& alcts);

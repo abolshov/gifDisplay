@@ -1,0 +1,128 @@
+input files: 
+cms.untracked.vstring('file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root')
+===============================================
+List of event for display badeventList_Ph2Spring24DY50_type2.txt
+## type 2
+1 994901 2 2 1 4
+## type 3Events to run  cms.untracked.VEventRange("1:994901-1:994901")
+process.maxEvents  cms.untracked.int32(-1)
+All scheduled processes:  cms.Schedule(*[ process.p2, process.display, process.p6 ])
+
+Failed to parse CPUID
+%MSG-i AlpakaService:  (NoModuleName) 20-Oct-2025 21:49:45 CEST pre-events
+AlpakaServiceSerialSync succesfully initialised.
+Found 1 device:
+  - AMD EPYC-Milan Processor
+%MSG
+20-Oct-2025 21:50:02 CEST  Initiating request to open file file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root
+20-Oct-2025 21:50:21 CEST  Successfully opened file file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root
+%MSG-w RootFile:  AfterFile 20-Oct-2025 21:50:22 CEST pre-events
+Branch 'GlobalAlgBlkBXVector_simGtStage2Digis__HLT.' is being dropped from the input
+of file 'file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+%MSG-w RootFile:  AfterFile 20-Oct-2025 21:50:22 CEST pre-events
+Branch 'GlobalObjectMapRecord_simGtStage2Digis__HLT.' is being dropped from the input
+of file 'file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+%MSG-w RootFile:  AfterFile 20-Oct-2025 21:50:22 CEST pre-events
+Branch 'l1tMuonShowerBXVector_simGmtShowerDigis__HLT.' is being dropped from the input
+of file 'file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+%MSG-w RootFile:  AfterFile 20-Oct-2025 21:50:22 CEST pre-events
+Branch 'l1tRegionalMuonShowerBXVector_simEmtfShowers_EMTF_HLT.' is being dropped from the input
+of file 'file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root' because it is dependent on a branch
+that was explicitly dropped.
+
+%MSG
+Eventlist file badeventList_Ph2Spring24DY50_type2.txt outfolder ./plots/temp NOEmulation
+Begin processing the 1st record. Run 1, Event 994901, LumiSection 995 on stream 0 at 20-Oct-2025 21:50:31.102 CEST
+%MSG-e LCTQualityControl:   CSCTriggerPrimitivesProducer:simCscTriggerPrimitiveDigisRun3CCLUTv0  20-Oct-2025 21:50:32 CEST Run: 1 Event: 994901
+CSCCLCTDigi with invalid quality: 3; allowed [4, 6]
+%MSG
+%MSG-e LCTQualityControl:   CSCTriggerPrimitivesProducer:simCscTriggerPrimitiveDigisRun3CCLUTv0  20-Oct-2025 21:50:32 CEST Run: 1 Event: 994901
+Invalid stub in  E:2 S:4 R:1 C:2 L:0 (1 errors):
+CSC CLCT #2: Valid = 1 BX = 9 Run-2 Pattern = 3 Run-3 Pattern = 3 Quality = 3 Comp Code 3648 Bend = 1
+ Slope = 15 CFEB = 0 Strip = 1 KeyHalfStrip = 1 KeyQuartStrip = 2 KeyEighthStrip = 5
+%MSG
+%MSG-e LCTQualityControl:   CSCTriggerPrimitivesProducer:simCscTriggerPrimitiveDigisRun3CCLUTv0  20-Oct-2025 21:50:32 CEST Run: 1 Event: 994901
+CSCCLCTDigi with invalid quality: 3; allowed [4, 6]
+%MSG
+%MSG-e LCTQualityControl:   CSCTriggerPrimitivesProducer:simCscTriggerPrimitiveDigisRun3CCLUTv0  20-Oct-2025 21:50:32 CEST Run: 1 Event: 994901
+Invalid stub in  E:2 S:4 R:1 C:2 L:0 (1 errors):
+CSC CLCT #2: Valid = 1 BX = 9 Run-2 Pattern = 3 Run-3 Pattern = 3 Quality = 3 Comp Code 3648 Bend = 1
+ Slope = 15 CFEB = 0 Strip = 1 KeyHalfStrip = 1 KeyQuartStrip = 2 KeyEighthStrip = 5
+%MSG
+this run 1 this Event 994901
+Start to display event 994901 E:2 S:2 R:1 Chamber:4 layer:0
+
+-------- [ Info of this SIMHIT ] --------
+Layer 3, Strip 33, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+
+-------- [ Info of this SIMHIT ] --------
+Layer 4, Strip 34, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+
+-------- [ Info of this SIMHIT ] --------
+Layer 5, Strip 33, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+
+-------- [ Info of this SIMHIT ] --------
+Layer 6, Strip 34, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+
+-------- [ Info of this SIMHIT ] --------
+Layer 3, WireGroup 81, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0, EntryX = -9.15213, EntryY = 35.1795, EntryZ = 0.47625, ExitX = -9.15746, ExitY = 35.5044, ExitZ = -0.47625, Pabs = 80.2837, EnergyLoss = 2.8644e-06, ThetaAtEntry = 2.8128, PhiAtEntry = 1.5872, TimeofFlight = 28.8992, ParticleType = -13, DetUnitId = 604054051
+  -------- [ Info of its SIMTRACK ] --------
+  -> SIMTRACK Info: Type=-13, vertIndex=0, genpartIndex=753, charge=1, momentum=(11.3004,29.9724,-93.6627) mag=0.105658, crossedBoundary=1, posAtBoundary=(37.206,93.7305,-293.5), momAtBoundary=(12.326,29.5659,-93.6176), idAtBoundary=3, trackerSurfacePos=(37.206,93.7305,-293.5), trackerSurfaceMom=(12.326,29.5659,-93.6176)
+
+-------- [ Info of this SIMHIT ] --------
+Layer 4, WireGroup 82, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0, EntryX = -9.16633, EntryY = 36.046, EntryZ = 0.47625, ExitX = -9.17164, ExitY = 36.3709, ExitZ = -0.47625, Pabs = 80.2827, EnergyLoss = 5.02717e-06, ThetaAtEntry = 2.8128, PhiAtEntry = 1.58714, TimeofFlight = 28.9887, ParticleType = -13, DetUnitId = 604054052
+  -------- [ Info of its SIMTRACK ] --------
+  -> SIMTRACK Info: Type=-13, vertIndex=0, genpartIndex=753, charge=1, momentum=(11.3004,29.9724,-93.6627) mag=0.105658, crossedBoundary=1, posAtBoundary=(37.206,93.7305,-293.5), momAtBoundary=(12.326,29.5659,-93.6176), idAtBoundary=3, trackerSurfacePos=(37.206,93.7305,-293.5), trackerSurfaceMom=(12.326,29.5659,-93.6176)
+
+-------- [ Info of this SIMHIT ] --------
+Layer 5, WireGroup 82, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0, EntryX = -9.18048, EntryY = 36.9124, EntryZ = 0.47625, ExitX = -9.18577, ExitY = 37.2373, ExitZ = -0.47625, Pabs = 80.2818, EnergyLoss = 2.77003e-06, ThetaAtEntry = 2.81281, PhiAtEntry = 1.58708, TimeofFlight = 29.0782, ParticleType = -13, DetUnitId = 604054053
+  -------- [ Info of its SIMTRACK ] --------
+  -> SIMTRACK Info: Type=-13, vertIndex=0, genpartIndex=753, charge=1, momentum=(11.3004,29.9724,-93.6627) mag=0.105658, crossedBoundary=1, posAtBoundary=(37.206,93.7305,-293.5), momAtBoundary=(12.326,29.5659,-93.6176), idAtBoundary=3, trackerSurfacePos=(37.206,93.7305,-293.5), trackerSurfaceMom=(12.326,29.5659,-93.6176)
+
+-------- [ Info of this SIMHIT ] --------
+Layer 6, WireGroup 83, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0, EntryX = -9.1946, EntryY = 37.7788, EntryZ = 0.47625, ExitX = -9.19989, ExitY = 38.1036, ExitZ = -0.47625, Pabs = 80.2809, EnergyLoss = 3.13012e-06, ThetaAtEntry = 2.81287, PhiAtEntry = 1.58709, TimeofFlight = 29.1677, ParticleType = -13, DetUnitId = 604054054
+  -------- [ Info of its SIMTRACK ] --------
+  -> SIMTRACK Info: Type=-13, vertIndex=0, genpartIndex=753, charge=1, momentum=(11.3004,29.9724,-93.6627) mag=0.105658, crossedBoundary=1, posAtBoundary=(37.206,93.7305,-293.5), momAtBoundary=(12.326,29.5659,-93.6176), idAtBoundary=3, trackerSurfacePos=(37.206,93.7305,-293.5), trackerSurfaceMom=(12.326,29.5659,-93.6176)
+Start to display event 994901 E:2 S:2 R:1 Chamber:4 layer:0
+
+-------- [ Info of this SIMHIT ] --------
+Layer 3, Strip 33, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+
+-------- [ Info of this SIMHIT ] --------
+Layer 4, Strip 34, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+
+-------- [ Info of this SIMHIT ] --------
+Layer 5, Strip 33, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+
+-------- [ Info of this SIMHIT ] --------
+Layer 6, Strip 34, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0
+
+-------- [ Info of this SIMHIT ] --------
+Layer 3, WireGroup 81, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0, EntryX = -9.15213, EntryY = 35.1795, EntryZ = 0.47625, ExitX = -9.15746, ExitY = 35.5044, ExitZ = -0.47625, Pabs = 80.2837, EnergyLoss = 2.8644e-06, ThetaAtEntry = 2.8128, PhiAtEntry = 1.5872, TimeofFlight = 28.8992, ParticleType = -13, DetUnitId = 604054051
+  -------- [ Info of its SIMTRACK ] --------
+  -> SIMTRACK Info: Type=-13, vertIndex=0, genpartIndex=753, charge=1, momentum=(11.3004,29.9724,-93.6627) mag=0.105658, crossedBoundary=1, posAtBoundary=(37.206,93.7305,-293.5), momAtBoundary=(12.326,29.5659,-93.6176), idAtBoundary=3, trackerSurfacePos=(37.206,93.7305,-293.5), trackerSurfaceMom=(12.326,29.5659,-93.6176)
+
+-------- [ Info of this SIMHIT ] --------
+Layer 4, WireGroup 82, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0, EntryX = -9.16633, EntryY = 36.046, EntryZ = 0.47625, ExitX = -9.17164, ExitY = 36.3709, ExitZ = -0.47625, Pabs = 80.2827, EnergyLoss = 5.02717e-06, ThetaAtEntry = 2.8128, PhiAtEntry = 1.58714, TimeofFlight = 28.9887, ParticleType = -13, DetUnitId = 604054052
+  -------- [ Info of its SIMTRACK ] --------
+  -> SIMTRACK Info: Type=-13, vertIndex=0, genpartIndex=753, charge=1, momentum=(11.3004,29.9724,-93.6627) mag=0.105658, crossedBoundary=1, posAtBoundary=(37.206,93.7305,-293.5), momAtBoundary=(12.326,29.5659,-93.6176), idAtBoundary=3, trackerSurfacePos=(37.206,93.7305,-293.5), trackerSurfaceMom=(12.326,29.5659,-93.6176)
+
+-------- [ Info of this SIMHIT ] --------
+Layer 5, WireGroup 82, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0, EntryX = -9.18048, EntryY = 36.9124, EntryZ = 0.47625, ExitX = -9.18577, ExitY = 37.2373, ExitZ = -0.47625, Pabs = 80.2818, EnergyLoss = 2.77003e-06, ThetaAtEntry = 2.81281, PhiAtEntry = 1.58708, TimeofFlight = 29.0782, ParticleType = -13, DetUnitId = 604054053
+  -------- [ Info of its SIMTRACK ] --------
+  -> SIMTRACK Info: Type=-13, vertIndex=0, genpartIndex=753, charge=1, momentum=(11.3004,29.9724,-93.6627) mag=0.105658, crossedBoundary=1, posAtBoundary=(37.206,93.7305,-293.5), momAtBoundary=(12.326,29.5659,-93.6176), idAtBoundary=3, trackerSurfacePos=(37.206,93.7305,-293.5), trackerSurfaceMom=(12.326,29.5659,-93.6176)
+
+-------- [ Info of this SIMHIT ] --------
+Layer 6, WireGroup 83, PDG ID = 13, TrackID = 3, OriginalTrackID = 3, ProcessType = 0, EventId = 0, BunchCrossing = 0, EntryX = -9.1946, EntryY = 37.7788, EntryZ = 0.47625, ExitX = -9.19989, ExitY = 38.1036, ExitZ = -0.47625, Pabs = 80.2809, EnergyLoss = 3.13012e-06, ThetaAtEntry = 2.81287, PhiAtEntry = 1.58709, TimeofFlight = 29.1677, ParticleType = -13, DetUnitId = 604054054
+  -------- [ Info of its SIMTRACK ] --------
+  -> SIMTRACK Info: Type=-13, vertIndex=0, genpartIndex=753, charge=1, momentum=(11.3004,29.9724,-93.6627) mag=0.105658, crossedBoundary=1, posAtBoundary=(37.206,93.7305,-293.5), momAtBoundary=(12.326,29.5659,-93.6176), idAtBoundary=3, trackerSurfacePos=(37.206,93.7305,-293.5), trackerSurfaceMom=(12.326,29.5659,-93.6176)
+20-Oct-2025 21:50:32 CEST  Closed file file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root

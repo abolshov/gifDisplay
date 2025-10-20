@@ -8,6 +8,7 @@ import sys, os
 ### cmsRun CSCEventDisplay.py plotdir="/afs/cern.ch/work/t/tahuang/CSCEmulation/CMSSW_10_2_1/src/displayplots/"
 options = VarParsing ('analysis')
 options.register("plotdir", '', mytype=VarParsing.varType.string)
+# error_type (register.. )
 options.register("eventListFile", 'eventList.txt', VarParsing.multiplicity.singleton, VarParsing.varType.string,
                             "txt file contains the list of event and chamber to display")
 options.register("unpack", False, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
