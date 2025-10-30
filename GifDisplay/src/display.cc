@@ -237,10 +237,10 @@ void WireStripDisplay(TString address,
   ss << " run: " << Run << "  event #" << Event;
   TPaveText* tex1 = new TPaveText(0.1, 0.0, 0.9, 1.0, "NDC");
   //tex1->SetTextFont(42);
-  //tex1->AddText("Type0: No matched ALCT & No matched CLCT");
+  tex1->AddText("Type0: No matched ALCT & No matched CLCT");
   //tex1->AddText("Type1: Matched ALCT & No matched CLCT");
   //tex1->AddText("Type2: No matched ALCT & Matched CLCT");
-  tex1->AddText("Type3: Matched ALCT & Matched CLCT, but no matched LCT");
+  //tex1->AddText("Type3: Matched ALCT & Matched CLCT, but no matched LCT");
   tex1->AddText(ss.str().c_str());
 
   stringstream ss_alcts[10];
@@ -602,10 +602,10 @@ void SimHitWireDisplay(CSCDetID id,
 void MakeOneLayerSimHitWireDisplay(
     int layer, vector<SimHit>& s, vector<SIMTRACK>& simtracks, TH2F* wireDisplay, std::vector<TObject*>& simhitLabels) {
   
-  // design mark: small symmetric offsets to fan-out coincident hits in the same bin
-  static const double OFF[] = {-0.25, 0.0, +0.25, -0.40, +0.40};
+  // design mark: small symmetric VERTICAL offsets to fan-out coincident hits in the same bin
+  static const double OFF_Y[] = {-0.12, 0.0, +0.12, -0.18, +0.18};
   //design mark: computes how many offsets exist (here, 5)
-  const int NOFF = (int)(sizeof(OFF)/sizeof(double));
+  const int NOFF = (int)(sizeof(OFF_Y)/sizeof(double));
 
   // design mark: count how many we've already placed per (layer, binX)
   std::map<std::pair<int,int>, int> placed;
@@ -655,28 +655,28 @@ void MakeOneLayerSimHitWireDisplay(
     //float bg = (h.PdgId == 13) ? 2.f : 1.f;
     //wireDisplay->SetBinContent(bx, layer, std::max(bg, (float)wireDisplay->GetBinContent(bx, layer)));
 
-    // design mark: per-bin collision index → pick a small in-bin x offset
+    // design mark: per-bin collision index → pick a small vertical offset
     int k = placed[{layer, bx}]++;
-    double dx = OFF[k % NOFF];
-    double xcenter = wireDisplay->GetXaxis()->GetBinCenter(bx) + dx;
+    double dy = OFF_Y[k % NOFF];
+    double xcenter = wireDisplay->GetXaxis()->GetBinCenter(bx);
 
     // design mark: marker style by PDG
-    int mstyle = (h.PdgId == 13) ? 20 : 29; // . muon, * photon
+    int mstyle = (h.PdgId == 13) ? 24 : 29; // . muon 20, * photon
     
     // design mark: color by TrackID (stable, small palette), 0~8 shift to 1~9
     int color = 1 + (std::abs(h.TrackID) % 9); // 1..9
     // Make muon black for priority
     if (h.PdgId == 13) color = kBlack;
 
-    // design mark: place the marker slightly inside the bin
-    TMarker* m = new TMarker(xcenter, layer+0.15, mstyle);
+    // design mark: place the marker with vertical fan-out inside the bin
+    TMarker* m = new TMarker(xcenter, layer+0.35 + dy, mstyle);
     m->SetMarkerColor(color);
-    m->SetMarkerSize(1.2);
+    m->SetMarkerSize(0.8);
     simhitLabels.push_back(m);
 
     // design mark: small track label
     if (h.PdgId == 13) {
-      TLatex* t = new TLatex(xcenter+0.10, layer+0.26, Form("MuTrk:%d", h.TrackID));
+      TLatex* t = new TLatex(xcenter+0.10, layer+0.42 + dy, Form("MuTrk:%d", h.TrackID));
       t->SetTextSize(0.045);
       t->SetTextColor(color);
       int alphaBlack = TColor::GetColorTransparent(kBlack, 0.5);
@@ -690,9 +690,9 @@ void MakeOneLayerSimHitWireDisplay(
 void MakeOneLayerSimHitDisplay(
     int layer, vector<SimHit>& s, TH2F* stripDisplay, int option, bool doStagger, std::vector<TObject*>& simhitLabels) {
   
-  // design mark
-  static const double OFF[] = {-0.30, -0.12, +0.12, +0.30, -0.45, +0.45};
-  const int NOFF = (int)(sizeof(OFF)/sizeof(double));
+  // design mark: use VERTICAL offsets instead of horizontal
+  static const double OFF_Y[] = {-0.10, -0.06, +0.06, +0.10, -0.14, +0.14};
+  const int NOFF = (int)(sizeof(OFF_Y)/sizeof(double));
 
   // design mark
   std::map<std::pair<int,int>, int> placed;
@@ -751,29 +751,29 @@ void MakeOneLayerSimHitDisplay(
       //float bg = (h.PdgId == 13) ? 2.f : 1.f;
       //stripDisplay->SetBinContent(bx, layer, std::max(bg, (float)stripDisplay->GetBinContent(bx, layer)));
 
-      // design mark
+      // design mark: 
       int k = placed[{layer, bx}]++;
-      double dx = OFF[k % NOFF];
+      double dy = OFF_Y[k % NOFF];
 
       // design mark
-      int mstyle = (h.PdgId == 13) ? 20 : 29;
+      int mstyle = (h.PdgId == 13) ? 24 : 29;
 
       // design mark
       int color = 1 + (std::abs(h.TrackID) % 9); // 1..9
       // Make muon black for priority
       if (h.PdgId == 13) color = kBlack;
 
-      // design mark
-      double xcenter = stripDisplay->GetXaxis()->GetBinCenter(bx) + dx;
+      // design mark: 
+      double xcenter = stripDisplay->GetXaxis()->GetBinCenter(bx);
 
-      TMarker* m = new TMarker(xcenter, layer+0.15, mstyle);
+      TMarker* m = new TMarker(xcenter, layer+0.35 + dy, mstyle);
       m->SetMarkerColor(color);
-      m->SetMarkerSize(1.2);
+      m->SetMarkerSize(0.8);
       simhitLabels.push_back(m);
 
       // design mark
       if (h.PdgId == 13) {
-        TLatex* t = new TLatex(xcenter+0.12, layer+0.26, Form("MuTrk:%d", h.TrackID));
+        TLatex* t = new TLatex(xcenter+0.12, layer+0.42 + dy, Form("MuTrk:%d", h.TrackID));
         t->SetTextSize(0.045);
         t->SetTextColor(color);
         int alphaBlack = TColor::GetColorTransparent(kBlack, 0.5);

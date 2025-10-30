@@ -6,6 +6,7 @@
 #include <vector>
 #include <list>
 #include <iterator>
+#include <map>   // design mark: added for std::map in overlay functions
 #include <boost/lexical_cast.hpp>
 #include <string>
 #include <iostream>
@@ -67,7 +68,11 @@ void WireStripDisplay(TString address,
   const int clct_bx_offset = 1;  // CLCT BX offset
 
   //gStyle->SetPalette(55);
-  std::vector<TLatex*> simhitLabels;
+  // design mark: split overlay containers to avoid redraw overlap.
+  // stripOverlays and wireOverlays here are std::vector<TObject*> containers that temporarily store all drawable ROOT objects (mainly TMarker and TLatex) created for SimHits.
+  // filled inside SimHitDisplay() / SimHitWireDisplay() and then drawn in WireStripDisplay() using for ... Draw("same") iteration
+  std::vector<TObject*> stripOverlays;
+  std::vector<TObject*> wireOverlays;
   static bool paletteDone = false;
   if (!paletteDone) {
     const int N = 11;  // allocate up to index 10
@@ -156,12 +161,13 @@ void WireStripDisplay(TString address,
   TH1F* cfebNotReadOut = new TH1F("cfebNotReadOut", "", nStrip + 1, 1, nStrip + 2);
   TPaveText* pt3 = new TPaveText(0.4, 0.90, 0.6, 0.96, "NDC");
   if (doSimHit) {
-    SimHitDisplay(/*c1,*/ id, layer_simhit, simhit, stripDis, stripDis_text);
+    SimHitDisplay(/*c1,*/ id, layer_simhit, simhit, stripDis, stripDis_text, stripOverlays);  // design mark: add separate strip overlay container
     SetTitle(pt3, "SimHit Strips");
 
-    stripDis->Draw("COLZtext");
-    for (auto* label : simhitLabels)
-      label->Draw("same");
+    //design mark
+    //stripDis->Draw("COLZtext");
+    stripDis->Draw("");
+    for (auto* o : stripOverlays) o->Draw("same");  // design mark: draw only strip overlays
   } else {
     TH1F* cfebNotInstall_me21 = new TH1F("cfebNotInstall_me21", "", 81, 1, 82);
     TH1F* cfebNotInstall_me11 = new TH1F("cfebNotInstall_me11", "", 81, 1, 82);
@@ -206,14 +212,15 @@ void WireStripDisplay(TString address,
   TPaveText* pt1 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
   
   if (doSimHit) {
-    SimHitWireDisplay(id, layer_simhit, simhit, simtracks, simhitWireDis, simhitWireDis_text);
+    SimHitWireDisplay(id, layer_simhit, simhit, simtracks, simhitWireDis, simhitWireDis_text, wireOverlays);  // design mark: use separate wire overlay container
     SetTitle(pt1, "SimHit Wire Groups");
     
     simhitWireDis->SetMarkerSize(2);
-    simhitWireDis->Draw("COLZ text");
+    //design mark
+    //simhitWireDis->Draw("COLZ text");
+    simhitWireDis->Draw("");
     simhitWireDis_text->Draw("text same");
-    for (auto* label : simhitLabels)
-      label->Draw("same");
+    for (auto* o : wireOverlays) o->Draw("same");  // design mark: draw only wire overlays
   }
   pt1->Draw();
 
@@ -230,7 +237,12 @@ void WireStripDisplay(TString address,
   ss << " run: " << Run << "  event #" << Event;
   TPaveText* tex1 = new TPaveText(0.1, 0.0, 0.9, 1.0, "NDC");
   //tex1->SetTextFont(42);
+  tex1->AddText("Type0: No matched ALCT & No matched CLCT");
+  //tex1->AddText("Type1: Matched ALCT & No matched CLCT");
+  //tex1->AddText("Type2: No matched ALCT & Matched CLCT");
+  //tex1->AddText("Type3: Matched ALCT & Matched CLCT, but no matched LCT");
   tex1->AddText(ss.str().c_str());
+
   stringstream ss_alcts[10];
   //yumeng:
   if (!doSimHit && addEmulation) {
@@ -339,6 +351,11 @@ void WireStripDisplay(TString address,
   WireDisplay(id, layer_wire, wire, wireDis, wireDis_text, alctDis, alcts);
   SetTitle(pt2, "Anode Hits");
 
+  //yumeng
+  //gStyle->SetPaintTextFormat("bx:%0.0f");
+  wireDis->GetZaxis()->SetTitle("BX");
+  wireDis->GetZaxis()->SetTitleSize(0.08);
+  wireDis->GetZaxis()->SetTitleOffset(0.6);
   wireDis->SetMarkerSize(2);
   wireDis->Draw("COLZ text");
   wireDis_text->Draw("text same");
@@ -361,6 +378,12 @@ void WireStripDisplay(TString address,
   else
     ComparatorDisplay(id, layer_comparator, comparator, comparatorDis, comparatorDis_text, clctDis, clcts);
   comparatorDis->SetMarkerSize(2);
+  //yumeng
+  //gStyle->SetPaintTextFormat("bx:%0.0f");
+  //wireDis->SetPaintTextFormat("BX%1.0f")
+  wireDis->GetZaxis()->SetTitle("BX");
+  wireDis->GetZaxis()->SetTitleSize(0.08);
+  wireDis->GetZaxis()->SetTitleOffset(0.6);
   comparatorDis->Draw("COLZtext");
   clctDis->SetMarkerSize(2);
   clctDis->SetFillStyle(3244);
@@ -384,6 +407,11 @@ void WireStripDisplay(TString address,
   c1->SaveAs(name + ".png");
   c1->SaveAs(name + ".pdf");
   // c1->SaveAs(name + ".C");
+
+  // design mark: clean up overlay objects to prevent memory leaks
+  auto destroy = [](std::vector<TObject*>& v){ for (auto* o : v) delete o; v.clear(); };
+  destroy(stripOverlays);
+  destroy(wireOverlays);
 
   delete c1;
   delete wireDis;
@@ -461,14 +489,14 @@ void SimHitDisplay(/*TCanvas* c1,*/ CSCDetID id,
                    vector<int>& layer_simhit,
                    vector<SIMHIT>& simhit,
                    TH2F* stripDis,
-                   TH2F* stripDis_text) {
+                   TH2F* stripDis_text,
+                   std::vector<TObject*>& simhitLabels) {
   //         c1->cd(4)->SetGridy();
 
   /*           TH2F* stripDis = new TH2F("stripDis", "", 162, 1, 82, 6, 1, 7);
            TH2F* stripDis_text = new TH2F("stripDis_text", "", 162, 1, 82, 6, 1, 7);
            TH1F* cfebNotReadOut = new TH1F("cfebNotReadOut", "", 81, 1, 82);
 */
-  std::vector<TLatex*> simhitLabels;
   for (int i = 0; i < int(layer_simhit.size()); i++) {  //in each interesting layer has strip hits
 
     int tempStation = simhit[layer_simhit[i]].first.Station;
@@ -499,9 +527,9 @@ void SimHitDisplay(/*TCanvas* c1,*/ CSCDetID id,
 
   //yumeng
   //SetHistContour(stripDis, 11, 22);
-  SetHistContour(stripDis, 1, 10);
+  //SetHistContour(stripDis, 1, 10);
   //stripDis->GetZaxis()->SetRangeUser(11, 22);
-  stripDis->GetZaxis()->SetRangeUser(1, 10);
+  //stripDis->GetZaxis()->SetRangeUser(1, 10);
 
   stripDis_text->SetMarkerSize(1.5);
 
@@ -530,8 +558,8 @@ void SimHitWireDisplay(CSCDetID id,
                        vector<SIMHIT>& simhit,
                        vector<SIMTRACK>& simtracks,
                        TH2F* wireDis,
-                       TH2F* wireDis_text) {
-  std::vector<TLatex*> simhitLabels;
+                       TH2F* wireDis_text,
+                       std::vector<TObject*>& simhitLabels) {
   for (int i = 0; i < int(layer_simhit.size()); i++) {  //in each interesting layer has simhit wire hits
 
     int tempStation = simhit[layer_simhit[i]].first.Station;
@@ -546,8 +574,8 @@ void SimHitWireDisplay(CSCDetID id,
     }
   }
 
-  SetHistContour(wireDis, 1, 10);
-  wireDis->GetZaxis()->SetRangeUser(1, 10);
+  //SetHistContour(wireDis, 1, 10);
+  //wireDis->GetZaxis()->SetRangeUser(1, 10);
 
   wireDis_text->SetMarkerSize(1.5);
 
@@ -572,28 +600,39 @@ void SimHitWireDisplay(CSCDetID id,
 
 //yumeng
 void MakeOneLayerSimHitWireDisplay(
-    int layer, vector<SimHit>& s, vector<SIMTRACK>& simtracks, TH2F* wireDisplay, std::vector<TLatex*>& simhitLabels) {
+    int layer, vector<SimHit>& s, vector<SIMTRACK>& simtracks, TH2F* wireDisplay, std::vector<TObject*>& simhitLabels) {
   
-  static int grayIdx = TColor::GetColorTransparent(kGray + 1, 0.2);
+  // design mark: small symmetric offsets to fan-out coincident hits in the same bin
+  static const double OFF[] = {-0.25, 0.0, +0.25, -0.40, +0.40};
+  //design mark: computes how many offsets exist (here, 5)
+  const int NOFF = (int)(sizeof(OFF)/sizeof(double));
 
-  for (int i = 0; i < int(s.size()); i++) {
-    int x1 = wireDisplay->GetXaxis()->FindBin(s[i].WireGroup);
-    int x2 = x1 + 1;
+  // design mark: count how many we've already placed per (layer, binX)
+  std::map<std::pair<int,int>, int> placed;
+
+  // design mark: Z-range to 1→3(bins have values 1 (non-muon) or 2 (muon)), so the color palette will map only this small range,  
+  // Giving a subtle background palette(light gray or faint color behind the TMarkers) rather than the full rainbow.
+  // so the overlaid TMarkers (colored dots/squares for each particle) visually stand out instead of being drowned in strong color gradients.
+  // wireDisplay->GetZaxis()->SetRangeUser(1, 3);
+
+  //design mark: finds which histogram bin corresponds to the wire group number for this SimHit.
+  for (const auto& h : s) {
+    int bx = wireDisplay->GetXaxis()->FindBin(h.WireGroup);
 
     std::cout << "\n-------- [ Info of this SIMHIT ] --------" << std::endl;
-    std::cout << "Layer " << layer << ", WireGroup " << s[i].WireGroup << ", PDG ID = " << s[i].PdgId
-              << ", TrackID = " << s[i].TrackID << ", OriginalTrackID = " << s[i].OriginalTrackID
-              << ", ProcessType = " << s[i].ProcessType << ", EventId = " << s[i].EventId
-              << ", BunchCrossing = " << s[i].BunchCrossing << ", EntryX = " << s[i].EntryX << ", EntryY = " << s[i].EntryY << ", EntryZ = " << s[i].EntryZ
-              << ", ExitX = " << s[i].ExitX << ", ExitY = " << s[i].ExitY << ", ExitZ = " << s[i].ExitZ << ", Pabs = " << s[i].Pabs << ", EnergyLoss = " << s[i].EnergyLoss
-              << ", ThetaAtEntry = " << s[i].ThetaAtEntry <<  ", PhiAtEntry = " << s[i].PhiAtEntry << ", TimeofFlight = " << s[i].TimeofFlight << ", ParticleType = " << s[i].ParticleType
-              << ", DetUnitId = " << s[i].DetUnitId << std::endl;
+    std::cout << "Layer " << layer << ", WireGroup " << h.WireGroup << ", PDG ID = " << h.PdgId
+              << ", TrackID = " << h.TrackID << ", OriginalTrackID = " << h.OriginalTrackID
+              << ", ProcessType = " << h.ProcessType << ", EventId = " << h.EventId
+              << ", BunchCrossing = " << h.BunchCrossing << ", EntryX = " << h.EntryX << ", EntryY = " << h.EntryY << ", EntryZ = " << h.EntryZ
+              << ", ExitX = " << h.ExitX << ", ExitY = " << h.ExitY << ", ExitZ = " << h.ExitZ << ", Pabs = " << h.Pabs << ", EnergyLoss = " << h.EnergyLoss
+              << ", ThetaAtEntry = " << h.ThetaAtEntry <<  ", PhiAtEntry = " << h.PhiAtEntry << ", TimeofFlight = " << h.TimeofFlight << ", ParticleType = " << h.ParticleType
+              << ", DetUnitId = " << h.DetUnitId << std::endl;
 
     // Find and print corresponding SIMTRACK information
     for (const auto& st : simtracks) {
-      if (st.trackId == s[i].TrackID) {
+      if (st.trackId == h.TrackID) {
         std::cout << "  -------- [ Info of its SIMTRACK ] --------" << std::endl;
-        std::cout << "  -> SIMTRACK Info: Type=" << st.type //<< ", isPrimary=" << st.isPrimary 
+        std::cout << "  -> SIMTRACK Info: Type=" << st.type 
                   << ", vertIndex=" << st.vertIndex << ", genpartIndex=" << st.genpartIndex
                   << ", charge=" << st.charge 
                   << ", momentum=(" << st.momentumX << "," << st.momentumY << "," << st.momentumZ << ") mag=" << st.momentumMag
@@ -603,37 +642,64 @@ void MakeOneLayerSimHitWireDisplay(
                     << ", momAtBoundary=(" << st.momentumAtBoundaryX << "," << st.momentumAtBoundaryY << "," << st.momentumAtBoundaryZ << ")"
                     << ", idAtBoundary=" << st.idAtBoundary;
         }
-        std::cout //<< ", isFromBackScattering=" << st.isFromBackScattering
-                  << ", trackerSurfacePos=(" << st.trackerSurfacePositionX << "," << st.trackerSurfacePositionY << "," << st.trackerSurfacePositionZ << ")"
+        std::cout << ", trackerSurfacePos=(" << st.trackerSurfacePositionX << "," << st.trackerSurfacePositionY << "," << st.trackerSurfacePositionZ << ")"
                   << ", trackerSurfaceMom=(" << st.trackerSurfaceMomentumX << "," << st.trackerSurfaceMomentumY << "," << st.trackerSurfaceMomentumZ << ")" << std::endl;
         break;
       }
     }
 
-    float value = (s[i].PdgId == 13) ? (s[i].TrackID) : 10.;
-    int color = (s[i].PdgId == 13) ? (s[i].TrackID) : 10;
+    // Optional background: Assign a simple background intensity to each hit's bin:
+    //   - 1 for non-muons, 2 for muons (so muon bins appear brighter).
+    //  If multiple hits fall in the same (wireGroup, layer) bin, leep the higher value so a muon overwrites any non-muon in that spot.
+    // This ensures the heatmap indicates both occupancy and particle type (Empty bins (0) → blank, 1->at least one non-muon, 2->at least one muon (or mixed muon+non-muon))
+    //float bg = (h.PdgId == 13) ? 2.f : 1.f;
+    //wireDisplay->SetBinContent(bx, layer, std::max(bg, (float)wireDisplay->GetBinContent(bx, layer)));
 
-    TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("Trk:%d", s[i].TrackID));
+    // design mark: per-bin collision index → pick a small in-bin x offset
+    int k = placed[{layer, bx}]++;
+    double dx = OFF[k % NOFF];
+    double xcenter = wireDisplay->GetXaxis()->GetBinCenter(bx) + dx;
 
-    if (s[i].PdgId == 13) {
-      TMarker* marker = new TMarker(x2, layer, 20);
-      marker->SetMarkerColor(kBlack);
-      marker->SetMarkerStyle(20);
-      marker->SetMarkerSize(1.2);
-      simhitLabels.push_back((TLatex*)marker);
+    // design mark: marker style by PDG
+    int mstyle = (h.PdgId == 13) ? 24 : 29; // . muon 20, * photon
+    
+    // design mark: color by TrackID (stable, small palette), 0~8 shift to 1~9
+    int color = 1 + (std::abs(h.TrackID) % 9); // 1..9
+    // Make muon black for priority
+    if (h.PdgId == 13) color = kBlack;
+
+    // design mark: place the marker slightly inside the bin
+    TMarker* m = new TMarker(xcenter, layer+0.15, mstyle);
+    m->SetMarkerColor(color);
+    m->SetMarkerSize(1.2);
+    simhitLabels.push_back(m);
+
+    // design mark: small track label
+    if (h.PdgId == 13) {
+      TLatex* t = new TLatex(xcenter+0.10, layer+0.26, Form("MuTrk:%d", h.TrackID));
+      t->SetTextSize(0.045);
+      t->SetTextColor(color);
+      int alphaBlack = TColor::GetColorTransparent(kBlack, 0.5);
+      t->SetTextColor(alphaBlack);
+      simhitLabels.push_back(t);
     }
-
-    wireDisplay->SetBinContent(x1, layer, value);
-
-    text->SetTextSize(0.06);
-    text->SetTextColor(color);
-    simhitLabels.push_back(text);
   }
 }
 
 //yumeng
 void MakeOneLayerSimHitDisplay(
-    int layer, vector<SimHit>& s, TH2F* stripDisplay, int option, bool doStagger, std::vector<TLatex*>& simhitLabels) {
+    int layer, vector<SimHit>& s, TH2F* stripDisplay, int option, bool doStagger, std::vector<TObject*>& simhitLabels) {
+  
+  // design mark
+  static const double OFF[] = {-0.30, -0.12, +0.12, +0.30, -0.45, +0.45};
+  const int NOFF = (int)(sizeof(OFF)/sizeof(double));
+
+  // design mark
+  std::map<std::pair<int,int>, int> placed;
+
+  // design mark
+  //stripDisplay->GetZaxis()->SetRangeUser(1, 3);
+
   if (option == 1) {
     for (int i = 0; i < int(s.size()); i++) {
       int x1 = stripDisplay->GetXaxis()->FindBin(s[i].Stripf);
@@ -649,7 +715,7 @@ void MakeOneLayerSimHitDisplay(
         marker->SetMarkerColor(kBlack);
         marker->SetMarkerStyle(20);
         marker->SetMarkerSize(1.2);
-        simhitLabels.push_back((TLatex*)marker);  // Will be drawn in the same loop
+        simhitLabels.push_back(marker);  // Will be drawn in the same loop
       }
       if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
         stripDisplay->SetBinContent(x2, layer, value);
@@ -668,60 +734,51 @@ void MakeOneLayerSimHitDisplay(
       }
     }
   } else if (option == 2) {
-    static int grayIdx = TColor::GetColorTransparent(kGray + 1, 0.2);
-    //std::map<int, int> muonTrackIDColorMap;
-    //int nextColorIndex = 1;
+    for (const auto& h : s) {
+      // Compute the "physics" bin X (respecting staggering)
+      int x1 = 2*(h.Strip - 1) + 1;
+      int x2 = 2*(h.Strip - 1) + 2;
+      int bx = (doStagger && (layer==1 || layer==3 || layer==5)) ? x2 : x1;
 
-    for (int i = 0; i < int(s.size()); i++) {
-      int x1 = 2 * (s[i].Strip - 1) + 1;
-      int x2 = 2 * (s[i].Strip - 1) + 2;
+      // Print info for each hit
+      std::cout << "\n-------- [ Info of this SIMHIT ] --------" << std::endl;
+      std::cout << "Layer " << layer << ", Strip " << h.Strip << ", PDG ID = " << h.PdgId
+                << ", TrackID = " << h.TrackID << ", OriginalTrackID = " << h.OriginalTrackID
+                << ", ProcessType = " << h.ProcessType << ", EventId = " << h.EventId
+                << ", BunchCrossing = " << h.BunchCrossing << std::endl;
 
-      std::cout << "Layer " << layer << ", Strip " << s[i].Strip << ", PDG ID = " << s[i].PdgId
-                << ", TrackID = " << s[i].TrackID << ", OriginalTrackID = " << s[i].OriginalTrackID
-                << ", ProcessType = " << s[i].ProcessType << ", EventId = " << s[i].EventId
-                << ", BunchCrossing = " << s[i].BunchCrossing << std::endl;
+      // design mark
+      //float bg = (h.PdgId == 13) ? 2.f : 1.f;
+      //stripDisplay->SetBinContent(bx, layer, std::max(bg, (float)stripDisplay->GetBinContent(bx, layer)));
 
-      //float value = s[i].PdgId
-      //float value = (s[i].PdgId == 13) ? (s[i].TrackID % 10 + 1) :10.;
+      // design mark
+      int k = placed[{layer, bx}]++;
+      double dx = OFF[k % NOFF];
 
-      float value = (s[i].PdgId == 13) ? (s[i].TrackID) : 10.;
-      int color = (s[i].PdgId == 13) ? (s[i].TrackID) : grayIdx;
+      // design mark
+      int mstyle = (h.PdgId == 13) ? 24 : 29;
 
-      // int color = grayIdx;
-      //   float value = 10.;  // default for non-muons
+      // design mark
+      int color = 1 + (std::abs(h.TrackID) % 9); // 1..9
+      // Make muon black for priority
+      if (h.PdgId == 13) color = kBlack;
 
-      //   if (s[i].PdgId == 13) {
-      //     int tid = s[i].TrackID;
-      //     if (muonTrackIDColorMap.count(tid) == 0) {
-      //         muonTrackIDColorMap[tid] = nextColorIndex++;
-      //     }
-      //     int colorIdx = muonTrackIDColorMap[tid];
-      //     color = colorIdx;
-      //     value = colorIdx;
-      //   }
+      // design mark
+      double xcenter = stripDisplay->GetXaxis()->GetBinCenter(bx) + dx;
 
-      TLatex* text = new TLatex(x2 + 0.3, layer + 0.1, Form("Trk:%d", s[i].TrackID));
+      TMarker* m = new TMarker(xcenter, layer+0.15, mstyle);
+      m->SetMarkerColor(color);
+      m->SetMarkerSize(1.2);
+      simhitLabels.push_back(m);
 
-      if (s[i].PdgId == 13) {
-        TMarker* marker = new TMarker(x2, layer, 20);
-        marker->SetMarkerColor(kBlack);
-        marker->SetMarkerStyle(20);
-        marker->SetMarkerSize(1.2);
-        simhitLabels.push_back((TLatex*)marker);  // Will be drawn in the same loop
-      }
-
-      if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
-        stripDisplay->SetBinContent(x2, layer, value);
-
-        text->SetTextSize(0.06);
-        text->SetTextColor(color);
-        simhitLabels.push_back(text);
-      } else {
-        stripDisplay->SetBinContent(x1, layer, value);
-
-        text->SetTextSize(0.06);
-        text->SetTextColor(color);
-        simhitLabels.push_back(text);
+      // design mark
+      if (h.PdgId == 13) {
+        TLatex* t = new TLatex(xcenter+0.12, layer+0.26, Form("MuTrk:%d", h.TrackID));
+        t->SetTextSize(0.045);
+        t->SetTextColor(color);
+        int alphaBlack = TColor::GetColorTransparent(kBlack, 0.5);
+        t->SetTextColor(alphaBlack);
+        simhitLabels.push_back(t);
       }
     }
   }
