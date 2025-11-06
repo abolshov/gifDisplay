@@ -84,24 +84,29 @@ void WireStripDisplay(TString address,
     paletteDone = true;
   }
 
+  //yumeng: this TH2F only for looking up wire group numbers for different chambers. x 4bins from bin1 to bin4:[1,2),[2,3),[3,4),[4,5)
   TH2F* NWireGroup = new TH2F("NWireGroup", "NWireGroup", 4, 1, 5, 4, 1, 5);
   TH2F* NStrip = new TH2F("NStrip", "NStrip", 4, 1, 5, 4, 1, 5);
 
   NWireGroup->SetBinContent(1, 1, 48);
-  NWireGroup->SetBinContent(1, 2, 48);
-  NWireGroup->SetBinContent(1, 3, 48);
+  //NWireGroup->SetBinContent(1, 3, 48);
+  NWireGroup->SetBinContent(1, 3, 32);
   NWireGroup->SetBinContent(1, 4, 48);
   NWireGroup->SetBinContent(2, 1, 112);
   NWireGroup->SetBinContent(3, 1, 96);
   NWireGroup->SetBinContent(4, 1, 96);
+  //NWireGroup->SetBinContent(1, 2, 48);
+  NWireGroup->SetBinContent(1, 2, 64);
   NWireGroup->SetBinContent(2, 2, 64);
   NWireGroup->SetBinContent(3, 2, 64);
   NWireGroup->SetBinContent(4, 2, 64);
 
-  NStrip->SetBinContent(1, 1, 112);
+  //NStrip->SetBinContent(1, 1, 112);
+  NStrip->SetBinContent(1, 1, 64);
   NStrip->SetBinContent(1, 2, 80);
   NStrip->SetBinContent(1, 3, 64);
-  NStrip->SetBinContent(1, 4, 112);
+  //NStrip->SetBinContent(1, 4, 112);
+  NStrip->SetBinContent(1, 4, 48);
   NStrip->SetBinContent(2, 1, 80);
   NStrip->SetBinContent(3, 1, 80);
   NStrip->SetBinContent(4, 1, 80);
@@ -920,6 +925,11 @@ void MakeOneLayerWireDisplay(int layer, vector<Wire>& w, TH2F* wireDisplay) {
       time += 0.1;
     }
 
+    std::cout << "\n-------- [ Info of this WIRE DIGI ] --------" << std::endl;
+    std::cout << "Layer " << layer << ", WireGroup " << w[i].WireGroup 
+              << ", TimeBin " << w[i].TimeBin 
+              << ", NumberTimeBin " << w[i].NumberTimeBin << std::endl;
+
     wireDisplay->SetBinContent(w[i].WireGroup, layer, time);
   }
 }
@@ -999,6 +1009,12 @@ void MakeOneLayerComparatorDisplay(int layer, vector<Comparator>& c, TH2F* compa
     }
 
     int comparator = 2 * (c[i].Strip - 1) + c[i].ComparatorNumber % 2 + 1;
+
+    std::cout << "\n-------- [ Info of this COMPARATOR DIGI ] --------" << std::endl;
+    std::cout << "Layer " << layer << ", Strip " << c[i].Strip 
+              << ", ComparatorNumber " << c[i].ComparatorNumber 
+              << ", TimeBin " << c[i].TimeBin 
+              << ", HalfStrip " << comparator << std::endl;
 
     if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
       comparatorDisplay->SetBinContent(comparator + 1, layer, time);
