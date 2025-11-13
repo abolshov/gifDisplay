@@ -101,12 +101,12 @@ void WireStripDisplay(TString address,
   NWireGroup->SetBinContent(3, 2, 64);
   NWireGroup->SetBinContent(4, 2, 64);
 
-  //NStrip->SetBinContent(1, 1, 112);
-  NStrip->SetBinContent(1, 1, 64);
+  NStrip->SetBinContent(1, 1, 112);
+  //NStrip->SetBinContent(1, 1, 64);
   NStrip->SetBinContent(1, 2, 80);
   NStrip->SetBinContent(1, 3, 64);
-  //NStrip->SetBinContent(1, 4, 112);
-  NStrip->SetBinContent(1, 4, 48);
+  NStrip->SetBinContent(1, 4, 112);
+  //NStrip->SetBinContent(1, 4, 48);
   NStrip->SetBinContent(2, 1, 80);
   NStrip->SetBinContent(3, 1, 80);
   NStrip->SetBinContent(4, 1, 80);
