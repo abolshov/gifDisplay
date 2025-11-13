@@ -627,31 +627,7 @@ void MakeOneLayerSimHitWireDisplay(
     std::cout << "\n-------- [ Info of this SIMHIT ] --------" << std::endl;
     std::cout << "Layer " << layer << ", WireGroup " << h.WireGroup << ", PDG ID = " << h.PdgId
               << ", TrackID = " << h.TrackID << ", OriginalTrackID = " << h.OriginalTrackID
-              << ", ProcessType = " << h.ProcessType << ", EventId = " << h.EventId
-              << ", BunchCrossing = " << h.BunchCrossing << ", EntryX = " << h.EntryX << ", EntryY = " << h.EntryY << ", EntryZ = " << h.EntryZ
-              << ", ExitX = " << h.ExitX << ", ExitY = " << h.ExitY << ", ExitZ = " << h.ExitZ << ", Pabs = " << h.Pabs << ", EnergyLoss = " << h.EnergyLoss
-              << ", ThetaAtEntry = " << h.ThetaAtEntry <<  ", PhiAtEntry = " << h.PhiAtEntry << ", TimeofFlight = " << h.TimeofFlight << ", ParticleType = " << h.ParticleType
-              << ", DetUnitId = " << h.DetUnitId << std::endl;
-
-    // Find and print corresponding SIMTRACK information
-    for (const auto& st : simtracks) {
-      if (st.trackId == h.TrackID) {
-        std::cout << "  -------- [ Info of its SIMTRACK ] --------" << std::endl;
-        std::cout << "  -> SIMTRACK Info: Type=" << st.type 
-                  << ", vertIndex=" << st.vertIndex << ", genpartIndex=" << st.genpartIndex
-                  << ", charge=" << st.charge 
-                  << ", momentum=(" << st.momentumX << "," << st.momentumY << "," << st.momentumZ << ") mag=" << st.momentumMag
-                  << ", crossedBoundary=" << st.crossedBoundary;
-        if (st.crossedBoundary) {
-          std::cout << ", posAtBoundary=(" << st.positionAtBoundaryX << "," << st.positionAtBoundaryY << "," << st.positionAtBoundaryZ << ")"
-                    << ", momAtBoundary=(" << st.momentumAtBoundaryX << "," << st.momentumAtBoundaryY << "," << st.momentumAtBoundaryZ << ")"
-                    << ", idAtBoundary=" << st.idAtBoundary;
-        }
-        std::cout << ", trackerSurfacePos=(" << st.trackerSurfacePositionX << "," << st.trackerSurfacePositionY << "," << st.trackerSurfacePositionZ << ")"
-                  << ", trackerSurfaceMom=(" << st.trackerSurfaceMomentumX << "," << st.trackerSurfaceMomentumY << "," << st.trackerSurfaceMomentumZ << ")" << std::endl;
-        break;
-      }
-    }
+              << ", ProcessType = " << h.ProcessType << std::endl;
 
     // Optional background: Assign a simple background intensity to each hit's bin:
     //   - 1 for non-muons, 2 for muons (so muon bins appear brighter).
@@ -749,8 +725,7 @@ void MakeOneLayerSimHitDisplay(
       std::cout << "\n-------- [ Info of this SIMHIT ] --------" << std::endl;
       std::cout << "Layer " << layer << ", Strip " << h.Strip << ", PDG ID = " << h.PdgId
                 << ", TrackID = " << h.TrackID << ", OriginalTrackID = " << h.OriginalTrackID
-                << ", ProcessType = " << h.ProcessType << ", EventId = " << h.EventId
-                << ", BunchCrossing = " << h.BunchCrossing << std::endl;
+                << ", ProcessType = " << h.ProcessType << std::endl;
 
       // design mark
       //float bg = (h.PdgId == 13) ? 2.f : 1.f;
@@ -925,11 +900,6 @@ void MakeOneLayerWireDisplay(int layer, vector<Wire>& w, TH2F* wireDisplay) {
       time += 0.1;
     }
 
-    std::cout << "\n-------- [ Info of this WIRE DIGI ] --------" << std::endl;
-    std::cout << "Layer " << layer << ", WireGroup " << w[i].WireGroup 
-              << ", TimeBin " << w[i].TimeBin 
-              << ", NumberTimeBin " << w[i].NumberTimeBin << std::endl;
-
     wireDisplay->SetBinContent(w[i].WireGroup, layer, time);
   }
 }
@@ -1009,12 +979,6 @@ void MakeOneLayerComparatorDisplay(int layer, vector<Comparator>& c, TH2F* compa
     }
 
     int comparator = 2 * (c[i].Strip - 1) + c[i].ComparatorNumber % 2 + 1;
-
-    std::cout << "\n-------- [ Info of this COMPARATOR DIGI ] --------" << std::endl;
-    std::cout << "Layer " << layer << ", Strip " << c[i].Strip 
-              << ", ComparatorNumber " << c[i].ComparatorNumber 
-              << ", TimeBin " << c[i].TimeBin 
-              << ", HalfStrip " << comparator << std::endl;
 
     if (doStagger && (layer == 1 || layer == 3 || layer == 5)) {
       comparatorDisplay->SetBinContent(comparator + 1, layer, time);
