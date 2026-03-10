@@ -14,7 +14,7 @@ ARGS=(
     "doGEMCSC=true"
     "inputFiles=file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root"
     "plotdir=/eos/user/a/abolshov/GEMCSC/test_plot"
-    "eventListFile=test_event.txt"
+    "eventListFile=file_lists/test_event.txt"
 )
 
 # Execute cmsRun with the arguments
