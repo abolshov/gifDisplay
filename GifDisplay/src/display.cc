@@ -35,13 +35,16 @@
 vector<CorrelatedLCT> findStubsInChamber(CSCDetID id,
                                          vector<CSCIDLCTs> alllcts) {
   vector<CorrelatedLCT> lcts;
-  for (auto idlcts : alllcts) {
-    if (idlcts.first == id) {
-      lcts = idlcts.second;
-      break;
+  for (auto const& [detId, primitives]: alllcts)
+  {
+    if (id == detId)
+    {
+      for (auto const& p: primitives)
+      {
+        lcts.push_back(p);
+      }
     }
   }
-
   return lcts;
 }
 
@@ -237,6 +240,19 @@ void WireStripDisplay(
   gPad->SetTopMargin(0.0);
   gPad->SetBottomMargin(0.0);
   vector<CorrelatedLCT> alcts = findStubsInChamber(id, allalcts);
+  std::cout << "All ALCTs:\n";
+  for (auto const& [detId, alcts]: allalcts)
+  {
+    std::cout << "\t" << detId << std::endl;
+    for (auto const& alct: alcts)
+    {
+      std::cout << "\t\tkeyWG=" << alct.keyWG 
+                << ", keyStrip=" << alct.keyStrip 
+                << ", BX=" << alct.BX 
+                << ", 1/8-strip=" << alct.eighthStrip
+                << std::endl;
+    }
+  }
   vector<CorrelatedLCT> clcts = findStubsInChamber(id, allclcts);
   vector<CorrelatedLCT> lcts = findStubsInChamber(id, alllcts);
   // chamber, run, event
@@ -244,6 +260,19 @@ void WireStripDisplay(
   ss << "Chamber " << (id.Endcap == 1 ? "+" : "-") << id.Station << "/"
      << id.Ring << "/" << id.Chamber << " ";
   ss << " run: " << Run << "  event #" << Event;
+
+  std::cout << ss.str() << std::endl;
+  std::cout << "detId: " << id << std::endl;
+  std::cout << "ALCTs:\n";
+  for (auto const& alct: alcts)
+  {
+    std::cout << "\tkeyWG=" << alct.keyWG 
+              << ", keyStrip=" << alct.keyStrip 
+              << ", BX=" << alct.BX 
+              << ", 1/8-strip=" << alct.eighthStrip
+              << std::endl;
+  }
+
   TPaveText* tex1 = new TPaveText(0.1, 0.0, 0.9, 1.0, "NDC");
   // tex1->SetTextFont(42);
   // tex1->AddText("Type0: No matched ALCT & No matched CLCT");
@@ -287,6 +316,15 @@ void WireStripDisplay(
   vector<CorrelatedLCT> lcts_emul;
   if (addEmulation) {
     alcts_emul = findStubsInChamber(id, allalcts_emul);
+    std::cout << "Emulator ALCTs:\n";
+    for (auto const& alct: alcts_emul)
+    {
+      std::cout << "\tkeyWG=" << alct.keyWG 
+                << ", keyStrip=" << alct.keyStrip 
+                << ", BX=" << alct.BX 
+                << ", 1/8-strip=" << alct.eighthStrip
+                << std::endl;
+    }
     clcts_emul = findStubsInChamber(id, allclcts_emul);
     lcts_emul = findStubsInChamber(id, alllcts_emul);
     stringstream ss_alcts_emul[10];
