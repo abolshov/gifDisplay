@@ -251,7 +251,7 @@ void WireStripDisplay(
   TPaveText* tex1 = new TPaveText(0.1, 0.0, 0.9, 1.0, "NDC");
   // tex1->SetTextFont(42);
   // tex1->AddText("Type0: No matched ALCT & No matched CLCT");
-  tex1->AddText("Type1: Matched ALCT & No matched CLCT");
+  // tex1->AddText("Type1: Matched ALCT & No matched CLCT");
   // tex1->AddText("Type2: No matched ALCT & Matched CLCT");
   // tex1->AddText("Type3: Matched ALCT & Matched CLCT, but no matched LCT");
   tex1->AddText(ss.str().c_str());
