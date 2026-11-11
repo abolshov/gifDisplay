@@ -56,6 +56,9 @@ options.register("doGEMCSC", False, VarParsing.multiplicity.singleton, VarParsin
 options.register("doGEMDisplay", True, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
                  "Set to False to skip the GE1/1 plots. If True, they are made when GEM is in use "
                  "(runME11ILT, runME21ILT, l1GEM or doGEMCSC). Does not change the emulation.")
+options.register("addRecHits", False, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
+                 "Set to True to run CSC local reco (csc2DRecHits, cscSegments) and overlay the "
+                 "rechits and segments on the wire, strip and comparator panels. Data only.")
 options.parseArguments()
 process_era = Run3
 # process_era = Phase2C17I13M9
@@ -398,6 +401,9 @@ gemPadClusterTagSrc    = cms.untracked.InputTag("simMuonGEMPadDigiClusters"),
 addEmulation = cms.untracked.bool(options.l1 or options.l1GEM),
 addSimHits = cms.untracked.bool(options.mc),
 doGEMCSC = cms.untracked.bool(options.doGEMCSC),
+addRecHits = cms.untracked.bool(options.addRecHits and not options.mc),
+cscRecHitTagSrc = cms.untracked.InputTag("csc2DRecHits"),
+cscSegmentTagSrc = cms.untracked.InputTag("cscSegments"),
 #doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM),
 #doGEMDisplay = cms.untracked.bool(options.doGEMCSC),
 doGEMDisplay = cms.untracked.bool(options.doGEMDisplay and (options.runME11ILT or options.runME21ILT or options.l1GEM or options.doGEMCSC)),
@@ -503,6 +509,12 @@ if options.unpack:
 ## add the emulator
 if options.l1:
       process.schedule.extend([process.p2])
+
+## CSC local reco for the rechit/segment overlay (data; muonCSCDigis runs here too
+## if unpack=false)
+if options.addRecHits and not options.mc:
+      process.cscLocalReco = cms.Path(process.muonCSCDigis * process.csc2DRecHits * process.cscSegments)
+      process.schedule.extend([process.cscLocalReco])
 
 process.schedule.extend([process.display])
 

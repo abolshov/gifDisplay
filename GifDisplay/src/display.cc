@@ -31,6 +31,13 @@
 // yumeng
 #include "TLatex.h"
 #include "TMarker.h"
+#include "TPolyLine.h"
+#include "TLine.h"
+
+// line colors of CSC segments (RecoOverlay and the text panel)
+static const int kSegmentColors[] = {kRed, kMagenta + 1, kBlue, kOrange + 7,
+                                     kCyan + 2};
+static const int kNSegmentColors = 5;
 
 vector<CorrelatedLCT> findStubsInChamber(CSCDetID id,
                                          vector<CSCIDLCTs> alllcts) {
@@ -57,6 +64,7 @@ void WireStripDisplay(
     vector<CSCIDLCTs>& alllcts_emul, vector<CSCDetID>& usedChamber,
     // int type,
     edm::RunNumber_t Run, edm::EventNumber_t Event, bool addEmulation, TString compareA, TString compareB,
+    const vector<RecHitPoint>& rechits, const vector<SegmentLine>& segments,
     int doDebug) {
   const int alct_bx_offset = 5;  // ALCT BX offset
   const int clct_bx_offset = 1;  // CLCT BX offset
@@ -70,6 +78,8 @@ void WireStripDisplay(
   //  Draw("same") iteration
   std::vector<TObject*> stripOverlays;
   std::vector<TObject*> wireOverlays;
+  std::vector<TObject*> recoOverlays;  // CSC rechits and segments
+  std::vector<TObject*> cfebBorders;   // CFEB boundaries on the strip panel
   static bool paletteDone = false;
   if (!paletteDone) {
     const int N = 11;  // allocate up to index 10
@@ -215,6 +225,19 @@ void WireStripDisplay(
       //                        cfebNotInstall_me11->Draw("B same");
     }
   }
+  // CFEB borders: 16 strips per CFEB, strip s drawn at [s, s+1), so CFEB k
+  // starts at x = 16*k + 1; in ME1/1 the ME1b/ME1a border (strip 65) is solid
+  for (int k = 1; k < nCFEB; k++) {
+    const double x = 16 * k + 1;
+    TLine* border = new TLine(x, 1, x, 7);
+    const bool me1aBorder = id.Station == 1 && id.Ring == 1 && k == 4;
+    border->SetLineStyle(me1aBorder ? 1 : 2);
+    border->SetLineWidth(me1aBorder ? 3 : 2);
+    border->SetLineColor(kBlack);
+    border->Draw();
+    cfebBorders.push_back(border);
+  }
+  RecoOverlay(id, 1, rechits, segments, recoOverlays);
   pt3->Draw();
 
   TH2F* simhitWireDis =
@@ -265,7 +288,8 @@ void WireStripDisplay(
 
   stringstream ss_alcts[10];
   // yumeng:
-  if (!doSimHit && addEmulation) {
+  // data stubs are listed with or without emulation (not for MC with sim hits)
+  if (!doSimHit) {
     for (unsigned int ilct = 0; ilct < alcts.size(); ilct++) {
       ss_alcts[ilct] << compareA << " #" << ilct << " ALCT keyWg "
                      << alcts[ilct].keyWG << " Quality " << alcts[ilct].quality
@@ -346,6 +370,27 @@ void WireStripDisplay(
      lcts[1].pattern; tex1->AddText(ss_lct2.str().c_str());
           }
           */
+  // CSC segments, key positions on layer 3 in LCT units (0-based half-strip and
+  // wire group); like the CLCT key half-strip, it includes the +1 half-strip
+  // stagger of layer 3 outside ME1/1
+  const int keyLayerStagger =
+      (id.Station == 1 && (id.Ring == 1 || id.Ring == 4)) ? 0 : 1;
+  for (unsigned int iseg = 0; iseg < segments.size(); iseg++) {
+    const SegmentLine& seg = segments[iseg];
+    stringstream ss_seg;
+    ss_seg << "RecoSeg #" << iseg << " nHits " << seg.nHits << " chi2/ndof "
+           << std::fixed << std::setprecision(1) << seg.chi2 << "/" << seg.ndof;
+    for (unsigned int j = 0; j < seg.layer.size(); j++) {
+      if (seg.layer[j] != 3) continue;
+      ss_seg << " key HS " << int(2 * seg.strip[j]) + keyLayerStagger
+             << " key WG "
+             << seg.wireGroup[j] - 1;
+    }
+    tex1->AddText(ss_seg.str().c_str())
+        ->SetTextColor(kSegmentColors[iseg % kNSegmentColors]);
+  }
+  if (!rechits.empty())
+    tex1->AddText("RecHits: filled = on a RecoSeg, open = not on a segment");
   tex1->Draw();
 
   // strip hit display
@@ -411,6 +456,7 @@ void WireStripDisplay(
   alctDis->SetFillColorAlpha(kBlack, 0.5);
   alctDis->SetLineWidth(2);
   alctDis->Draw("BOX SAME");
+  RecoOverlay(id, 0, rechits, segments, recoOverlays);
   pt2->Draw();
 
   // comparator display
@@ -442,6 +488,7 @@ void WireStripDisplay(
   clctDis->SetFillColorAlpha(kBlack, 0.5);
   clctDis->SetLineWidth(2);
   clctDis->Draw("BOX SAME");
+  RecoOverlay(id, 2, rechits, segments, recoOverlays);
 
   //          cfebNotInstall->Draw("B same");
   //          cfebNotReadOut_comparator->Draw("B same");
@@ -467,6 +514,8 @@ void WireStripDisplay(
   };
   destroy(stripOverlays);
   destroy(wireOverlays);
+  destroy(recoOverlays);
+  destroy(cfebBorders);
 
   delete c1;
   delete wireDis;
@@ -1612,4 +1661,43 @@ void SetPlotDetail_StripHit(TGraph* stripHitDis) {
   stripHitDis->GetXaxis()->SetNdivisions(1010);
   stripHitDis->GetYaxis()->SetNdivisions(110);
   stripHitDis->SetTitle();  //"Strip Hit");
+}
+
+void RecoOverlay(CSCDetID id, int axis, const vector<RecHitPoint>& rechits,
+                 const vector<SegmentLine>& segments,
+                 std::vector<TObject*>& overlays) {
+  // same stagger convention as the strip/comparator digis
+  const bool doStagger = !(id.Station == 1 && (id.Ring == 1 || id.Ring == 4));
+  // panel x of a point; strip s spans [s-1, s) in RecHitPoint/SegmentLine and
+  // [s, s+1) on the strip panel; wire group w spans [w-1, w) on the wire panel
+  auto xOf = [&](int layer, double strip, int wireGroup) {
+    const double stagger = (doStagger && layer % 2 == 1) ? 1. : 0.;
+    if (axis == 0) return wireGroup - 0.5;
+    if (axis == 1) return strip + 1. + 0.5 * stagger;
+    return 2. * strip + stagger;
+  };
+
+  for (unsigned int i = 0; i < segments.size(); i++) {
+    const SegmentLine& seg = segments[i];
+    std::vector<double> x, y;
+    for (unsigned int j = 0; j < seg.layer.size(); j++) {
+      x.push_back(xOf(seg.layer[j], seg.strip[j], seg.wireGroup[j]));
+      y.push_back(seg.layer[j] + 0.5);
+    }
+    if (x.size() < 2) continue;
+    TPolyLine* line = new TPolyLine(x.size(), x.data(), y.data());
+    line->SetLineColor(kSegmentColors[i % kNSegmentColors]);
+    line->SetLineWidth(2);
+    line->Draw();
+    overlays.push_back(line);
+  }
+  for (const RecHitPoint& hit : rechits) {
+    TMarker* marker =
+        new TMarker(xOf(hit.layer, hit.strip, hit.wireGroup), hit.layer + 0.5,
+                    hit.onSegment ? 20 : 24);
+    marker->SetMarkerColor(kBlack);
+    marker->SetMarkerSize(0.8);
+    marker->Draw();
+    overlays.push_back(marker);
+  }
 }

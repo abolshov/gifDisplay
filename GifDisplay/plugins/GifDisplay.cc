@@ -72,6 +72,8 @@
 #include "DataFormats/CSCRecHit/interface/CSCRecHit2D.h"
 #include "DataFormats/CSCRecHit/interface/CSCRecHit2DCollection.h"
 #include "DataFormats/CSCRecHit/interface/CSCSegmentCollection.h"
+#include "Geometry/CSCGeometry/interface/CSCChamber.h"
+#include "Geometry/CSCGeometry/interface/CSCLayer.h"
 #include "DataFormats/GeometryVector/interface/GlobalPoint.h"
 #include "DataFormats/GeometryVector/interface/GlobalVector.h"
 #include "DataFormats/GeometryVector/interface/LocalPoint.h"
@@ -166,6 +168,9 @@ class GifDisplay : public edm::one::EDAnalyzer<edm::one::SharedResources> {
   edm::EDGetTokenT<CSCCLCTDigiCollection> clctDigiTagSrc_emul;
   edm::EDGetTokenT<CSCCorrelatedLCTDigiCollection> corrlctDigiTagSrc_emul;
 
+  edm::EDGetTokenT<CSCRecHit2DCollection> cscRecHitTagSrc;
+  edm::EDGetTokenT<CSCSegmentCollection> cscSegmentTagSrc;
+
   edm::ESGetToken<CSCGeometry, MuonGeometryRecord> cscToken_;
   edm::ESGetToken<GEMGeometry, MuonGeometryRecord> gemToken_;
 
@@ -196,6 +201,7 @@ class GifDisplay : public edm::one::EDAnalyzer<edm::one::SharedResources> {
   int doDebug;
   bool addEmulation;
   bool addSimHits;
+  bool addRecHits;
   bool doGEMDisplay;
   bool doGEMCSC;
 };
@@ -257,6 +263,16 @@ GifDisplay::GifDisplay(const edm::ParameterSet& iConfig)
       iConfig.getUntrackedParameter<edm::InputTag>("clctDigiTagSrc_Emul"));
   corrlctDigiTagSrc_emul = consumes<CSCCorrelatedLCTDigiCollection>(
       iConfig.getUntrackedParameter<edm::InputTag>("corrlctDigiTagSrc_Emul"));
+
+  addRecHits = iConfig.getUntrackedParameter<bool>("addRecHits", false);
+  if (addRecHits) {
+    cscRecHitTagSrc = consumes<CSCRecHit2DCollection>(
+        iConfig.getUntrackedParameter<edm::InputTag>(
+            "cscRecHitTagSrc", edm::InputTag("csc2DRecHits")));
+    cscSegmentTagSrc = consumes<CSCSegmentCollection>(
+        iConfig.getUntrackedParameter<edm::InputTag>(
+            "cscSegmentTagSrc", edm::InputTag("cscSegments")));
+  }
 
   eventDisplayDir = iConfig.getUntrackedParameter<std::string>(
       "eventDisplayDir",
@@ -842,6 +858,81 @@ void GifDisplay::analyze(const edm::Event& iEvent,
     }
   }
 
+  //========================== CSC RecHits and Segments ========================
+  // keyed by the displayed chamber (ME1a, ring 4, is shown together with ring 1)
+  std::map<CSCDetId, vector<RecHitPoint>> rechit_map;
+  std::map<CSCDetId, vector<SegmentLine>> segment_map;
+  if (addRecHits) {
+    auto displayChamber = [](const CSCDetId& id) {
+      int ring = (id.station() == 1 && id.ring() == 4) ? 1 : id.ring();
+      return CSCDetId(id.endcap(), id.station(), ring, id.chamber());
+    };
+
+    // segments first, so rechits used by a segment can be flagged
+    std::vector<std::pair<CSCDetId, LocalPoint>> segmentHits;
+    edm::Handle<CSCSegmentCollection> segments;
+    iEvent.getByToken(cscSegmentTagSrc, segments);
+    if (segments.isValid()) {
+      for (const auto& seg : *segments) {
+        const CSCDetId segId = seg.cscDetId();
+        const CSCChamber* chamber = cscGeom->chamber(segId);
+        if (chamber == nullptr) continue;
+        const GlobalPoint gp = chamber->toGlobal(seg.localPosition());
+        const GlobalVector gd = chamber->toGlobal(seg.localDirection());
+
+        SegmentLine line;
+        line.nHits = seg.nRecHits();
+        line.chi2 = seg.chi2();
+        line.ndof = seg.degreesOfFreedom();
+        for (int l = 1; l <= 6; l++) {
+          const CSCLayer* layer = chamber->layer(l);
+          const LocalPoint lp0 = layer->toLocal(gp);
+          const LocalVector ld = layer->toLocal(gd);
+          if (std::abs(ld.z()) < 1e-6) continue;
+          // crossing of the segment line with the layer plane (local z = 0)
+          const double t = -lp0.z() / ld.z();
+          const LocalPoint lp(lp0.x() + t * ld.x(), lp0.y() + t * ld.y(), 0.);
+          const auto* layerG = layer->geometry();
+          line.layer.push_back(l);
+          line.strip.push_back(layerG->strip(lp) + (segId.ring() == 4 ? 64 : 0));
+          line.wireGroup.push_back(layerG->wireGroup(layerG->nearestWire(lp)));
+        }
+        segment_map[displayChamber(segId)].push_back(line);
+        for (const auto& hit : seg.specificRecHits())
+          segmentHits.emplace_back(hit.cscDetId(), hit.localPosition());
+      }
+    } else if (doDebug > 0) {
+      cout << "Event " << Event << " no CSCSegment collection, skip segments"
+           << endl;
+    }
+
+    edm::Handle<CSCRecHit2DCollection> recHits;
+    iEvent.getByToken(cscRecHitTagSrc, recHits);
+    if (recHits.isValid()) {
+      for (const auto& hit : *recHits) {
+        const CSCDetId id = hit.cscDetId();
+        const LocalPoint lp = hit.localPosition();
+        RecHitPoint point;
+        point.layer = id.layer();
+        point.strip = cscGeom->layer(id)->geometry()->strip(lp) +
+                      (id.ring() == 4 ? 64 : 0);
+        point.wireGroup = hit.hitWire();
+        point.onSegment = false;
+        for (const auto& sh : segmentHits) {
+          if (sh.first == id && std::abs(sh.second.x() - lp.x()) < 1e-4 &&
+              std::abs(sh.second.y() - lp.y()) < 1e-4) {
+            point.onSegment = true;
+            break;
+          }
+        }
+        rechit_map[displayChamber(id)].push_back(point);
+      }
+    } else if (doDebug > 0) {
+      cout << "Event " << Event << " no CSCRecHit2D collection, skip rechits"
+           << endl;
+    }
+  }
+
   // make event display
   vector<CSCDetID> usedChamber;
   vector<GEMDetID> usedGEMChamber;  // neighbor GEM chamber
@@ -885,7 +976,9 @@ void GifDisplay::analyze(const edm::Event& iEvent,
                      com_container, alct_container, alct_emul_container,
                      clct_container, clct_emul_container, lct_container,
                      lct_emul_container, usedChamber, Run, Event, addEmulation,
-                     compareA, compareB);
+                     compareA, compareB,
+                     rechit_map[CSCDetId(endcapL, stationL, ringL, chamberL)],
+                     segment_map[CSCDetId(endcapL, stationL, ringL, chamberL)]);
     // if (stationL == 1 and (ringL== 1 or ringL==2))
     if (doGEMDisplay and stationL == 1 and (ringL == 1)) {  // only GE11 now
       if (doDebug)

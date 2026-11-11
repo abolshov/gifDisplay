@@ -273,6 +273,27 @@ struct GEMPadCluster {
   }
 };
 
+// Reconstructed CSC hits/segments in display coordinates, computed in the
+// plugin with the CSC geometry. strip: fractional strip from
+// CSCLayerGeometry::strip() (strip s spans [s-1, s)), ME1a shifted by +64 like
+// the strip/comparator digis.
+struct RecHitPoint {
+  int layer;
+  double strip;
+  int wireGroup;
+  bool onSegment;  // used by a CSCSegment in this chamber
+};
+
+// CSCSegment crossing points with each layer (same coordinates as RecHitPoint)
+struct SegmentLine {
+  int nHits;
+  double chi2;
+  int ndof;
+  vector<int> layer;
+  vector<double> strip;
+  vector<int> wireGroup;
+};
+
 struct CorrelatedLCT {
   int keyStrip;
   int keyWG;

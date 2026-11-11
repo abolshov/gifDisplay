@@ -33,7 +33,7 @@ Severity scale: **High** = wrong physics content, a crash, or a silently wrong p
 
 **The 5 most important issues**
 
-1. **I-1 (High):** In every staggered chamber (all except ME1/1), the CLCT pattern box is drawn **one half-strip to the left** of the comparator hits it was built from. The display shifts layers 1/3/5 by +1 half-strip, but the CLCT key half-strip is given in the key-layer frame and is not shifted.
+1. ~~**I-1 (High):**~~ **Withdrawn 2026-11-11, not a bug (see I-1).** ~~In every staggered chamber (all except ME1/1), the CLCT pattern box is drawn **one half-strip to the left** of the comparator hits it was built from. The display shifts layers 1/3/5 by +1 half-strip, but the CLCT key half-strip is given in the key-layer frame and is not shifted.~~
 2. **I-2 (High):** Legacy-format CLCTs (`run3_pattern` = 0 by default) are drawn as Run-3 **pattern 0**, the steepest left-bending envelope. This affects every non-OTMB chamber in Run-3 (ME1/2, ME1/3, MEX/2), every `run3=false` job, and the Run-2 emulator.
 3. **C-1 (High):** `l1GEM=true` without `l1=true` does nothing useful. The GEM pad emulators sit in path `p2`, which is scheduled only when `l1` is set. GifDisplay then looks for emulator products that were never made. On data this shows **no GEM clusters at all**, and `addEmulation` is switched off for the rest of the job.
 4. **I-9 (High):** The GEM-CSC LUT folder is the relative path `"GifDisplay/GEMCSC/"`. With `doGEMCSC=true`, any job not started from the repository root fails to open the LUTs without warning. `WireToRoll` then throws `std::out_of_range` (`WG_max.at(i)`) and **the job aborts**.
@@ -194,7 +194,20 @@ Other notable issues: SimHit wire groups are offset by +1 WG from the wire digis
 
 ## 3. Implementation bugs (`GifDisplay/interface/*`, `GifDisplay/src/*`)
 
-### I-1 — The CLCT box is one half-strip left of its comparators in all staggered chambers — **High**
+### I-1 — The CLCT box is one half-strip left of its comparators in all staggered chambers — **WITHDRAWN: not a bug**
+> **Verified against data on 2026-11-11 (run 403775, event 2768165792):** the reported CLCT key half-strip
+> already includes the +1 stagger of key layer 3, i.e. it is in the display's comparator frame.
+> ME+2/1/14: layer-3 comparator own half-strip 27, data and emulator CLCT key 28.
+> ME-3/1/11: layer-3 comparator 75 (on the segment), CLCT key 76.
+> The display draws the layer-3 comparator at x in [own+1, own+2) = [28, 29) and the CLCT box centre at
+> bin keyStrip+1 = [28, 29), so the box is centred on the key-layer hit. The CSC segment overlay
+> (`addRecHits`) gives the same key half-strip. The suggested fix below would move every box one
+> half-strip to the right of its hits and was NOT applied. Why the emulator source reading below
+> (line 1015) does not match the observed keys was not resolved (probably the geometry-derived
+> `stagger[]` of line 266 differs from the assumed default).
+>
+> Original (incorrect) analysis kept for reference:
+
 - **Where:**
   - `display.cc:1059-1066`: a comparator is drawn at bin `2*(strip-1)+comp+1`, **+1 on layers 1, 3, 5** when `doStagger` (all chambers except ME1/1, `:1553-1555`).
   - `display.cc:986`: CLCT `position = keyStrip + 1`, with **no stagger correction**.
@@ -235,7 +248,11 @@ Other notable issues: SimHit wire groups are offset by +1 WG from the wire digis
 - **Consequence:** In the same panel, GEM pads appear one pad to the right of the CSC-LCT pad prediction. A matched pair looks off by one; a pad on the window edge looks inside or outside incorrectly.
 - **Fix:** Use `SetBinContent(pad + 1, ...)` (or `Fill(pad + 0.5, ...)`) everywhere; the same for SimHits.
 
-### I-6 — "Data" stubs are printed only when emulation is on and there are no SimHits — **Medium**
+### I-6 — "Data" stubs are printed only when emulation is on and there are no SimHits — **Medium** — **partly fixed 2026-11-11**
+> **Data part fixed:** the condition is now `if (!doSimHit)`, so data jobs list the "Data" ALCT/CLCT/LCT
+> with or without emulation (verified with `l1=false` and `l1=true` on 403775 2768165792).
+> **MC part still open:** with sim hits the "Data" stubs are still never printed.
+
 - **Where:** `display.cc:268` `if (!doSimHit && addEmulation) { ... compareA stubs ... }`.
 - **Consequence:**
   - Data with `l1=false`: the text pad shows **no** ALCT/CLCT/LCT information, although data stubs are read and drawn as boxes.
@@ -382,7 +399,7 @@ Each item lists: what the code does, where it is, why it is suspicious or unclea
 ### S-3 — Per-layer CLCT position shifts in `MakeOneLayerCLCT`
 - **What and where:** Hard-coded offsets per `run3_pattern` and layer (`display.cc:984-1047`).
 - **Check:** For Run-3 patterns 0–4 the shifts match `CSCPatternBank::clct_pattern_run3_` (`CSCPatternBank.cc:141-181`) exactly, assuming pattern row *i* = layer *i*+1.
-- **Why suspicious:** The `else` branch (pattern 4 and anything else) is a ±1 box. Legacy patterns are not handled (I-2). The stagger correction is missing (I-1).
+- **Why suspicious:** The `else` branch (pattern 4 and anything else) is a ±1 box. Legacy patterns are not handled (I-2). (The stagger correction was suspected missing, I-1, but that was withdrawn: keys already include it.)
 - **Question:** Was this checked against the firmware pattern orientation (row ↔ layer, and left/right per endcap)? Why not draw directly from `CSCPatternBank`?
 
 ### S-4 — ALCT box envelope
@@ -392,7 +409,7 @@ Each item lists: what the code does, where it is, why it is suspicious or unclea
 
 ### S-5 — Comparator half-strip formula and stagger direction
 - **What and where:** `2*(Strip-1) + ComparatorNumber%2 + 1` (`display.cc:1059`). This equals `CSCComparatorDigi::getHalfStrip() + 1` (`CSCComparatorDigi.cc:76`). It adds +1 on layers 1, 3, 5 in non-ME1/1 chambers (`:1061-1062`). Strips (`:921-929`) and SimHits (`:796-797`) get +½ strip on the same layers.
-- **Why suspicious:** The stagger direction agrees with the emulator's internal frame, but the stub drawing does not follow it (I-1). The `%2` exists only to undo the ME1a `+128` hack (S-6).
+- **Why suspicious:** The stagger direction agrees with the emulator's internal frame, and the CLCT key half-strip is reported in the same frame (I-1 withdrawn, verified on data). The `%2` exists only to undo the ME1a `+128` hack (S-6).
 - **Question:** Was the stagger direction verified against data (e.g. the firmware "odd layers −1" convention mentioned in `CSCCathodeLCTProcessor.cc:255-263`)?
 
 ### S-6 — ME1a offsets

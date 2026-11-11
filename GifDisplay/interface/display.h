@@ -43,7 +43,14 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT>& simhits,
                       vector<CSCIDLCTs>& idlcts, vector<CSCIDLCTs>& idlcts_emul,
                       vector<CSCDetID>& usedChamber, edm::RunNumber_t Run, edm::EventNumber_t Event,
                       bool addEmulation, TString compareA, TString compareB,
+                      const vector<RecHitPoint>& rechits,
+                      const vector<SegmentLine>& segments,
                       int doDebug = 0);
+// rec-hit markers and segment lines on a panel; axis: 0 = wire group,
+// 1 = strip, 2 = comparator half-strip
+void RecoOverlay(CSCDetID id, int axis, const vector<RecHitPoint>& rechits,
+                 const vector<SegmentLine>& segments,
+                 std::vector<TObject*>& overlays);
 bool ChamberUsedForEventDisplay(CSCDetID id, vector<CSCDetID> usedChamber);
 bool GEMChamberUsedForEventDisplay(CSCDetID id, vector<CSCDetID> usedChamber);
 void SetSaveNameLegendName(TString& name, TString& legendName, TString address,
