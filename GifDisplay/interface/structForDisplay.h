@@ -23,9 +23,9 @@ struct CSCDetID {
 
   bool operator==(const CSCDetID& id) {
     return doubleEqual(id.Endcap, this->Endcap) &&
-           doubleEqual(id.Station, this->Station)
-
-           && doubleEqual(id.Chamber, this->Chamber) &&
+           doubleEqual(id.Station, this->Station) &&
+           doubleEqual(id.Ring, this->Ring) &&
+           doubleEqual(id.Chamber, this->Chamber) &&
            doubleEqual(id.Layer, this->Layer);
   }
 

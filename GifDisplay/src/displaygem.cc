@@ -30,7 +30,7 @@ void GEMPadDisplay(TString address, GEMDetID id, CSCDetID CSCid,
                    vector<GEMSIMHIT>& simhit, vector<GEMPAD>& gempads,
                    vector<GEMCLUSTER>& gemclusters,
                    vector<GEMDetID>& usedChamber, vector<CSCIDLCTs>& alllcts,
-                   vector<CSCIDLCTs>& alllcts_emul, int Run, int Event,
+                   vector<CSCIDLCTs>& alllcts_emul, edm::RunNumber_t Run, edm::EventNumber_t Event,
                    bool addEmulation, bool doGEMCSC, int doDebug) {
   gStyle->SetPalette(55);
   const int NPad = 192;
@@ -189,8 +189,8 @@ void GEMPadDisplay(TString address, GEMDetID id, CSCDetID CSCid,
 }
 
 void SetSaveNameLegendNameGEM(TString& name, TString& legendName,
-                              TString address, GEMDetID id, int Run,
-                              int Event) {
+                              TString address, GEMDetID id, edm::RunNumber_t Run,
+                              edm::EventNumber_t Event) {
   TString space = "                                   ";
   if (id.Endcap == 1) {
     legendName = "GE+" + NumberToString(id.Station) + "/" +
@@ -202,7 +202,7 @@ void SetSaveNameLegendNameGEM(TString& name, TString& legendName,
            NumberToString(id.Ring) + "_" + NumberToString(id.Chamber);
   }
 
-  if (id.Endcap == 2) {
+  if (id.Endcap == -1) {  // GEM region: +1/-1 (not CSC endcap 1/2)
     legendName = "GE-" + NumberToString(id.Station) + "/" +
                  NumberToString(id.Ring) + "/" + NumberToString(id.Chamber) +
                  space + space + "Run #" + NumberToString(Run) + "  " +

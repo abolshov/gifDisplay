@@ -56,7 +56,7 @@ void WireStripDisplay(
     vector<CSCIDLCTs>& allclcts_emul, vector<CSCIDLCTs>& alllcts,
     vector<CSCIDLCTs>& alllcts_emul, vector<CSCDetID>& usedChamber,
     // int type,
-    int Run, int Event, bool addEmulation, TString compareA, TString compareB,
+    edm::RunNumber_t Run, edm::EventNumber_t Event, bool addEmulation, TString compareA, TString compareB,
     int doDebug) {
   const int alct_bx_offset = 5;  // ALCT BX offset
   const int clct_bx_offset = 1;  // CLCT BX offset
@@ -151,7 +151,14 @@ void WireStripDisplay(
   // draw event display
   TCanvas* c1 = new TCanvas("c1", "c1", 0, 0, 600, 800);
 
-  c1->Divide(1, 5);
+  // the SimHit wire-group pad only exists when there are sim hits (MC);
+  // for data it is dropped and the remaining pads move up by one
+  const int padSimHitWire = 1;
+  const int padWire = doSimHit ? 2 : 1;
+  const int padStrip = padWire + 1;
+  const int padComparator = padWire + 2;
+  const int padText = padWire + 3;
+  c1->Divide(1, padText);
   c1->SetRightMargin(0.15);
   c1->SetBottomMargin(0.25);
   c1->SetTopMargin(0.25);
@@ -160,7 +167,7 @@ void WireStripDisplay(
   // SetEventDisplayLegend(legendName);
 
   // strip display
-  c1->cd(3)->SetGridy();
+  c1->cd(padStrip)->SetGridy();
   gPad->SetBottomMargin(0.2);
   TH2F* stripDis =
       new TH2F("stripDis", "", nStrip * 2 + 2, 1, nStrip + 2, 6, 1, 7);
@@ -210,9 +217,6 @@ void WireStripDisplay(
   }
   pt3->Draw();
 
-  c1->cd(1)->SetGridy();
-  gPad->SetTopMargin(0.15);
-  gPad->SetBottomMargin(0.2);
   TH2F* simhitWireDis =
       new TH2F("simhitWireDis", "", nWireGroup + 1, 0, nWireGroup + 1, 6, 1, 7);
   TH2F* simhitWireDis_text = new TH2F("simhitWireDis_text", "", nWireGroup, 0,
@@ -220,6 +224,9 @@ void WireStripDisplay(
   TPaveText* pt1 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
 
   if (doSimHit) {
+    c1->cd(padSimHitWire)->SetGridy();
+    gPad->SetTopMargin(0.15);
+    gPad->SetBottomMargin(0.2);
     SimHitWireDisplay(
         id, layer_simhit, simhit, simtracks, simhitWireDis, simhitWireDis_text,
         wireOverlays);  // design mark: use separate wire overlay container
@@ -232,11 +239,11 @@ void WireStripDisplay(
     simhitWireDis_text->Draw("text same");
     for (auto* o : wireOverlays)
       o->Draw("same");  // design mark: draw only wire overlays
+    pt1->Draw();
   }
-  pt1->Draw();
 
   // show LCTs
-  c1->cd(5);
+  c1->cd(padText);
   gPad->SetTopMargin(0.0);
   gPad->SetBottomMargin(0.0);
   vector<CorrelatedLCT> alcts = findStubsInChamber(id, allalcts);
@@ -372,7 +379,7 @@ void WireStripDisplay(
 */
 
   // wire display
-  c1->cd(2)->SetGridy();
+  c1->cd(padWire)->SetGridy();
   gPad->SetTopMargin(0.15);
   gPad->SetBottomMargin(0.2);
   TH2F* wireDis =
@@ -407,7 +414,7 @@ void WireStripDisplay(
   pt2->Draw();
 
   // comparator display
-  c1->cd(4)->SetGridy();
+  c1->cd(padComparator)->SetGridy();
   gPad->SetBottomMargin(0.2);
   TPaveText* pt4 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
   TH2F* comparatorDis =
@@ -497,7 +504,7 @@ bool ChamberUsedForEventDisplay(CSCDetID id, vector<CSCDetID> usedChamber) {
 }
 
 void SetSaveNameLegendName(TString& name, TString& legendName, TString address,
-                           CSCDetID id, int Run, int Event) {
+                           CSCDetID id, edm::RunNumber_t Run, edm::EventNumber_t Event) {
   // int Run = 1;
   // int Event = 1;
   TString space = "                                   ";

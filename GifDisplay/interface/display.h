@@ -15,6 +15,7 @@
 #include "TH2.h"
 #include "TPaveText.h"
 #include "TString.h"
+#include "DataFormats/Provenance/interface/RunLumiEventNumber.h"
 #include "gifDisplay/GifDisplay/interface/structForDisplay.h"
 // yumeng
 #include "TLatex.h"
@@ -40,13 +41,13 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT>& simhits,
                       vector<CSCIDLCTs>& idclcts,
                       vector<CSCIDLCTs>& idclcts_emul,
                       vector<CSCIDLCTs>& idlcts, vector<CSCIDLCTs>& idlcts_emul,
-                      vector<CSCDetID>& usedChamber, int Run, int Event,
+                      vector<CSCDetID>& usedChamber, edm::RunNumber_t Run, edm::EventNumber_t Event,
                       bool addEmulation, TString compareA, TString compareB,
                       int doDebug = 0);
 bool ChamberUsedForEventDisplay(CSCDetID id, vector<CSCDetID> usedChamber);
 bool GEMChamberUsedForEventDisplay(CSCDetID id, vector<CSCDetID> usedChamber);
 void SetSaveNameLegendName(TString& name, TString& legendName, TString address,
-                           CSCDetID id, int Run, int Event);
+                           CSCDetID id, edm::RunNumber_t Run, edm::EventNumber_t Event);
 void SaveUsedChamber(CSCDetID id, vector<int> layer_strip,
                      vector<int> layer_wire, vector<int> layer_comparator,
                      vector<CSCDetID>& usedChamber);
@@ -129,10 +130,10 @@ void GEMPadDisplay(TString address, GEMDetID id, CSCDetID CSCid,
                    vector<GEMSIMHIT>& simhits, vector<GEMPAD>& gempads,
                    vector<GEMCLUSTER>& gemclusters,
                    vector<GEMDetID>& usedChamber, vector<CSCIDLCTs>& alllcts,
-                   vector<CSCIDLCTs>& alllcts_emul, int Run, int Event,
+                   vector<CSCIDLCTs>& alllcts_emul, edm::RunNumber_t Run, edm::EventNumber_t Event,
                    bool addEmulation, bool doGEMCSC, int doDebug = 0);
 void SetSaveNameLegendNameGEM(TString& name, TString& legendName,
-                              TString address, GEMDetID id, int Run, int Event);
+                              TString address, GEMDetID id, edm::RunNumber_t Run, edm::EventNumber_t Event);
 void GEMSimHitDisplay(GEMDetID id, vector<GEMDetID>& allIds,
                       vector<GEMSIMHIT>& gemsimHits, TH2F* stripDis,
                       int doDebug = 0);

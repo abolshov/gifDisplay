@@ -1,7 +1,7 @@
 import FWCore.ParameterSet.Config as cms
 from FWCore.ParameterSet.VarParsing import VarParsing
-# from Configuration.Eras.Era_Run3_cff import Run3
-# from Configuration.Eras.Era_Run2_2018_cff import Run2_2018
+from Configuration.Eras.Era_Run3_cff import Run3
+from Configuration.Eras.Era_Run2_2018_cff import Run2_2018
 from Configuration.Eras.Era_Phase2C17I13M9_cff import Phase2C17I13M9
 
 import sys, os
@@ -53,9 +53,12 @@ options.register("saveEdmOutput", False, VarParsing.multiplicity.singleton, VarP
                  "Set to True if you want to keep the EDM ROOT after unpacking and re-emulating.")
 options.register("doGEMCSC", False, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
                  "Set to True if you want to enable GEMCSC plotting.")
+options.register("doGEMDisplay", True, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
+                 "Set to False to skip the GE1/1 plots. If True, they are made when GEM is in use "
+                 "(runME11ILT, runME21ILT, l1GEM or doGEMCSC). Does not change the emulation.")
 options.parseArguments()
-#process_era = Run3
-process_era = Phase2C17I13M9
+process_era = Run3
+# process_era = Phase2C17I13M9
 if not options.run3:
           process_era = Run2_2018
 from Configuration.StandardSequences.Eras import eras
@@ -67,8 +70,11 @@ process = cms.Process("CSCDisplay", process_era)
 #process.load("Configuration/Geometry/GeometryIdeal2015Reco_cff")
 #process.load("Configuration/Geometry/IdealGeometry_cff")
 #process.load("Configuration/StandardSequences/Geometry_cff")
-process.load('Configuration.Geometry.GeometryExtended2026D110Reco_cff')
-process.load('Configuration.Geometry.GeometryExtended2026D110_cff')
+if not options.run3:
+    # Phase-2 D110 geometry (renamed from 2026D110 -> Run4D110 in CMSSW_16_1_0)
+    process.load('Configuration.Geometry.GeometryExtendedRun4D110Reco_cff')
+else:
+    process.load('Configuration.Geometry.GeometryDB_cff')
 process.load("Configuration/StandardSequences/MagneticField_cff")
 process.load("Configuration/StandardSequences/FrontierConditions_GlobalTag_cff")
 #process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
@@ -108,7 +114,8 @@ process.source = cms.Source(
 )
 
 ## this line is needed to run the GEM unpacker on output from AMC13SpyReadout.py or readFile_b904_Run3.py
-if options.unpackGEM:
+## (only for B904 files: on real collision RAW it crashes PoolSource when opening the file)
+if options.unpackGEM and (options.useB904ME11 or options.useB904ME21 or options.useB904ME234s2):
       process.source.labelRawDataLikeMC = cms.untracked.bool(False)
 
 ## global tag (data or MC, Run-2 or Run-3)
@@ -120,7 +127,8 @@ if options.mc:
             #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2021_realistic', '')
             #process.GlobalTag = GlobalTag(process.GlobalTag, '123X_mcRun3_2021_realistic_v14', '')
             #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2022_realistic', '')
-            process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase2_realistic', '')
+            # Run-3 MC (e.g. SingleMuonGun made with 130X_mcRun3_2022_realistic_v3)
+            process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2022_realistic', '')
 
 else:
       #process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '')
@@ -131,6 +139,9 @@ else:
 #process.GlobalTag.globaltag = '74X_dataRun2_Prompt_v0'
 #process.GlobalTag.globaltag = '92X_dataRun2_Prompt_v11'
 #process.GlobalTag.globaltag = '102X_dataRun2_Prompt_v1'
+## data GT only: on MC (run 1) it has no valid IOV for GEMRecoGeometryRcd
+if not options.mc:
+      process.GlobalTag = GlobalTag(process.GlobalTag, '150X_dataRun3_Prompt_v1', '')
 
 ## running on unpacked data, or after running the unpacker
 if not options.mc or options.unpack:
@@ -389,7 +400,7 @@ addSimHits = cms.untracked.bool(options.mc),
 doGEMCSC = cms.untracked.bool(options.doGEMCSC),
 #doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM),
 #doGEMDisplay = cms.untracked.bool(options.doGEMCSC),
-doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM or options.doGEMCSC),
+doGEMDisplay = cms.untracked.bool(options.doGEMDisplay and (options.runME11ILT or options.runME21ILT or options.l1GEM or options.doGEMCSC)),
 
 debug = cms.untracked.int32(1),
 compareA = cms.untracked.string("Data"),#box4, top part name
@@ -426,10 +437,21 @@ if options.mc:
     process.GifDisplay.alctDigiTagSrc    = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
     process.GifDisplay.clctDigiTagSrc    = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
     process.GifDisplay.corrlctDigiTagSrc = cms.untracked.InputTag('cscTriggerPrimitiveDigis', "",processName)
+    ## MC without re-emulation: cscTriggerPrimitiveDigis only runs in p2 (l1=true),
+    ## so use the TPs stored in the file (DIGI step)
+    if not options.l1:
+        process.GifDisplay.alctDigiTagSrc    = cms.untracked.InputTag('simCscTriggerPrimitiveDigis')
+        process.GifDisplay.clctDigiTagSrc    = cms.untracked.InputTag('simCscTriggerPrimitiveDigis')
+        process.GifDisplay.corrlctDigiTagSrc = cms.untracked.InputTag('simCscTriggerPrimitiveDigis')
 if options.runME11ILT or options.runME21ILT or options.l1GEM:
     #process.GifDisplay.gemPadTagSrc          = cms.untracked.InputTag('MuonGEMPadDigis')
     process.GifDisplay.gemPadTagSrc          = cms.untracked.InputTag('simMuonGEMPadDigis')
     process.GifDisplay.gemPadClusterTagSrc   = cms.untracked.InputTag('simMuonGEMPadDigiClusters')
+## data without GEM emulation: simMuonGEMPadDigis/Clusters are not produced (they run in
+## p2 only with l1GEM), so show the GEM pad clusters read out by the OTMB (also the input
+## of the CSC emulator); GEM pads are skipped in GifDisplay
+if not options.mc and not options.l1GEM:
+    process.GifDisplay.gemPadClusterTagSrc   = cms.untracked.InputTag('muonCSCDigis', 'MuonGEMPadDigiCluster')
 
 #process.p = cms.Path(process.muonCSCDigis * process.cscTriggerPrimitiveDigis * process.GifDisplay)
 process.display = cms.Path(process.GifDisplay)
@@ -453,12 +475,14 @@ process.p1 = cms.Path(process.unpacksequence)
 #      process.l1sequence += process.simMuonGEMPadDigiClusters
 #redefine the l1 sequence 
 process.l1sequence = cms.Sequence(
-       process.simMuonGEMPadDigis *
-       process.simMuonGEMPadDigiClusters *
        l1csc *
        #process.simCscTriggerPrimitiveDigisRun2
        process.simCscTriggerPrimitiveDigisRun3CCLUTv0
        )
+## GEM pad emulation needs GEM strip digis: simMuonGEMDigis (MC) or muonGEMDigis (l1GEM,
+## needs unpackGEM). For data without l1GEM the CSC emulator uses the OTMB GEM clusters.
+if options.mc or options.l1GEM:
+       process.l1sequence.insert(0, process.simMuonGEMPadDigis * process.simMuonGEMPadDigiClusters)
 
 process.p2 = cms.Path(process.l1sequence)
 

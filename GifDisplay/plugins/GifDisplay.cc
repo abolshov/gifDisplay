@@ -349,7 +349,8 @@ void GifDisplay::analyze(const edm::Event& iEvent,
   // edm::EventId evId=iEvent.id();
   // unsigned int time=iEvent.time().unixTime();
 
-  double Run, Event;
+  edm::RunNumber_t Run;
+  edm::EventNumber_t Event;
   Run = iEvent.id().run();
   Event = iEvent.id().event();
 
@@ -753,7 +754,13 @@ void GifDisplay::analyze(const edm::Event& iEvent,
     cout << "Event " << Event << " collecting  GEMPadDigi " << endl;
   edm::Handle<GEMPadDigiCollection> gempads_;
   iEvent.getByToken(gemPadTagSrc, gempads_);
-  GEMPadDigiCollection gempads = *gempads_.product();
+  // GEM pads only exist when simMuonGEMPadDigis runs (emulator path); data has none
+  GEMPadDigiCollection gempads;
+  if (gempads_.isValid())
+    gempads = *gempads_.product();
+  else if (doDebug > 0)
+    cout << "Event " << Event << " no GEMPadDigi collection, skip GEM pads"
+         << endl;
 
   for (auto it = gempads.begin(); it != gempads.end(); ++it) {
     const GEMDetId& id = (*it).first;
@@ -803,7 +810,11 @@ void GifDisplay::analyze(const edm::Event& iEvent,
   iEvent.getByToken(gemPadClusterTagSrc, gemclusters);
   if (doDebug > 1)
     cout << "Event " << Event << " collecting  GEMClusters " << endl;
-  fillGEMCluster(*gemclusters.product(), gemcluster_container);
+  if (gemclusters.isValid())
+    fillGEMCluster(*gemclusters.product(), gemcluster_container);
+  else if (doDebug > 0)
+    cout << "Event " << Event
+         << " no GEMPadDigiCluster collection, skip GEM clusters" << endl;
 
   // ALCT
   edm::Handle<CSCALCTDigiCollection> alcts_emul;
@@ -858,6 +869,16 @@ void GifDisplay::analyze(const edm::Event& iEvent,
 
     if (doDebug > 0)
       cout << "Start to display event " << eventL << " " << tmpId << endl;
+
+    std::cout << "clct_container.size()=" << clct_container.size() << ", "
+              << "clct_emul_container.size()=" << clct_emul_container.size() << std::endl;
+
+    std::cout << "lct_container.size()=" << lct_container.size() << ", "
+              << "lct_emul_container.size()=" << lct_emul_container.size() << std::endl;
+
+    std::cout << "alct_container.size()=" << alct_container.size() << ", "
+              << "alct_emul_container.size()=" << alct_emul_container.size() << std::endl;
+
 
     WireStripDisplay(eventDisplayDir, tmpId, simhit_container,
                      simtrack_container, wire_container, strip_container,
