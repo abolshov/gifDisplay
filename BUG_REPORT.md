@@ -259,7 +259,10 @@ Other notable issues: SimHit wire groups are offset by +1 WG from the wire digis
   - All MC jobs: the "Data" (file or first-emulator) stubs are never printed. With `mc=true l1=false` (the setup documented as verified in `CLAUDE.md`), the text pad contains only the chamber line.
 - **Fix:** Always print the `compareA` stubs, and print `compareB` only when `addEmulation`.
 
-### I-7 — Fixed-size `stringstream` arrays overflow with more than 10 stubs (or 100 GEM clusters) — **Medium**
+### I-7 — Fixed-size `stringstream` arrays overflow with more than 10 stubs (or 100 GEM clusters) — **Medium** — **partly fixed 2026-11-12**
+> **Fixed for the CSC stub lines:** the text block was rewritten (`addStubLines` in `display.cc`) with one local
+> `stringstream` per line, so any number of ALCT/CLCT/LCTs is safe. **Still open:** `displaygem.cc` `ss_clusters[100]`.
+
 - **Where:** `display.cc:266` `ss_alcts[10]`, `:276` `ss_clcts[10]`, `:287` `ss_lcts[10]`, `:303`, `:312`, `:323` (`*_emul[10]`), each indexed by stub number. `displaygem.cc:156` `ss_clusters[100]`, indexed by `iclst`.
 - **Consequence:** Because all BXs are kept (I-3), a chamber can exceed 10 stubs of one type. For example, two ALCTs per BX over a 7-BX readout window gives up to 14. The array is then written past its end on the stack (undefined behaviour: corrupted output or a crash).
 - **Fix:** Use a local `std::ostringstream` per line (`tex1->AddText(os.str().c_str())`); no arrays are needed.
@@ -304,7 +307,15 @@ Other notable issues: SimHit wire groups are offset by +1 WG from the wire digis
 - `HalfStripToPad` is unused.
 - **Fix:** Load each LUT once into `std::vector<int>` (or use CMSSW's `CSCL1TPLookupTableME11ILT` via the EventSetup, which the emulator already uses).
 
-### I-13 — `SetHistContour` level mapping merges time bins 0 and 1 — **Low**
+### I-13 — `SetHistContour` level mapping merges time bins 0 and 1 — **Low** — **fixed 2026-11-11 for the wire/comparator panels**
+> Verified with a ROOT test of the exact palette/levels: time bins 0 and 1 were **white** (only the
+> number visible, e.g. "0.1"), and 3/4, 6/7, 9/10, 12/13, 15/16 shared colours. The Anode Hits and
+> Comparator Hits panels now draw each cell as a `TBox` with one colour per time bin
+> (`kTimeBinColors`, 16 colours), the time bin as a white integer label ("0" instead of "0.1"), and a
+> 16-step "time bin" key in the right margin (`DrawTimeBinCells` in `display.cc`). On 2026-11-12 the strip
+> ADC panel got the same treatment (`DrawADCCells`: 10 bands of 50 ADC with a "max ADC" key); its old
+> 499-level mapping drew ADC < ~46 in white. The GE plots still use the global palette.
+
 - **Where:** `display.cc:1279-1294`. For (0, 16): `levels = {0, 1.067, 2.13, …, 16}`.
 - **Consequence:** Time bin 0 (stored as 0.1) and time bin 1 fall in the same contour (same colour). Integer bins map to 16 levels non-uniformly. For (1, 500) there are 499 levels, which with a discrete palette gives coarse colour steps.
 - **Fix:** Use `levels[i] = Min + i` for integer quantities, or `SetContour(N)` with `SetMinimum`/`SetMaximum`.
@@ -423,7 +434,7 @@ Each item lists: what the code does, where it is, why it is suspicious or unclea
 
 ### S-8 — The "time = 0 → 0.1" trick
 - **What and where:** `display.cc:976-978`, `:1055-1057`; `displaygem.cc:337-339`.
-- **Why suspicious:** It exists so that time bin 0 is distinguishable from an empty bin, but with the contour levels of I-13 it gets the same colour as time bin 1.
+- **Why suspicious:** It exists so that time bin 0 is distinguishable from an empty bin, but with the contour levels of I-13 it gets the same colour as time bin 1. (Since the I-13 fix the wire/comparator panels show time bin 0 in its own colour, labelled "0"; the 0.1 storage is kept.)
 - **Question:** Would an explicit "empty" value (e.g. −1 with `SetMinimum(-0.5)`) be cleaner?
 
 ### S-9 — `Run3CCLUTv0` emulator-clone parameter choices

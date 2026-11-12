@@ -14,6 +14,10 @@ ARGS=(
     "runME11ILT=true"
     "saveEdmOutput=false"
     "doGEMCSC=false"
+    "doGEMDisplay=true"           # false: no GE1/1 plots (emulation unchanged)
+    "addRecHits=false"            # true: run CSC local reco, show rechits + segments (data only)
+    "overlayRecHits=true"         # with addRecHits: false = rechits on page 2 of the pdf
+    "plotDataStubBorders=true"    # with l1=true: false = no dashed data-stub outlines
     # "inputFiles=file:/eos/cms/store/group/upgrade/GEMCSC_Trigger_PhaseII/Phase2Spring24_DYtoLL50_00d881de-dccf-4232-b4a7-39083949f5fd.root"
     "inputFiles=file:/eos/cms/store/data/Run2026D/Muon0/RAW/v1/000/403/775/00001/d2fef35b-ee86-4a98-87db-6d2786bd8e40.root"
     # "inputFiles=file:/eos/cms/store/data/Run2026D/Muon0/RAW-RECO/ZMu-PromptReco-v1/000/403/567/00000/0766bd68-6506-422c-80af-d7ad017dbe07.root"

@@ -202,6 +202,8 @@ class GifDisplay : public edm::one::EDAnalyzer<edm::one::SharedResources> {
   bool addEmulation;
   bool addSimHits;
   bool addRecHits;
+  bool overlayRecHits;       // rechits on the hit panels, else on a 2nd page
+  bool plotDataStubBorders;  // dashed data-stub outlines with emulation
   bool doGEMDisplay;
   bool doGEMCSC;
 };
@@ -265,6 +267,9 @@ GifDisplay::GifDisplay(const edm::ParameterSet& iConfig)
       iConfig.getUntrackedParameter<edm::InputTag>("corrlctDigiTagSrc_Emul"));
 
   addRecHits = iConfig.getUntrackedParameter<bool>("addRecHits", false);
+  overlayRecHits = iConfig.getUntrackedParameter<bool>("overlayRecHits", true);
+  plotDataStubBorders =
+      iConfig.getUntrackedParameter<bool>("plotDataStubBorders", true);
   if (addRecHits) {
     cscRecHitTagSrc = consumes<CSCRecHit2DCollection>(
         iConfig.getUntrackedParameter<edm::InputTag>(
@@ -978,7 +983,9 @@ void GifDisplay::analyze(const edm::Event& iEvent,
                      lct_emul_container, usedChamber, Run, Event, addEmulation,
                      compareA, compareB,
                      rechit_map[CSCDetId(endcapL, stationL, ringL, chamberL)],
-                     segment_map[CSCDetId(endcapL, stationL, ringL, chamberL)]);
+                     segment_map[CSCDetId(endcapL, stationL, ringL, chamberL)],
+                     plotDataStubBorders, addRecHits && overlayRecHits,
+                     addRecHits && !overlayRecHits);
     // if (stationL == 1 and (ringL== 1 or ringL==2))
     if (doGEMDisplay and stationL == 1 and (ringL == 1)) {  // only GE11 now
       if (doDebug)

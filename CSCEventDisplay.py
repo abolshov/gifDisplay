@@ -59,6 +59,12 @@ options.register("doGEMDisplay", True, VarParsing.multiplicity.singleton, VarPar
 options.register("addRecHits", False, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
                  "Set to True to run CSC local reco (csc2DRecHits, cscSegments) and overlay the "
                  "rechits and segments on the wire, strip and comparator panels. Data only.")
+options.register("overlayRecHits", True, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
+                 "With addRecHits: True = rechits and segments on the Anode/Strip/Comparator panels; "
+                 "False = 2-page pdf, page 1 without rechits, page 2 with RecHit wire/strip panels.")
+options.register("plotDataStubBorders", True, VarParsing.multiplicity.singleton, VarParsing.varType.bool,
+                 "With re-emulation: True = data stubs as dashed outlines on top of the emulator boxes; "
+                 "False = only the emulator boxes.")
 options.parseArguments()
 process_era = Run3
 # process_era = Phase2C17I13M9
@@ -404,6 +410,8 @@ doGEMCSC = cms.untracked.bool(options.doGEMCSC),
 addRecHits = cms.untracked.bool(options.addRecHits and not options.mc),
 cscRecHitTagSrc = cms.untracked.InputTag("csc2DRecHits"),
 cscSegmentTagSrc = cms.untracked.InputTag("cscSegments"),
+overlayRecHits = cms.untracked.bool(options.overlayRecHits),
+plotDataStubBorders = cms.untracked.bool(options.plotDataStubBorders),
 #doGEMDisplay = cms.untracked.bool(options.runME11ILT or options.runME21ILT or options.l1GEM),
 #doGEMDisplay = cms.untracked.bool(options.doGEMCSC),
 doGEMDisplay = cms.untracked.bool(options.doGEMDisplay and (options.runME11ILT or options.runME21ILT or options.l1GEM or options.doGEMCSC)),

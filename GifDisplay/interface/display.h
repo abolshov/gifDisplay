@@ -8,6 +8,7 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <set>
 #include <vector>
 
 #include "TF1.h"
@@ -45,9 +46,29 @@ void WireStripDisplay(TString address, CSCDetID id, vector<SIMHIT>& simhits,
                       bool addEmulation, TString compareA, TString compareB,
                       const vector<RecHitPoint>& rechits,
                       const vector<SegmentLine>& segments,
-                      int doDebug = 0);
+                      bool plotDataStubBorders, bool overlayRecHits,
+                      bool recHitPage, int doDebug = 0);
+// CFEB boundaries (dashed, solid at the ME1b/ME1a border) on the current pad
+void DrawCFEBBorders(CSCDetID id, int nCFEB, std::vector<TObject*>& objects);
+// "RecoSeg #i ..." lines (segment colours) and the rechit marker legend
+void AddSegmentLines(CSCDetID id, const vector<RecHitPoint>& rechits,
+                     const vector<SegmentLine>& segments, TPaveText* text);
 // rec-hit markers and segment lines on a panel; axis: 0 = wire group,
 // 1 = strip, 2 = comparator half-strip
+// cells of a time-bin histogram (wire/comparator panels): one colour per time
+// bin, the time bin written in white, and a colour key in the right margin
+void DrawTimeBinCells(TH2F* hist, std::vector<TObject*>& objects);
+// ALCT (kind 0) or CLCT (kind 1) boxes, one per stub, on the given layers;
+// tagged: hatched with an outline and an "A<i>"/"C<i>" tag in the stub colour,
+// otherwise a two-tone (black on white) dashed outline only
+void DrawStubBoxes(TH2F* frame, int kind, vector<CorrelatedLCT>& stubs,
+                   const std::set<int>& layers, bool tagged,
+                   std::vector<TObject*>& objects);
+// strip panel cells coloured by max ADC (50-count bands) with a colour key
+void DrawADCCells(TH2F* hist, std::vector<TObject*>& objects);
+void DrawColorKey(const std::vector<int>& colors,
+                  const std::vector<TString>& labels, const char* title,
+                  std::vector<TObject*>& objects);
 void RecoOverlay(CSCDetID id, int axis, const vector<RecHitPoint>& rechits,
                  const vector<SegmentLine>& segments,
                  std::vector<TObject*>& overlays);

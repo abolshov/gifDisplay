@@ -10,7 +10,8 @@
 #include <iostream>
 #include <iterator>
 #include <list>
-#include <map>  // design mark: added for std::map in overlay functions
+#include <map>
+#include <set>  // design mark: added for std::map in overlay functions
 #include <string>
 #include <vector>
 
@@ -33,11 +34,38 @@
 #include "TMarker.h"
 #include "TPolyLine.h"
 #include "TLine.h"
+#include "TBox.h"
+#include "TColor.h"
 
 // line colors of CSC segments (RecoOverlay and the text panel)
 static const int kSegmentColors[] = {kRed, kMagenta + 1, kBlue, kOrange + 7,
                                      kCyan + 2};
 static const int kNSegmentColors = 5;
+
+// per-stub colours linking ALCT/CLCT boxes to their text lines (stub i gets
+// colour i); dark so they read on the bright time-bin cells and differ from the
+// segment colours
+static const int kStubColors[] = {kBlack, kGreen + 3, kOrange + 3, kAzure + 3,
+                                  kViolet + 3};
+static const int kNStubColors = 5;
+static int StubColor(int i) { return kStubColors[i % kNStubColors]; }
+
+// one colour per time bin 0-15 on the Anode Hits and Comparator Hits panels:
+// bright, but mid-tone so the white labels stay readable; later bins get the
+// last colour
+static const char* kTimeBinColorsHex[] = {
+    "#9e9e9e", "#c8742e", "#e8483b", "#ff2d2d", "#ff8c00", "#c9a800",
+    "#7cc42e", "#22b14c", "#12b5a5", "#1ea7f0", "#3a6dff", "#6a4dff",
+    "#a64dff", "#e03ae6", "#ff4f9a", "#4a4a4a"};
+static const int kNTimeBinColors = 16;
+
+// strip panel: max ADC in bands of kADCBandWidth counts, light (low) to dark
+// (high); the last colour is for everything above
+static const char* kADCColorsHex[] = {"#fed976", "#feb24c", "#fd8d3c",
+                                      "#fc4e2a", "#e31a1c", "#bd0026",
+                                      "#800026", "#67001f", "#4a0014",
+                                      "#2b000b"};
+static const double kADCBandWidth = 50.;
 
 vector<CorrelatedLCT> findStubsInChamber(CSCDetID id,
                                          vector<CSCIDLCTs> alllcts) {
@@ -65,6 +93,7 @@ void WireStripDisplay(
     // int type,
     edm::RunNumber_t Run, edm::EventNumber_t Event, bool addEmulation, TString compareA, TString compareB,
     const vector<RecHitPoint>& rechits, const vector<SegmentLine>& segments,
+    bool plotDataStubBorders, bool overlayRecHits, bool recHitPage,
     int doDebug) {
   const int alct_bx_offset = 5;  // ALCT BX offset
   const int clct_bx_offset = 1;  // CLCT BX offset
@@ -80,6 +109,8 @@ void WireStripDisplay(
   std::vector<TObject*> wireOverlays;
   std::vector<TObject*> recoOverlays;  // CSC rechits and segments
   std::vector<TObject*> cfebBorders;   // CFEB boundaries on the strip panel
+  std::vector<TObject*> stubBoxes;     // per-stub ALCT/CLCT boxes and tags
+  std::vector<TObject*> timeBinCells;  // wire/comparator/strip cells, labels, keys
   static bool paletteDone = false;
   if (!paletteDone) {
     const int N = 11;  // allocate up to index 10
@@ -216,8 +247,7 @@ void WireStripDisplay(
         cfebNotReadOut, cfebNotInstall_me21, cfebNotReadOut_comparator,
         cfebNotInstall_comparator_me21, cfebNotInstall_comparator_me11);
     SetTitle(pt3, "Strip Hits and ADC Count");
-    stripDis->Draw("COLZ");
-    stripDis_text->Draw("text same");
+    DrawADCCells(stripDis, timeBinCells);
     cfebNotReadOut->Draw("B same");
     if (id.Station == 2) {
       //              cfebNotInstall_me21->Draw("B same");
@@ -225,19 +255,8 @@ void WireStripDisplay(
       //                        cfebNotInstall_me11->Draw("B same");
     }
   }
-  // CFEB borders: 16 strips per CFEB, strip s drawn at [s, s+1), so CFEB k
-  // starts at x = 16*k + 1; in ME1/1 the ME1b/ME1a border (strip 65) is solid
-  for (int k = 1; k < nCFEB; k++) {
-    const double x = 16 * k + 1;
-    TLine* border = new TLine(x, 1, x, 7);
-    const bool me1aBorder = id.Station == 1 && id.Ring == 1 && k == 4;
-    border->SetLineStyle(me1aBorder ? 1 : 2);
-    border->SetLineWidth(me1aBorder ? 3 : 2);
-    border->SetLineColor(kBlack);
-    border->Draw();
-    cfebBorders.push_back(border);
-  }
-  RecoOverlay(id, 1, rechits, segments, recoOverlays);
+  DrawCFEBBorders(id, nCFEB, cfebBorders);
+  if (overlayRecHits) RecoOverlay(id, 1, rechits, segments, recoOverlays);
   pt3->Draw();
 
   TH2F* simhitWireDis =
@@ -286,37 +305,6 @@ void WireStripDisplay(
   // tex1->AddText("Type3: Matched ALCT & Matched CLCT, but no matched LCT");
   tex1->AddText(ss.str().c_str());
 
-  stringstream ss_alcts[10];
-  // yumeng:
-  // data stubs are listed with or without emulation (not for MC with sim hits)
-  if (!doSimHit) {
-    for (unsigned int ilct = 0; ilct < alcts.size(); ilct++) {
-      ss_alcts[ilct] << compareA << " #" << ilct << " ALCT keyWg "
-                     << alcts[ilct].keyWG << " Quality " << alcts[ilct].quality
-                     << " Pattern " << alcts[ilct].pattern << " bx "
-                     << (alcts[ilct].BX);
-      tex1->AddText(ss_alcts[ilct].str().c_str());
-    }
-    stringstream ss_clcts[10];
-    for (unsigned int ilct = 0; ilct < clcts.size(); ilct++) {
-      ss_clcts[ilct] << compareA << " #" << ilct << " CLCT HS "
-                     << clcts[ilct].keyStrip << " Quality "
-                     << clcts[ilct].quality << " Pattern "
-                     << clcts[ilct].pattern << " Run3_Pattern "
-                     << clcts[ilct].run3_pattern << " CC 0x" << std::hex
-                     << clcts[ilct].CC << std::dec << " bx "
-                     << (clcts[ilct].BX);
-      tex1->AddText(ss_clcts[ilct].str().c_str());
-    }
-    stringstream ss_lcts[10];
-    for (unsigned int ilct = 0; ilct < lcts.size(); ilct++) {
-      ss_lcts[ilct] << compareA << " #" << ilct << " LCT keyWg "
-                    << lcts[ilct].keyWG << " HS " << lcts[ilct].keyStrip
-                    << " Quality " << lcts[ilct].quality << " Pattern "
-                    << lcts[ilct].pattern << " bx " << lcts[ilct].BX;
-      tex1->AddText(ss_lcts[ilct].str().c_str());
-    }
-  }
   vector<CorrelatedLCT> alcts_emul;
   vector<CorrelatedLCT> clcts_emul;
   vector<CorrelatedLCT> lcts_emul;
@@ -324,37 +312,61 @@ void WireStripDisplay(
     alcts_emul = findStubsInChamber(id, allalcts_emul);
     clcts_emul = findStubsInChamber(id, allclcts_emul);
     lcts_emul = findStubsInChamber(id, alllcts_emul);
-    stringstream ss_alcts_emul[10];
-    for (unsigned int ilct = 0; ilct < alcts_emul.size(); ilct++) {
-      ss_alcts_emul[ilct] << compareB << " #" << ilct << " ALCT keyWg "
-                          << alcts_emul[ilct].keyWG << " Quality "
-                          << alcts_emul[ilct].quality << " Pattern "
-                          << alcts_emul[ilct].pattern << " bx "
-                          << (alcts_emul[ilct].BX + alct_bx_offset);
-      tex1->AddText(ss_alcts_emul[ilct].str().c_str());
-    }
-    stringstream ss_clcts_emul[10];
-    for (unsigned int ilct = 0; ilct < clcts_emul.size(); ilct++) {
-      ss_clcts_emul[ilct] << compareB << " #" << ilct << " CLCT HS "
-                          << clcts_emul[ilct].keyStrip << " Quality "
-                          << clcts_emul[ilct].quality << " Pattern "
-                          << clcts_emul[ilct].pattern << " Run3_Pattern "
-                          << clcts_emul[ilct].run3_pattern << " CC 0x"
-                          << std::hex << clcts_emul[ilct].CC << std::dec
-                          << " bx " << (clcts_emul[ilct].BX + clct_bx_offset);
-      tex1->AddText(ss_clcts_emul[ilct].str().c_str());
-    }
-    stringstream ss_lcts_emul[10];
-    for (unsigned int ilct = 0; ilct < lcts_emul.size(); ilct++) {
-      ss_lcts_emul[ilct] << compareB << " #" << ilct << " LCT keyWg "
-                         << lcts_emul[ilct].keyWG << " HS "
-                         << lcts_emul[ilct].keyStrip << " Quality "
-                         << lcts_emul[ilct].quality << " Pattern "
-                         << lcts_emul[ilct].pattern << " bx "
-                         << lcts_emul[ilct].BX;
-      tex1->AddText(ss_lcts_emul[ilct].str().c_str());
-    }
   }
+  // the boxes show the Emul stubs with emulation, the Data stubs without; that
+  // set is tagged A<i>/C<i> in the colour of its box, and its LCT lines name the
+  // ALCT/CLCT with the same key wire group / key half-strip
+  tex1->AddText(!addEmulation ? "Boxes: " + compareA + " stubs (tagged)"
+                : plotDataStubBorders
+                    ? "Boxes: " + compareB + " stubs (tagged), dashed: " +
+                          compareA + " stubs"
+                    : "Boxes: " + compareB + " stubs (tagged)");
+  auto addStubLines = [&](const TString& label, const vector<CorrelatedLCT>& a,
+                          const vector<CorrelatedLCT>& c,
+                          const vector<CorrelatedLCT>& l, int alctBxOffset,
+                          int clctBxOffset, bool tagged) {
+    for (unsigned int i = 0; i < a.size(); i++) {
+      stringstream line;
+      if (tagged) line << "A" << i << "   ";
+      line << label << " #" << i << " ALCT keyWg " << a[i].keyWG << " Quality "
+           << a[i].quality << " Pattern " << a[i].pattern << " bx "
+           << a[i].BX + alctBxOffset;
+      TText* t = tex1->AddText(line.str().c_str());
+      if (tagged) t->SetTextColor(StubColor(i));
+    }
+    for (unsigned int i = 0; i < c.size(); i++) {
+      stringstream line;
+      if (tagged) line << "C" << i << "   ";
+      line << label << " #" << i << " CLCT HS " << c[i].keyStrip << " Quality "
+           << c[i].quality << " Pattern " << c[i].pattern << " Run3_Pattern "
+           << c[i].run3_pattern << " CC 0x" << std::hex << c[i].CC << std::dec
+           << " bx " << c[i].BX + clctBxOffset;
+      TText* t = tex1->AddText(line.str().c_str());
+      if (tagged) t->SetTextColor(StubColor(i));
+    }
+    for (unsigned int i = 0; i < l.size(); i++) {
+      stringstream line;
+      line << label << " #" << i << " LCT keyWg " << l[i].keyWG << " HS "
+           << l[i].keyStrip << " Quality " << l[i].quality << " Pattern "
+           << l[i].pattern << " bx " << l[i].BX;
+      if (tagged) {
+        int ia = -1, ic = -1;
+        for (unsigned int j = 0; j < a.size() && ia < 0; j++)
+          if (a[j].keyWG == l[i].keyWG) ia = j;
+        for (unsigned int j = 0; j < c.size() && ic < 0; j++)
+          if (c[j].keyStrip == l[i].keyStrip) ic = j;
+        if (ia >= 0 || ic >= 0)
+          line << "  = " << (ia >= 0 ? "A" + std::to_string(ia) : "A?") << " + "
+               << (ic >= 0 ? "C" + std::to_string(ic) : "C?");
+      }
+      tex1->AddText(line.str().c_str());
+    }
+  };
+  // data stubs are listed with or without emulation (not for MC with sim hits)
+  if (!doSimHit) addStubLines(compareA, alcts, clcts, lcts, 0, 0, !addEmulation);
+  if (addEmulation)
+    addStubLines(compareB, alcts_emul, clcts_emul, lcts_emul, alct_bx_offset,
+                 clct_bx_offset, true);
   /*
           if (lcts.size() >= 1){
               stringstream ss_lct1;
@@ -370,27 +382,7 @@ void WireStripDisplay(
      lcts[1].pattern; tex1->AddText(ss_lct2.str().c_str());
           }
           */
-  // CSC segments, key positions on layer 3 in LCT units (0-based half-strip and
-  // wire group); like the CLCT key half-strip, it includes the +1 half-strip
-  // stagger of layer 3 outside ME1/1
-  const int keyLayerStagger =
-      (id.Station == 1 && (id.Ring == 1 || id.Ring == 4)) ? 0 : 1;
-  for (unsigned int iseg = 0; iseg < segments.size(); iseg++) {
-    const SegmentLine& seg = segments[iseg];
-    stringstream ss_seg;
-    ss_seg << "RecoSeg #" << iseg << " nHits " << seg.nHits << " chi2/ndof "
-           << std::fixed << std::setprecision(1) << seg.chi2 << "/" << seg.ndof;
-    for (unsigned int j = 0; j < seg.layer.size(); j++) {
-      if (seg.layer[j] != 3) continue;
-      ss_seg << " key HS " << int(2 * seg.strip[j]) + keyLayerStagger
-             << " key WG "
-             << seg.wireGroup[j] - 1;
-    }
-    tex1->AddText(ss_seg.str().c_str())
-        ->SetTextColor(kSegmentColors[iseg % kNSegmentColors]);
-  }
-  if (!rechits.empty())
-    tex1->AddText("RecHits: filled = on a RecoSeg, open = not on a segment");
+  if (overlayRecHits) AddSegmentLines(id, rechits, segments, tex1);
   tex1->Draw();
 
   // strip hit display
@@ -449,18 +441,21 @@ void WireStripDisplay(
   wireDis->GetZaxis()->SetTitleSize(0.08);
   wireDis->GetZaxis()->SetTitleOffset(0.6);
   wireDis->SetMarkerSize(2);
-  wireDis->Draw("COLZ text");
-  wireDis_text->Draw("text same");
-  alctDis->SetMarkerSize(2);
-  alctDis->SetFillStyle(3244);
-  alctDis->SetFillColorAlpha(kBlack, 0.5);
-  alctDis->SetLineWidth(2);
-  alctDis->Draw("BOX SAME");
-  RecoOverlay(id, 0, rechits, segments, recoOverlays);
+  DrawTimeBinCells(wireDis, timeBinCells);
+  // ALCT boxes, one per stub: the drawn set tagged, the other set dashed on top
+  // (so a matching data stub shows as a dashed line along the emulator box)
+  std::set<int> wireLayers;
+  for (int i : layer_wire) wireLayers.insert(int(wire[i].first.Layer));
+  DrawStubBoxes(alctDis, 0, addEmulation ? alcts_emul : alcts, wireLayers, true,
+                stubBoxes);
+  if (addEmulation && plotDataStubBorders)
+    DrawStubBoxes(alctDis, 0, alcts, wireLayers, false, stubBoxes);
+  if (overlayRecHits) RecoOverlay(id, 0, rechits, segments, recoOverlays);
   pt2->Draw();
 
   // comparator display
   c1->cd(padComparator)->SetGridy();
+  gPad->SetTopMargin(0.15);  // room for the CLCT tags below the panel title
   gPad->SetBottomMargin(0.2);
   TPaveText* pt4 = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
   TH2F* comparatorDis =
@@ -482,13 +477,16 @@ void WireStripDisplay(
   wireDis->GetZaxis()->SetTitle("BX");
   wireDis->GetZaxis()->SetTitleSize(0.08);
   wireDis->GetZaxis()->SetTitleOffset(0.6);
-  comparatorDis->Draw("COLZtext");
-  clctDis->SetMarkerSize(2);
-  clctDis->SetFillStyle(3244);
-  clctDis->SetFillColorAlpha(kBlack, 0.5);
-  clctDis->SetLineWidth(2);
-  clctDis->Draw("BOX SAME");
-  RecoOverlay(id, 2, rechits, segments, recoOverlays);
+  DrawTimeBinCells(comparatorDis, timeBinCells);
+  // CLCT boxes, one per stub: the drawn set tagged, the other set dashed on top
+  std::set<int> comparatorLayers;
+  for (int i : layer_comparator)
+    comparatorLayers.insert(int(comparator[i].first.Layer));
+  DrawStubBoxes(clctDis, 1, addEmulation ? clcts_emul : clcts, comparatorLayers,
+                true, stubBoxes);
+  if (addEmulation && plotDataStubBorders)
+    DrawStubBoxes(clctDis, 1, clcts, comparatorLayers, false, stubBoxes);
+  if (overlayRecHits) RecoOverlay(id, 2, rechits, segments, recoOverlays);
 
   //          cfebNotInstall->Draw("B same");
   //          cfebNotReadOut_comparator->Draw("B same");
@@ -504,8 +502,54 @@ void WireStripDisplay(
 
   c1->Update();
   // c1->SaveAs(name + ".png");
-  c1->SaveAs(name + ".pdf");
   // c1->SaveAs(name + ".C");
+  std::vector<TObject*> recHitPageObjects;  // page 2 (overlayRecHits = false)
+  if (!recHitPage) {
+    c1->SaveAs(name + ".pdf");
+  } else {
+    // page 1: the usual plot without rechits; page 2: rechit panels with the
+    // same axes as Anode Hits / Strip Hits, and the segment lines
+    c1->Print(name + ".pdf(");
+    TCanvas* c2 = new TCanvas("c2", "c2", 0, 0, 600, 800);
+    c2->Divide(1, 3);
+    c2->cd(1)->SetGridy();
+    gPad->SetTopMargin(0.15);
+    gPad->SetBottomMargin(0.2);
+    TH2F* recHitWireFrame = (TH2F*)wireDis->Clone("recHitWireFrame");
+    recHitWireFrame->Reset();
+    recHitWireFrame->GetYaxis()->SetTitleOffset(0.3);  // taller pads than page 1
+    recHitWireFrame->Draw("AXIS");
+    RecoOverlay(id, 0, rechits, segments, recHitPageObjects);
+    TPaveText* ptWire = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
+    SetTitle(ptWire, "RecHit Wire Groups");
+    ptWire->Draw();
+    c2->cd(2)->SetGridy();
+    gPad->SetTopMargin(0.15);
+    gPad->SetBottomMargin(0.2);
+    TH2F* recHitStripFrame = (TH2F*)stripDis->Clone("recHitStripFrame");
+    recHitStripFrame->Reset();
+    recHitStripFrame->GetYaxis()->SetTitleOffset(0.3);  // taller pads than page 1
+    recHitStripFrame->Draw("AXIS");
+    DrawCFEBBorders(id, nCFEB, recHitPageObjects);
+    RecoOverlay(id, 1, rechits, segments, recHitPageObjects);
+    TPaveText* ptStrip = new TPaveText(0.4, .90, 0.6, 0.96, "NDC");
+    SetTitle(ptStrip, "RecHit Strips");
+    ptStrip->Draw();
+    c2->cd(3);
+    gPad->SetTopMargin(0.0);
+    gPad->SetBottomMargin(0.0);
+    TPaveText* tex2 = new TPaveText(0.1, 0.0, 0.9, 1.0, "NDC");
+    tex2->AddText(ss.str().c_str());
+    AddSegmentLines(id, rechits, segments, tex2);
+    if (segments.empty() && rechits.empty()) tex2->AddText("no CSC rechits in this chamber");
+    tex2->Draw();
+    c2->Update();
+    c2->Print(name + ".pdf)");
+    recHitPageObjects.insert(recHitPageObjects.end(),
+                             {ptWire, ptStrip, tex2, recHitWireFrame,
+                              recHitStripFrame});
+    delete c2;
+  }
 
   // design mark: clean up overlay objects to prevent memory leaks
   auto destroy = [](std::vector<TObject*>& v) {
@@ -516,6 +560,9 @@ void WireStripDisplay(
   destroy(wireOverlays);
   destroy(recoOverlays);
   destroy(cfebBorders);
+  destroy(timeBinCells);
+  destroy(stubBoxes);
+  destroy(recHitPageObjects);
 
   delete c1;
   delete wireDis;
@@ -1700,4 +1747,230 @@ void RecoOverlay(CSCDetID id, int axis, const vector<RecHitPoint>& rechits,
     marker->Draw();
     overlays.push_back(marker);
   }
+}
+
+// colour key in the right margin of the current pad: one box per colour,
+// first colour at the bottom; empty labels are not drawn
+void DrawColorKey(const std::vector<int>& colors,
+                  const std::vector<TString>& labels, const char* title,
+                  std::vector<TObject*>& objects) {
+  const double xmin = gPad->GetUxmin(), xmax = gPad->GetUxmax();
+  const double ymin = gPad->GetUymin(), ymax = gPad->GetUymax();
+  const double x1 = xmax + 0.015 * (xmax - xmin);
+  const double x2 = xmax + 0.04 * (xmax - xmin);
+  const double dy = (ymax - ymin) / colors.size();
+  for (unsigned int i = 0; i < colors.size(); i++) {
+    TBox* key = new TBox(x1, ymin + i * dy, x2, ymin + (i + 1) * dy);
+    key->SetFillColor(colors[i]);
+    key->SetLineColor(colors[i]);
+    key->Draw();
+    objects.push_back(key);
+    if (i < labels.size() && labels[i] != "") {
+      TLatex* keyLabel = new TLatex(x2 + 0.005 * (xmax - xmin),
+                                    ymin + (i + 0.5) * dy, labels[i]);
+      keyLabel->SetTextAlign(12);
+      keyLabel->SetTextSize(0.06);
+      keyLabel->Draw();
+      objects.push_back(keyLabel);
+    }
+  }
+  TLatex* keyTitle = new TLatex(x1, ymax + 0.025 * (ymax - ymin), title);
+  keyTitle->SetTextAlign(11);
+  keyTitle->SetTextSize(0.06);
+  keyTitle->Draw();
+  objects.push_back(keyTitle);
+}
+
+// filled box for histogram bin (ix, iy)
+static TBox* CellBox(TH2F* hist, int ix, int iy, int color) {
+  TBox* cell = new TBox(hist->GetXaxis()->GetBinLowEdge(ix),
+                        hist->GetYaxis()->GetBinLowEdge(iy),
+                        hist->GetXaxis()->GetBinUpEdge(ix),
+                        hist->GetYaxis()->GetBinUpEdge(iy));
+  cell->SetFillColor(color);
+  cell->SetLineColor(color);
+  cell->Draw();
+  return cell;
+}
+
+void DrawTimeBinCells(TH2F* hist, std::vector<TObject*>& objects) {
+  // cells: content = time bin (time bin 0 is stored as 0.1)
+  hist->Draw("AXIS");
+  gPad->Update();
+  for (int ix = 1; ix <= hist->GetNbinsX(); ix++) {
+    for (int iy = 1; iy <= hist->GetNbinsY(); iy++) {
+      const double value = hist->GetBinContent(ix, iy);
+      if (value <= 0) continue;
+      const int timeBin = int(value);
+      const int color = TColor::GetColor(
+          kTimeBinColorsHex[std::min(std::max(timeBin, 0), kNTimeBinColors - 1)]);
+      objects.push_back(CellBox(hist, ix, iy, color));
+      TLatex* label = new TLatex(hist->GetXaxis()->GetBinCenter(ix),
+                                 hist->GetYaxis()->GetBinCenter(iy),
+                                 Form("%d", timeBin));
+      label->SetTextAlign(22);
+      label->SetTextColor(kWhite);
+      label->SetTextFont(62);
+      label->SetTextSize(0.06);
+      label->Draw();
+      objects.push_back(label);
+    }
+  }
+
+  std::vector<int> colors;
+  for (const char* hex : kTimeBinColorsHex) colors.push_back(TColor::GetColor(hex));
+  std::vector<TString> labels(kNTimeBinColors, "");
+  for (int t = 0; t < kNTimeBinColors; t += 3) labels[t] = Form("%d", t);
+  labels[kNTimeBinColors - 1] = Form("%d+", kNTimeBinColors - 1);
+  DrawColorKey(colors, labels, "time bin", objects);
+  gPad->RedrawAxis();
+}
+
+void DrawADCCells(TH2F* hist, std::vector<TObject*>& objects) {
+  // cells: content = max ADC above pedestal of the strip (0 = below threshold)
+  hist->Draw("AXIS");
+  gPad->Update();
+  std::vector<int> colors;
+  for (const char* hex : kADCColorsHex) colors.push_back(TColor::GetColor(hex));
+  const int nBands = colors.size();
+  for (int ix = 1; ix <= hist->GetNbinsX(); ix++) {
+    for (int iy = 1; iy <= hist->GetNbinsY(); iy++) {
+      const double adc = hist->GetBinContent(ix, iy);
+      if (adc <= 0) continue;
+      const int band = std::min(int(adc / kADCBandWidth), nBands - 1);
+      objects.push_back(CellBox(hist, ix, iy, colors[band]));
+    }
+  }
+
+  std::vector<TString> labels(nBands, "");
+  for (int b = 0; b < nBands - 1; b += 2) labels[b] = Form("%d", int(b * kADCBandWidth));
+  labels[nBands - 1] = Form("%d+", int((nBands - 1) * kADCBandWidth));
+  DrawColorKey(colors, labels, "max ADC", objects);
+  gPad->RedrawAxis();
+}
+
+void DrawStubBoxes(TH2F* frame, int kind, vector<CorrelatedLCT>& stubs,
+                   const std::set<int>& layers, bool tagged,
+                   std::vector<TObject*>& objects) {
+  // tags already drawn; a stub close to one of them is added to that label
+  std::vector<std::pair<double, TLatex*>> tags;
+  const double xRange = frame->GetXaxis()->GetXmax() - frame->GetXaxis()->GetXmin();
+  for (unsigned int i = 0; i < stubs.size(); i++) {
+    // cells of this stub only, with the usual envelope shapes
+    vector<CorrelatedLCT> one(1, stubs[i]);
+    TH2F* cells = (TH2F*)frame->Clone("stubCells");
+    cells->Reset();
+    for (int layer : layers) {
+      if (kind == 0)
+        MakeOneLayerALCT(layer, cells, one);
+      else
+        MakeOneLayerCLCT(layer, cells, one);
+    }
+    const int color = tagged ? StubColor(i) : kGray + 2;
+    for (int iy = 1; iy <= cells->GetNbinsY(); iy++) {
+      int first = 0, last = 0;
+      for (int ix = 1; ix <= cells->GetNbinsX(); ix++) {
+        if (cells->GetBinContent(ix, iy) <= 0) continue;
+        if (first == 0) first = ix;
+        last = ix;
+      }
+      if (first == 0) continue;
+      const double x1 = cells->GetXaxis()->GetBinLowEdge(first);
+      const double x2 = cells->GetXaxis()->GetBinUpEdge(last);
+      const double y1 = cells->GetYaxis()->GetBinLowEdge(iy);
+      const double y2 = cells->GetYaxis()->GetBinUpEdge(iy);
+      if (tagged) {
+        TBox* hatch = new TBox(x1, y1, x2, y2);
+        hatch->SetFillStyle(3244);
+        hatch->SetFillColorAlpha(kBlack, 0.5);
+        hatch->Draw();
+        objects.push_back(hatch);
+      }
+      if (tagged) {
+        TBox* outline = new TBox(x1, y1, x2, y2);
+        outline->SetFillStyle(0);
+        outline->SetLineColor(color);
+        outline->SetLineWidth(2);
+        outline->Draw();
+        objects.push_back(outline);
+      } else {
+        // two-tone dashed outline (black dashes over a white line, visible on
+        // dark cells and the white background), drawn slightly inside the box
+        // so the coloured border of a matching tagged stub stays visible
+        const double dx = std::min(0.004 * xRange, 0.25 * (x2 - x1));
+        const double dy = 0.12 * (y2 - y1);
+        for (int pass = 0; pass < 2; pass++) {
+          TBox* outline = new TBox(x1 + dx, y1 + dy, x2 - dx, y2 - dy);
+          outline->SetFillStyle(0);
+          outline->SetLineColor(pass == 0 ? kWhite : kBlack);
+          outline->SetLineStyle(pass == 0 ? 1 : 2);
+          outline->SetLineWidth(2);
+          outline->Draw();
+          objects.push_back(outline);
+        }
+      }
+    }
+    delete cells;
+
+    if (tagged) {
+      // tag above the panel at the key wire group / key half-strip, each name
+      // in its stub colour; stubs close together share one label ("C1,C2")
+      const double x = (kind == 0 ? stubs[i].keyWG : stubs[i].keyStrip) + 0.5;
+      const TString name =
+          Form("#color[%d]{%s%d}", StubColor(i), kind == 0 ? "A" : "C", i);
+      TLatex* near = nullptr;
+      for (auto& t : tags)
+        if (std::abs(t.first - x) < 0.03 * xRange) near = t.second;
+      if (near) {
+        near->SetTitle(TString(near->GetTitle()) + "," + name);
+      } else {
+        TLatex* tag = new TLatex(x, 7.05, name);
+        tag->SetTextAlign(21);
+        tag->SetTextSize(0.06);
+        tag->Draw();
+        objects.push_back(tag);
+        tags.emplace_back(x, tag);
+      }
+    }
+  }
+}
+
+void DrawCFEBBorders(CSCDetID id, int nCFEB, std::vector<TObject*>& objects) {
+  // 16 strips per CFEB, strip s drawn at [s, s+1), so CFEB k starts at
+  // x = 16*k + 1; in ME1/1 the ME1b/ME1a border (strip 65) is solid
+  for (int k = 1; k < nCFEB; k++) {
+    const double x = 16 * k + 1;
+    TLine* border = new TLine(x, 1, x, 7);
+    const bool me1aBorder = id.Station == 1 && id.Ring == 1 && k == 4;
+    border->SetLineStyle(me1aBorder ? 1 : 2);
+    border->SetLineWidth(me1aBorder ? 3 : 2);
+    border->SetLineColor(kBlack);
+    border->Draw();
+    objects.push_back(border);
+  }
+}
+
+void AddSegmentLines(CSCDetID id, const vector<RecHitPoint>& rechits,
+                     const vector<SegmentLine>& segments, TPaveText* text) {
+  // CSC segments, key positions on layer 3 in LCT units (0-based half-strip and
+  // wire group); like the CLCT key half-strip, it includes the +1 half-strip
+  // stagger of layer 3 outside ME1/1
+  const int keyLayerStagger =
+      (id.Station == 1 && (id.Ring == 1 || id.Ring == 4)) ? 0 : 1;
+  for (unsigned int iseg = 0; iseg < segments.size(); iseg++) {
+    const SegmentLine& seg = segments[iseg];
+    stringstream ss_seg;
+    ss_seg << "RecoSeg #" << iseg << " nHits " << seg.nHits << " chi2/ndof "
+           << std::fixed << std::setprecision(1) << seg.chi2 << "/" << seg.ndof;
+    for (unsigned int j = 0; j < seg.layer.size(); j++) {
+      if (seg.layer[j] != 3) continue;
+      ss_seg << " key HS " << int(2 * seg.strip[j]) + keyLayerStagger
+             << " key WG "
+             << seg.wireGroup[j] - 1;
+    }
+    text->AddText(ss_seg.str().c_str())
+        ->SetTextColor(kSegmentColors[iseg % kNSegmentColors]);
+  }
+  if (!rechits.empty())
+    text->AddText("RecHits: filled = on a RecoSeg, open = not on a segment");
 }
